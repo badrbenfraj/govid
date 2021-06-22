@@ -6,6 +6,8 @@
     "server:start": "cd api && php bin/console server:run",
     "frontend:start": "ng serve --proxy-config proxy.config.json -o",
     "start": "concurrently \"npm run frontend:start\" \"npm run server:start\"",
+    "server:install": "cd api && composer install",
+    "frontend:install": "npm install",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
