@@ -1,3 +1,4 @@
+import { AgmCoreModule } from '@agm/core';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -9,8 +10,13 @@ import { AppComponent } from './app.component';
     AppComponent
   ],
   imports: [
+  //  MatFormFieldModule,
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyA8izfeQvQZt3XnZlrO6XB9U9WQgQX1OXQ',
+      libraries: ['places']
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]
