@@ -13,18 +13,18 @@ export class MachineService{
 
     getAllMachines(){
         return this._http.get<any>(
-            `/api/listmachines` 
+            `/api/listmachines`
         )
     }
     getMachineByIdentifier(identifier: string) {
         return this._http.get<any>(
           `/api/machine` + identifier
-        )
+        );
       }
       getMachineByFilters(filters: string) {
         return this._http.get<any>(
           `/api/machine?` + filters
-        )
+        );
       }
     createMachine(body: MachineInput) {
         return this._http.post<any>(

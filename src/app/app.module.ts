@@ -5,22 +5,24 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { TestComponent } from './laboratoires/test/test.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatCardModule} from '@angular/material/card';
-import { LaboratoireCardComponent } from './laboratoires/laboratoire-card/laboratoire-card.component';
-import { LaboratoireListComponent } from './laboratoires/laboratoire-list/laboratoire-list.component';
-import {MatIconModule} from '@angular/material/icon';
-import { LaboratoireDashboardComponent } from './laboratoires/laboratoire-dashboard/laboratoire-dashboard.component';
-import { NavBarComponent } from './nav-bar/nav-bar.component';
+import { LoginComponent } from './core/auth/login/login.component';
+import { SignupComponent } from './core/auth/signup/signup.component';
+import { NotFoundComponent } from './core/not-found/not-found.component';
+import { HomeComponent } from './components/home/home.component';
+import { HeaderComponent } from './components/home/header/header.component';
+import { TopHeaderComponent } from './components/home/top-header/top-header.component';
+import { ForgotPasswordComponent } from './core/auth/forgot-password/forgot-password.component';
+
 @NgModule({
   declarations: [
     AppComponent,
-    TestComponent,
-    LaboratoireCardComponent,
-    LaboratoireListComponent,
-    LaboratoireDashboardComponent,
-    NavBarComponent
+    LoginComponent,
+    SignupComponent,
+    NotFoundComponent,
+    HomeComponent,
+    HeaderComponent,
+    TopHeaderComponent,
+    ForgotPasswordComponent,
   ],
   imports: [
   //  MatFormFieldModule,
