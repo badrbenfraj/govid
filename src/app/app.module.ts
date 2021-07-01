@@ -12,6 +12,7 @@ import { HomeComponent } from './components/home/home.component';
 import { HeaderComponent } from './components/home/header/header.component';
 import { TopHeaderComponent } from './components/home/top-header/top-header.component';
 import { ForgotPasswordComponent } from './core/auth/forgot-password/forgot-password.component';
+import {AuthService} from './core/services/auth.service';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,7 @@ import { ForgotPasswordComponent } from './core/auth/forgot-password/forgot-pass
     }),
     HttpClientModule
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
