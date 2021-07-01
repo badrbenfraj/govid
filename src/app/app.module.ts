@@ -33,7 +33,10 @@ import {AuthService} from './core/services/auth.service';
       apiKey: 'AIzaSyA8izfeQvQZt3XnZlrO6XB9U9WQgQX1OXQ',
       libraries: ['places']
     }),
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+    MatCardModule,
+    MatIconModule
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]

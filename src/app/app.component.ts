@@ -7,6 +7,6 @@ import { Component, ElementRef, NgZone, ViewChild } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-
+  showModifyButton:boolean=false;
 }
 
