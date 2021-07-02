@@ -20,7 +20,7 @@ class LaboratoireController extends AbstractController
         ]);
     }
     /**
-    * @Route("/api/listLaboratoires", name="listLaboratoires")
+    * @Route("/listLaboratoires", name="listLaboratoires")
     */
     public function getAllLaboratoires(SerializerInterface $serializer): Response
     {
@@ -29,9 +29,9 @@ class LaboratoireController extends AbstractController
        return new Response($jsonContent);
     }
 
-   
+
     /**
-    * @Route("/api/laboratoire/{id}", name="laboratoire")
+    * @Route("/laboratoire/{id}", name="laboratoire")
     */
     public function getLaboratoire($id,SerializerInterface $serializer): Response
     {
@@ -42,7 +42,7 @@ class LaboratoireController extends AbstractController
 
      //http://localhost:8000/laboratoire?id=1
     /**
-    * @Route("/api/laboratoireWithFilters", name="laboratoireWithFilters")
+    * @Route("/laboratoireWithFilters", name="laboratoireWithFilters")
     */
     public function getLaboratoireWithFilters(Request $request,SerializerInterface $serializer): Response
     {
@@ -52,7 +52,7 @@ class LaboratoireController extends AbstractController
     }
 
     /**
-    * @Route("/api/addLaboratoire", name="addLaboratoire")
+    * @Route("/addLaboratoire", name="addLaboratoire")
     */
     public function addLaboratoire(Request $request,SerializerInterface $serializer) :Response {
     //récupérer le contenu de la requête envoyé
@@ -66,7 +66,7 @@ class LaboratoireController extends AbstractController
     }
 
     /**
-    * @Route("/api/removeLaboratoire/{id}", name="removeLaboratoire")
+    * @Route("/removeLaboratoire/{id}", name="removeLaboratoire")
     */
     public function deleteLaboratoire(int $id,SerializerInterface $serializer): Response
     {

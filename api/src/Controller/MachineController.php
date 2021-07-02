@@ -22,7 +22,7 @@ class MachineController extends AbstractController
         ]);
     }
  /**
-    * @Route("/api/listmachines", name="listmachines")
+    * @Route("/listmachines", name="listmachines")
     */
     public function getAllMachines(SerializerInterface $serializer): Response
     {
@@ -31,9 +31,9 @@ class MachineController extends AbstractController
        return new Response($jsonContent);
     }
 
-   
+
     /**
-    * @Route("/api/machine/{id}", name="machine")
+    * @Route("/machine/{id}", name="machine")
     */
     public function getMachine($id,SerializerInterface $serializer): Response
     {
@@ -44,7 +44,7 @@ class MachineController extends AbstractController
 
      //http://localhost:8000/machine?id=1
     /**
-    * @Route("/api/machineWithFilters", name="machineWithFilters")
+    * @Route("/machineWithFilters", name="machineWithFilters")
     */
     public function getMachineWithFilters(Request $request,SerializerInterface $serializer): Response
     {
@@ -54,7 +54,7 @@ class MachineController extends AbstractController
     }
 
     /**
-    * @Route("/api/addMachine", name="addMachine")
+    * @Route("/addMachine", name="addMachine")
     */
     public function addMachine(Request $request,SerializerInterface $serializer) :Response {
     //récupérer le contenu de la requête envoyé
@@ -68,7 +68,7 @@ class MachineController extends AbstractController
     }
 
     /**
-    * @Route("/api/removeMachine/{id}", name="removeMachine")
+    * @Route("/removeMachine/{id}", name="removeMachine")
     */
     public function deleteMachine(int $id,SerializerInterface $serializer): Response
     {

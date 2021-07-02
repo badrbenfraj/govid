@@ -11,6 +11,6 @@ export class AuthService {
   login(body){
     const headers = { 'content-type': 'application/json'};
     console.log(body);
-    return this.http.post('http://localhost:8000/login', body, {headers}).subscribe(a => console.log(a));
+    return this.http.post('/api/login', body, {headers}).subscribe(a => console.log(a));
   }
 }

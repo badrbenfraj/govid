@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Repository\UserRepository;
 use App\Security\LoginAuthenticator;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -14,7 +15,12 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class SecurityController extends AbstractController
 {
-    /**
+    public function __construct(UserRepository $userRepository, UserPasswordEncoderInterface $passwordEncoder)
+    {
+        $this->userRepository = $userRepository;
+    }
+
+  /**
      * @Route("/login", name="app_login", methods={"POST"})
      */
     public function login(AuthenticationUtils $authenticationUtils, Request $request)
@@ -25,7 +31,7 @@ class SecurityController extends AbstractController
         // last username entered by the user
         $lastUsername = $authenticationUtils->getLastUsername();
       $email = $request->attributes->get('email');
-        return new JsonResponse($request);
+        return new JsonResponse($email);
 
     }
 
@@ -38,32 +44,18 @@ class SecurityController extends AbstractController
     }
 
     /**
-     * @Route("/register", name="app_register")
+     * @Route("/register", name="app_register", methods={"POST"})
      */
-    public function register(Request $request, UserPasswordEncoderInterface $passwordEncoder, GuardAuthenticatorHandler $guardHandler, LoginAuthenticator $formAuthenticator)
+    public function register(Request $request)
     {
-        // TODO - use Symfony forms & validation
-        if ($request->isMethod('POST')) {
-            $user = new User();
-            $user->setEmail($request->request->get('email'));
-            $user->setFirstName('Mystery');
-            $user->setPassword($passwordEncoder->encodePassword(
-                $user,
-                $request->request->get('password')
-            ));
+      $data = json_decode($request->getContent(), true);
+      $email = $data['email'];
+      $password = $data['password'];
+      $firstName = $data['firstName'];
+      $lastName = $data['lastName'];
 
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($user);
-            $em->flush();
+      $user = $this->userRepository->findOneBy(['email' => $email]);
+      return new JsonResponse($data);
 
-            return $guardHandler->authenticateUserAndHandleSuccess(
-                $user,
-                $request,
-                $formAuthenticator,
-                'main'
-            );
-        }
-
-        return $this->render('security/register.html.twig');
     }
 }
