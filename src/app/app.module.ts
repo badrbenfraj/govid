@@ -1,7 +1,9 @@
 import { AgmCoreModule } from '@agm/core';
-import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -12,8 +14,7 @@ import { HomeComponent } from './components/home/home.component';
 import { HeaderComponent } from './components/home/header/header.component';
 import { TopHeaderComponent } from './components/home/top-header/top-header.component';
 import { ForgotPasswordComponent } from './core/auth/forgot-password/forgot-password.component';
-import { AuthService } from './core/auth/services/auth.service';
-import { FormsModule } from '@angular/forms';
+import { JwtInterceptor, ErrorInterceptor } from './core/auth/helpers';
 
 @NgModule({
   declarations: [
@@ -35,9 +36,13 @@ import { FormsModule } from '@angular/forms';
       libraries: ['places']
     }),
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
-  providers: [AuthService],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
