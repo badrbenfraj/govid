@@ -6,15 +6,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./search-bar.component.scss']
 })
 export class SearchBarComponent implements OnInit {
-  advancedOpened:boolean=false;
+  advancedOpened = false;
   constructor() { }
 
   ngOnInit(): void {
   }
   openAdvanced(){
-    this.advancedOpened=true;
+    this.advancedOpened = true;
   }
   closeAdvanced(){
-    this.advancedOpened=false;
+    this.advancedOpened = false;
   }
 }

@@ -10,16 +10,16 @@ import { MedecinService } from 'src/app/core/services/medecin.service';
   styleUrls: ['./cards.component.scss']
 })
 export class CardsComponent implements OnInit {
-@Input() medecin:any;
-  constructor(private medecinService: MedecinService, private router:Router) { }
+@Input() medecin: any;
+  constructor(private medecinService: MedecinService, private router: Router) { }
   id: string;
   ngOnInit(): void {
     
     }
 
-    deleteMedecin(id:string) {
+    deleteMedecin(id: string) {
 this.medecinService.removeMedecin(id).subscribe();
-this.router.navigateByUrl('/ListMedecins')
+this.router.navigateByUrl('/ListMedecins');
       }
   }
 

@@ -7,6 +7,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  showModifyButton:boolean=false;
+  showModifyButton = false;
 }
 

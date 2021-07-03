@@ -1,6 +1,6 @@
 import { MapsAPILoader } from '@agm/core';
 import { Component, ElementRef, Input, NgZone, OnInit, ViewChild } from '@angular/core';
-import { laboratoire } from 'src/app/models/laboratoire';
+import { laboratoire } from 'src/app/core/models/laboratoire';
 
 @Component({
   selector: 'app-laboratoire-map',
@@ -11,8 +11,8 @@ export class LaboratoireMapComponent implements OnInit {
 
 
 
-@Input()laboratoire:laboratoire;
-  title: string = 'AGM project';
+@Input()laboratoire: laboratoire;
+  title = 'AGM project';
   latitude: number;
   longitude: number;
   zoom: number;
@@ -39,7 +39,7 @@ export class LaboratoireMapComponent implements OnInit {
       navigator.geolocation.getCurrentPosition((position) => {
         this.latitude = position.coords.latitude;
         this.longitude = position.coords.longitude;
-        console.log("latitude",this.latitude,"longitude",this.longitude)
+        console.log('latitude', this.latitude, 'longitude', this.longitude);
         this.zoom = 8;
         this.getAddress(this.laboratoire.latitude, this.laboratoire.longitude);
       });
@@ -47,7 +47,7 @@ export class LaboratoireMapComponent implements OnInit {
   }
   
   getAddress(latitude, longitude) {
-    this.geoCoder.geocode({ 'location': { lat: latitude, lng: longitude } }, (results, status) => {
+    this.geoCoder.geocode({ location: { lat: latitude, lng: longitude } }, (results, status) => {
       if (status === 'OK') {
         if (results[0]) {
           this.zoom = 12;
@@ -60,6 +60,6 @@ export class LaboratoireMapComponent implements OnInit {
       }
     
 
-})}
+}); }
 
 }

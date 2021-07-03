@@ -6,8 +6,8 @@ import {NotFoundComponent} from './core/not-found/not-found.component';
 import {HomeComponent} from './components/home/home.component';
 import {ForgotPasswordComponent} from './core/auth/forgot-password/forgot-password.component';
 import { AuthGuard } from './core/auth/helpers';
-import { LaboratoireListComponent } from './laboratoires/laboratoire-list/laboratoire-list.component';
-import { LaboratoireDashboardComponent } from './laboratoires/laboratoire-dashboard/laboratoire-dashboard.component';
+import { LaboratoireListComponent } from './components/laboratoires/laboratoire-list/laboratoire-list.component';
+import { LaboratoireDashboardComponent } from './components/laboratoires/laboratoire-dashboard/laboratoire-dashboard.component';
 import { ListMedecinsComponent } from './components/Medecins/list-medecins/list-medecins.component';
 import { AjouterMedecinComponent } from './components/Medecins/ajouter-medecin/ajouter-medecin.component';
 
