@@ -12,7 +12,8 @@ import { HomeComponent } from './components/home/home.component';
 import { HeaderComponent } from './components/home/header/header.component';
 import { TopHeaderComponent } from './components/home/top-header/top-header.component';
 import { ForgotPasswordComponent } from './core/auth/forgot-password/forgot-password.component';
-import {AuthService} from './core/services/auth.service';
+import { AuthService } from './core/auth/services/auth.service';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import {AuthService} from './core/services/auth.service';
       apiKey: 'AIzaSyA8izfeQvQZt3XnZlrO6XB9U9WQgQX1OXQ',
       libraries: ['places']
     }),
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]

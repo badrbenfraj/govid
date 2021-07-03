@@ -38,7 +38,7 @@ class SecurityController extends AbstractFOSRestController
   /**
      * @Route("/login", name="app_login", methods={"POST"})
      */
-    public function login( Request $request)
+    public function login(Request $request)
     {
 
 
