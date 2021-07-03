@@ -19,7 +19,6 @@ import { JwtInterceptor, ErrorInterceptor } from './core/auth/helpers'
 import { MatIconModule } from '@angular/material/icon'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { LaboratoireListComponent } from './components/laboratoires/laboratoire-list/laboratoire-list.component'
-import { NavBarComponent } from './nav-bar/nav-bar.component'
 import { LaboratoireCardComponent } from './components/laboratoires/laboratoire-card/laboratoire-card.component'
 import { LaboratoireDashboardComponent } from './components/laboratoires/laboratoire-dashboard/laboratoire-dashboard.component'
 import { ToastModule } from 'primeng/toast'
@@ -44,7 +43,6 @@ import { MatInputModule } from '@angular/material/input'
     TopHeaderComponent,
     ForgotPasswordComponent,
     LaboratoireListComponent,
-    NavBarComponent,
     LaboratoireCardComponent,
     LaboratoireDashboardComponent,
     LaboratoireMapComponent,
