@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
-
+import {MatCardModule} from '@angular/material/card';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './core/auth/login/login.component';
@@ -16,6 +16,28 @@ import { TopHeaderComponent } from './components/home/top-header/top-header.comp
 import { ForgotPasswordComponent } from './core/auth/forgot-password/forgot-password.component';
 import { JwtInterceptor, ErrorInterceptor } from './core/auth/helpers';
 
+import {AuthService} from './core/services/auth.service';
+import {MatIconModule} from '@angular/material/icon';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { LaboratoireListComponent } from './laboratoires/laboratoire-list/laboratoire-list.component';
+import { NavBarComponent } from './nav-bar/nav-bar.component';
+import { LaboratoireCardComponent } from './laboratoires/laboratoire-card/laboratoire-card.component';
+import { LaboratoireDashboardComponent } from './laboratoires/laboratoire-dashboard/laboratoire-dashboard.component';
+import { ConfirmPopupModule } from 'primeng/confirmpopup';
+import { ToastModule } from "primeng/toast";
+import { ConfirmationService, MessageService } from 'primeng/api';
+import { ButtonModule } from 'primeng/button';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
+import {DialogModule, Dialog} from 'primeng/dialog'
+import { LaboratoireMapComponent } from './laboratoires/laboratoire-map/laboratoire-map.component';
+import { RatingLaboratoireComponent } from './laboratoires/rating-laboratoire/rating-laboratoire.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { SearchBarComponent } from './laboratoires/search-bar/search-bar.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,6 +48,15 @@ import { JwtInterceptor, ErrorInterceptor } from './core/auth/helpers';
     HeaderComponent,
     TopHeaderComponent,
     ForgotPasswordComponent,
+    LaboratoireListComponent,
+    NavBarComponent,
+    LaboratoireCardComponent,
+    LaboratoireDashboardComponent,
+    LaboratoireMapComponent,
+    RatingLaboratoireComponent,
+    SearchBarComponent,
+ 
+    
   ],
   imports: [
   //  MatFormFieldModule,
@@ -40,7 +71,17 @@ import { JwtInterceptor, ErrorInterceptor } from './core/auth/helpers';
     ReactiveFormsModule,
     BrowserAnimationsModule,
     MatCardModule,
-    MatIconModule
+    MatIconModule,
+    ConfirmDialogModule,
+    ToastModule,
+    ButtonModule,
+    FormsModule,
+    ReactiveFormsModule,
+   DialogModule,
+   NgbModule,
+   MatFormFieldModule,
+   MatInputModule
+    
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

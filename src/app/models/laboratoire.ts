@@ -8,4 +8,7 @@ export class laboratoire {
     updateDate:Date;
     adresse:string;
     rating:number;
+    latitude:number;
+    longitude:number
+    workingTime:string
 }

@@ -21,3 +21,23 @@ body{
 .divImage{
     background-image:url('/../../assets/imgs/labo1.jpg');
 }
+//staaaaaaaaars 
+.contentRating {
+    width: 420px;
+}
+
+.ratings {
+    background-color: #fff;
+    padding: 54px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 10px 10px #E0E0E0
+}
+
+.product-rating {
+    font-size: 50px
+}
+
+.stars i {
+    font-size: 18px;
+    color: #0069d9
+}

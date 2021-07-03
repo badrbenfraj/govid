@@ -57,6 +57,21 @@ class Laboratoire
      */
     private $rating;
 
+    /**
+     * @ORM\Column(type="string", length=20, nullable=true)
+     */
+    private $workingTime;
+
+    /**
+     * @ORM\Column(type="float", nullable=true)
+     */
+    private $longitude;
+
+    /**
+     * @ORM\Column(type="float", nullable=true)
+     */
+    private $latitude;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -154,6 +169,42 @@ class Laboratoire
     public function setRating(?int $rating): self
     {
         $this->rating = $rating;
+
+        return $this;
+    }
+
+    public function getWorkingTime(): ?string
+    {
+        return $this->workingTime;
+    }
+
+    public function setWorkingTime(?string $workingTime): self
+    {
+        $this->workingTime = $workingTime;
+
+        return $this;
+    }
+
+    public function getLongitude(): ?float
+    {
+        return $this->longitude;
+    }
+
+    public function setLongitude(?float $longitude): self
+    {
+        $this->longitude = $longitude;
+
+        return $this;
+    }
+
+    public function getLatitude(): ?float
+    {
+        return $this->latitude;
+    }
+
+    public function setLatitude(?float $latitude): self
+    {
+        $this->latitude = $latitude;
 
         return $this;
     }
