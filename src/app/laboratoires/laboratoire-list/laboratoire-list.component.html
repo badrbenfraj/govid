@@ -1,4 +1,18 @@
-<div style="display: flex;" *ngFor="let laboratoire of laboratoiresList">
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<app-search-bar></app-search-bar>
+<div class="container" style="padding-left: 126px;">
+
+
+<div class="flex-row" style="display:inline-block"*ngFor="let laboratoire of laboratoiresList">
     
-    <app-laboratoire-card [laboratoire]="laboratoire" ></app-laboratoire-card>
+    <app-laboratoire-card class="col-md-6"  [laboratoire]="laboratoire" ></app-laboratoire-card>
+</div>
+
 </div>

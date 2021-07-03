@@ -14,6 +14,15 @@ export class LaboratoireCardComponent implements OnInit {
   ngOnInit(): void {
   }
   previewLabo(){
-    this.router.navigateByUrl('/laboratoireDashboard')
+    localStorage.setItem('laboratoireUpdateMode', "false");
+    this.router.navigate(['/laboratoireDashboard'],{queryParams:{
+      id:this.laboratoire.id
+    }})
+  }
+  updateLabo(){
+    localStorage.setItem('laboratoireUpdateMode', "true");
+    this.router.navigate(['/laboratoireDashboard'],{queryParams:{
+      id:this.laboratoire.id
+    }})
   }
 }
