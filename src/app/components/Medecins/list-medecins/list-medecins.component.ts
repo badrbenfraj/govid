@@ -14,17 +14,17 @@ export class ListMedecinsComponent implements OnInit {
   ngOnInit(): void {
 
     this.medecinService.getAllMedecins().subscribe(res => {
-      this.listMedecin = res
-    })
+      this.listMedecin = res;
+    });
   }
 
   filtrer(fullName, email, phoneNumber, speciality, gender, cnamConvention) {
 
     this.listMedecinFiltred = this.listMedecin.filter((medecin) => {
-      return (medecin["fullName"] == fullName || medecin["email"] == email || medecin["phoneNumber"] == phoneNumber
+      return (medecin.fullName == fullName || medecin.email == email || medecin.phoneNumber == phoneNumber
 
-        || medecin["speciality"] == speciality || medecin["gender"] == gender || medecin["cnamConvention"] == cnamConvention)
-    })
+        || medecin.speciality == speciality || medecin.gender == gender || medecin.cnamConvention == cnamConvention);
+    });
   }
 
 }

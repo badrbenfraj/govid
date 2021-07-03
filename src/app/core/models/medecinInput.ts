@@ -1,5 +1,5 @@
 export class MedecinInput {
-    id:number;
+    id: number;
     fullName: string;
     email: string;
     address: string;

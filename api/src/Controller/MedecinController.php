@@ -23,7 +23,7 @@ class MedecinController extends AbstractController
     }
 
   /**
-    * @Route("/api/listmedecins", name="listmedecins")
+    * @Route("listmedecins", name="listmedecins")
     */
     public function getAllMedecins(SerializerInterface $serializer): Response
     {
@@ -33,7 +33,7 @@ class MedecinController extends AbstractController
     }
 
     /**
-    * @Route("/api/medecin/{id}", name="medecin")
+    * @Route("/medecin/{id}", name="medecin")
     */
     public function getMedecin($id,SerializerInterface $serializer): Response
     {
@@ -44,7 +44,7 @@ class MedecinController extends AbstractController
 
     //http://localhost:8000/api/medecinWithFilters?id=2
     /**
-    * @Route("/api/medecinWithFilters", name="medecinWithFilters")
+    * @Route("/medecinWithFilters", name="medecinWithFilters")
     */
     public function getMedecinWithFilters(Request $request,SerializerInterface $serializer): Response
     {
@@ -54,7 +54,7 @@ class MedecinController extends AbstractController
     }
 
     /**
-    * @Route("/api/addMedecin", name="addMedecin")
+    * @Route("/addMedecin", name="addMedecin")
     */
     public function addMedecin(Request $request,SerializerInterface $serializer) :Response {
         //récupérer le contenu de la requête envoyé
@@ -66,9 +66,9 @@ class MedecinController extends AbstractController
            $jsonContent = $serializer->serialize($medecin,"json");
            return new Response($jsonContent);
         }
-    
+
     /**
-    * @Route("/api/removeMedecin/{id}", name="removeMedecin")
+    * @Route("/removeMedecin/{id}", name="removeMedecin")
     */
     public function deleteMedecin(int $id,SerializerInterface $serializer): Response
     {
