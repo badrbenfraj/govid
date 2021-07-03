@@ -18,7 +18,7 @@ export class LaboratoireService{
     }
     getLaboratoireByIdentifier(identifier: string) {
         return this._http.get<any>(
-          `/api/laboratoire` + identifier
+          `/api/laboratoire/` + identifier
         )
       }
       getLaboratoireByFilters(filters: string) {
