@@ -10,6 +10,8 @@ import { LaboratoireListComponent } from './components/laboratoires/laboratoire-
 import { LaboratoireDashboardComponent } from './components/laboratoires/laboratoire-dashboard/laboratoire-dashboard.component'
 import { ListMedecinsComponent } from './components/Medecins/list-medecins/list-medecins.component'
 import { AjouterMedecinComponent } from './components/Medecins/ajouter-medecin/ajouter-medecin.component'
+import { ChooseActionComponent } from './components/Machines/choose-action/choose-action.component'
+import { ListeMachineComponent } from './components/Machines/liste-machine/liste-machine.component'
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -38,6 +40,16 @@ const routes: Routes = [
     path: 'AddMedecin',
     component: AjouterMedecinComponent,
     canActivate: [AuthGuard],
+  },
+  {
+    path: 'Machine',
+    component: ChooseActionComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'ListMachines',
+    component: ListeMachineComponent,
+    canActivate: [AuthGuard]
   },
   { path: '404', component: NotFoundComponent },
   { path: '**', redirectTo: '/404' },
