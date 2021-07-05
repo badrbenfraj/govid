@@ -48,7 +48,11 @@ import { ChooseActionComponent } from './components/Machines/choose-action/choos
 import { ListeMachineComponent } from './components/Machines/liste-machine/liste-machine.component'
 import { MatDatepickerModule } from '@angular/material/datepicker'
 import { MatNativeDateModule } from '@angular/material/core'
-import {MatPaginatorModule} from '@angular/material/paginator'
+import { MatPaginatorModule} from '@angular/material/paginator'
+import { MedecinsComponent } from './components/medecins/medecins.component';
+import { CardsComponent } from './components/medecins/cards/cards.component';
+import { ListMedecinsComponent } from './components/Medecins/list-medecins/list-medecins.component';
+import { AjouterMedecinComponent } from './components/Medecins/ajouter-medecin/ajouter-medecin.component'
 
 
 @NgModule({
@@ -65,6 +69,10 @@ import {MatPaginatorModule} from '@angular/material/paginator'
     LaboratoireMapComponent,
     RatingLaboratoireComponent,
     SearchBarComponent,
+    MedecinsComponent,
+    CardsComponent,
+    ListMedecinsComponent,
+    AjouterMedecinComponent,
     AdminComponent,
     NavigationComponent,
     NavLogoComponent,
