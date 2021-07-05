@@ -13,6 +13,8 @@ import { ListMedecinsComponent } from './components/Medecins/list-medecins/list-
 import { AjouterMedecinComponent } from './components/Medecins/ajouter-medecin/ajouter-medecin.component'
 import { Role } from './core/auth/models'
 import { AdminComponent } from './components/admin/admin.component'
+import { ChooseActionComponent } from './components/Machines/choose-action/choose-action.component'
+import { ListeMachineComponent } from './components/Machines/liste-machine/liste-machine.component'
 
 const routes: Routes = [
   {
@@ -62,6 +64,16 @@ const routes: Routes = [
     path: 'AddMedecin',
     component: AjouterMedecinComponent,
     canActivate: [AuthGuard],
+  },
+  {
+    path: 'Machine',
+    component: ChooseActionComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'ListMachines',
+    component: ListeMachineComponent,
+    canActivate: [AuthGuard]
   },
   { path: '404', component: NotFoundComponent },
   { path: '**', redirectTo: '/404' },

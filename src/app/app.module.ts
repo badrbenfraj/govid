@@ -44,6 +44,11 @@ import { NavLeftComponent } from './components/admin/nav-bar/nav-left/nav-left.c
 import { NavSearchComponent } from './components/admin/nav-bar/nav-left/nav-search/nav-search.component'
 import { NavRightComponent } from './components/admin/nav-bar/nav-right/nav-right.component'
 import { CookieService } from 'ngx-cookie-service'
+import { ChooseActionComponent } from './components/Machines/choose-action/choose-action.component';
+import { ListeMachineComponent } from './components/Machines/liste-machine/liste-machine.component'
+import { MatDatepickerModule } from '@angular/material/datepicker'
+import { MatNativeDateModule } from '@angular/material/core'
+import {MatPaginatorModule} from '@angular/material/paginator'
 
 
 @NgModule({
@@ -60,7 +65,6 @@ import { CookieService } from 'ngx-cookie-service'
     LaboratoireMapComponent,
     RatingLaboratoireComponent,
     SearchBarComponent,
-
     AdminComponent,
     NavigationComponent,
     NavLogoComponent,
@@ -72,6 +76,8 @@ import { CookieService } from 'ngx-cookie-service'
     NavLeftComponent,
     NavSearchComponent,
     NavRightComponent,
+    ChooseActionComponent,
+    ListeMachineComponent,
   ],
   imports: [
     //  MatFormFieldModule,
@@ -97,6 +103,9 @@ import { CookieService } from 'ngx-cookie-service'
     MatFormFieldModule,
     MatInputModule,
     SharedModule
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatPaginatorModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
