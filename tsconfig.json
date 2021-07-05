@@ -15,7 +15,18 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "paths": {
+      "@app/*": ["src/app/*"],
+      "@config": ["src/app/shared/config/app-config.ts"],
+      "@environment/*": ["src/environments/*"],
+      "@shared/*": ["src/app/shared/*"],
+      "@services/*": ["src/app/core/services/*"],
+      "@models/*": ["src/app/core/models/*"],
+      "@auth/*": ["src/app/core/auth/*"],
+      "@components/*": ["src/app/components/*"],
+      "@core/*": ["src/app/core/*"]
+  },
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
-import { AuthenticationService } from '../services';
+import { AuthenticationService } from '@auth/services';
 
 @Component({
   selector: 'app-signup',
@@ -17,7 +17,6 @@ export class SignupComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private route: ActivatedRoute,
     private router: Router,
     private authenticationService: AuthenticationService
   ) {
@@ -52,7 +51,7 @@ export class SignupComponent implements OnInit {
         this.f.firstName.value,
         this.f.lastName.value,
         this.f.email.value,
-        this.f.email.value
+        this.f.password.value
       )
       .pipe(first())
       .subscribe(

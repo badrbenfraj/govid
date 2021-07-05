@@ -35,13 +35,35 @@ class SecurityController extends AbstractFOSRestController
     $this->entityManager = $entityManager;
   }
 
-  /**
+    /**
      * @Route("/login", name="app_login", methods={"POST"})
      */
     public function login(Request $request)
     {
 
 
+    }
+
+    /**
+     * @Route("/user/{email}", name="user", methods={"GET"})
+     * @param Request $request
+     * @return \FOS\RestBundle\View\View
+     */
+    public function user(Request $request)
+    {
+      $email = $request->get('email');
+      $user = $this->userRepository->findOneByEmail($email);
+      if (!is_null($user)) {
+        return $this->view([
+          'message' => 'User Not Found.',
+          'code' => Response::HTTP_NOT_FOUND
+        ], Response::HTTP_NOT_FOUND);
+      }
+      unset($user['password']);
+      return $this->view([
+        'user:' => $user,
+        'code' => Response::HTTP_OK
+      ], Response::HTTP_OK);
     }
 
     /**
