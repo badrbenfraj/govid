@@ -30,7 +30,13 @@ import { RatingLaboratoireComponent } from './components/laboratoires/rating-lab
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
 import { SearchBarComponent } from './components/laboratoires/search-bar/search-bar.component'
 import { MatFormFieldModule } from '@angular/material/form-field'
-import { MatInputModule } from '@angular/material/input'
+import { MatInputModule } from '@angular/material/input';
+import { ChooseActionComponent } from './components/Machines/choose-action/choose-action.component';
+import { ListeMachineComponent } from './components/Machines/liste-machine/liste-machine.component'
+import { MatDatepickerModule } from '@angular/material/datepicker'
+import { MatNativeDateModule } from '@angular/material/core'
+import {MatPaginatorModule} from '@angular/material/paginator'
+
 
 @NgModule({
   declarations: [
@@ -48,6 +54,8 @@ import { MatInputModule } from '@angular/material/input'
     LaboratoireMapComponent,
     RatingLaboratoireComponent,
     SearchBarComponent,
+    ChooseActionComponent,
+    ListeMachineComponent,
   ],
   imports: [
     //  MatFormFieldModule,
@@ -72,6 +80,9 @@ import { MatInputModule } from '@angular/material/input'
     NgbModule,
     MatFormFieldModule,
     MatInputModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatPaginatorModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
