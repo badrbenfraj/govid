@@ -102,7 +102,7 @@ import {MatPaginatorModule} from '@angular/material/paginator'
     NgbModule,
     MatFormFieldModule,
     MatInputModule,
-    SharedModule
+    SharedModule,
     MatDatepickerModule,
     MatNativeDateModule,
     MatPaginatorModule
