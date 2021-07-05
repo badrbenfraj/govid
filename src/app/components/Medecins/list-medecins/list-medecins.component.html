@@ -1,12 +1,12 @@
-<h3 style="color:dodgerblue; padding-left: 370px;padding-top: 160px;"> Avec GOVID, trouvez rapidement votre médecin</h3>
+<h3 style="color:dodgerblue; padding-left: 360px;padding-top: 80px;"> Avec GOVID, trouvez rapidement votre médecin</h3>
 
 
-<div style="float:right; margin-right: 80px; margin-top: 30px;">
+<div style="float:right; margin-right: 80px; margin-top: 2px;">
     <img src="../../assets/images/med.PNG" alt="..." style="width: 180px; height: 180px">
 </div>
 
 
-<div style="position: absolute; top:250px; left:25%; width:50%;">
+<div style="position: absolute; top:200px; left:25%; width:50%;">
 
     <div class="form-row">
         <div class="form-group col-md-6">
@@ -65,11 +65,10 @@
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <!------ Include the above in your HEAD tag ---------->
 
     <section id="team" class="pb-5" class="album py-5 bg-light">
         <div class="container">
-            <h5 class="section-title h1">Liste des médecins</h5>
+            <h5 class="section-title h4">Liste des médecins</h5>
             <div class="row">
                 <div *ngIf="listMedecinFiltred && listMedecinFiltred.length>0 else elseBlock">
                     <div *ngFor="let medecin of listMedecinFiltred">

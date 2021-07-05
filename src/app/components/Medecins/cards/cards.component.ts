@@ -11,15 +11,14 @@ import { MedecinService } from 'src/app/core/services/medecin.service';
 })
 export class CardsComponent implements OnInit {
 @Input() medecin: any;
-  constructor(private medecinService: MedecinService, private router: Router) { }
+  constructor(private medecinService: MedecinService) { }
   id: string;
   ngOnInit(): void {
     
     }
 
     deleteMedecin(id: string) {
-this.medecinService.removeMedecin(id).subscribe();
-this.router.navigateByUrl('/ListMedecins');
+ this.medecinService.removeMedecin(id).subscribe();
       }
   }
 

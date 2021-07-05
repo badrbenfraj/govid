@@ -1,37 +1,15 @@
-
-<!-- 
-<div class="card mb-3" style="max-width: 700px;border: inset; padding-bottom: 10px;">
-    <div class="row g-0">
-        <div class="col-md-4" style="float:left">
-            <img src="../../assets/images/medecin.jpg" class="img-fluid rounded-start" alt="..." style="width: 153px; padding-right: 13px; padding-left: 5px; margin-top: 19px;">
-        </div>
-        <div class="col-md-8">
-            <div class="card-body" style= "margin-left: -61px;">
-                <h4 class="card-title">{{medecin.fullName}}</h4>
-                <p class="card-text">{{medecin.speciality}}</p>
-                <p class="card-text">{{medecin.address}}</p>           
-                <button type="button" class="btn btn-primary" (click)="deleteMedecin()">Supprimer</button>         
-               </div>
-        </div>
-    </div>
-</div>
-
--->
-
-
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<!------ Include the above in your HEAD tag ---------->
 
 
-            <!-- Team member -->
+            <!-- member -->
             <div class="col-md-6">
                 <div class="image-flip" >
                     <div class="mainflip flip-0">
                         <div class="frontside">
                             <div class="card" style="width: 19rem;">
-                                <div class="card-body text-center">
+                                <div class="card-body text-center mt-2">
                                     <p><img class=" img-fluid" src="../../assets/images/medecin.jpg" alt="card image"></p>
                                     <h4 class="card-title">{{medecin.fullName}}</h4>
                                     <p class="card-text">Specialité: {{medecin.speciality}}</p>
@@ -42,15 +20,22 @@
                         <div class="backside">
                             <div class="card" style="width: 19rem;">
                                 <div class="card-body text-center mt-4">
-                                    <h4 class="card-title">Informations de contact</h4>
-                                    <p class="card-text">Num tél: {{medecin.phoneNumber}}</p>
+                                    <h4 class="card-title" style="margin-top:-30px;">Informations de contact</h4>
+                                    <p class="card-text">Num Téléphone: {{medecin.phoneNumber}}</p>
+                                    <p class="card-text">Email: {{medecin.email}}</p>
+                                    <p class="card-text" *ngIf="medecin.cnamConvention == true else elseBlock">Medecin conventionné avec la CNAM</p>
+                                    <ng-template #elseBlock>
+                                        <div class="alternative">
+                                          <p class="card-text"> Medecin n'est pas conventionné avec la CNAM </p>
+                                        </div>
+                                     </ng-template>
                                     <p class="card-text">Adresse: {{medecin.address}}</p>
-                                    <button type="submit" class="btn btn-primary btn-sm, fa fa-trash" (click)="deleteMedecin(medecin.id)"></button>
-                                    <a href="https://www.fiverr.com/share/qb8D02" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></a>
+                                    <button type="submit" class="btn btn-primary btn-sm, fa fa-trash" style="margin-right: 10px;" (click)="deleteMedecin(medecin.id)"></button>
+                                    <button type="submit" class="btn btn-primary btn-sm, fa fa-edit"></button>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <!-- ./Team member -->
+            <!-- ./member -->
