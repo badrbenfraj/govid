@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-import { environment } from '../../../../environments/environment';
-import { User } from '../models';
+import { environment } from '@environment/environment';
+import { User } from '@auth/models';
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
@@ -14,5 +14,9 @@ export class UserService {
 
     getById(id: number) {
         return this.http.get<User>(`${environment.base_path}/user/${id}`);
+    }
+    
+    getByEmail(email: string) {
+        return this.http.get<User>(`${environment.base_path}/user/${email}`);
     }
 }

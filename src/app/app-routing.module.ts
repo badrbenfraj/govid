@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core'
 import { RouterModule, Routes } from '@angular/router'
+
 import { LoginComponent } from './core/auth/login/login.component'
 import { SignupComponent } from './core/auth/signup/signup.component'
 import { NotFoundComponent } from './core/not-found/not-found.component'
@@ -10,11 +11,18 @@ import { LaboratoireListComponent } from './components/laboratoires/laboratoire-
 import { LaboratoireDashboardComponent } from './components/laboratoires/laboratoire-dashboard/laboratoire-dashboard.component'
 import { ListMedecinsComponent } from './components/Medecins/list-medecins/list-medecins.component'
 import { AjouterMedecinComponent } from './components/Medecins/ajouter-medecin/ajouter-medecin.component'
+import { Role } from './core/auth/models'
+import { AdminComponent } from './components/admin/admin.component'
 import { ChooseActionComponent } from './components/Machines/choose-action/choose-action.component'
 import { ListeMachineComponent } from './components/Machines/liste-machine/liste-machine.component'
 
 const routes: Routes = [
-  { path: '', component: HomeComponent },
+  {
+    path: '',
+    loadChildren: () =>
+      import(`./components/home/home.module`).then((m) => m.HomeModule),
+  },
+
   { path: 'login', component: LoginComponent },
   { path: 'register', component: SignupComponent },
   {
@@ -25,11 +33,27 @@ const routes: Routes = [
     path: 'laboratoireList',
     component: LaboratoireListComponent,
     canActivate: [AuthGuard],
+    data: { roles: [Role.Admin] },
   },
   {
     path: 'laboratoireDashboard',
     component: LaboratoireDashboardComponent,
     canActivate: [AuthGuard],
+    data: { roles: [Role.Admin] },
+  },
+  {
+    path: 'dashboard',
+    component: AdminComponent,
+    canActivate: [AuthGuard],
+    children: [
+      {
+        path: '',
+        loadChildren: () =>
+          import('./components/admin/dashboard/dashboard.module').then(
+            (m) => m.DashboardModule
+          ),
+      },
+    ],
   },
   {
     path: 'ListMedecins',
