@@ -1,8 +1,6 @@
 import {Component, NgZone, OnInit} from '@angular/core';
 import {DattaConfig} from '@config';
 import {Location} from '@angular/common';
-import { CookieService } from 'ngx-cookie-service';
-import { UserService } from '@app/core/auth/services';
 
 @Component({
   selector: 'app-admin',
@@ -14,8 +12,9 @@ export class AdminComponent implements OnInit {
   public navCollapsed: boolean;
   public navCollapsedMob: boolean;
   public windowWidth: number;
+  user;
 
-  constructor(private zone: NgZone, private location: Location, private cookieService: CookieService, private userService: UserService) {
+  constructor(private zone: NgZone, private location: Location) {
     this.dattaConfig = DattaConfig.config;
 
     let current_url = this.location.path();
@@ -33,8 +32,7 @@ export class AdminComponent implements OnInit {
   }
 
   ngOnInit() {
-    const userEmail = this.cookieService.get('email');
-    this.userService.getByEmail(userEmail).subscribe(a=>console.log(a));
+
   }
 
   navMobClick() {

@@ -2,8 +2,9 @@ import { Component, DoCheck, OnInit } from '@angular/core'
 import { NgbDropdownConfig } from '@ng-bootstrap/ng-bootstrap'
 import { animate, style, transition, trigger } from '@angular/animations'
 import { DattaConfig } from '@config'
-import { AuthenticationService } from '@app/core/auth/services'
+import {AuthenticationService, UserService} from '@app/core/auth/services';
 import { Router } from '@angular/router'
+import {CookieService} from 'ngx-cookie-service';
 @Component({
   selector: 'app-nav-right',
   templateUrl: './nav-right.component.html',
@@ -35,11 +36,13 @@ export class NavRightComponent implements OnInit, DoCheck {
   public chatMessage: boolean
   public friendId: boolean
   public dattaConfig: any
+  public loggedUser: any
 
   constructor(
     config: NgbDropdownConfig,
     private authenticationService: AuthenticationService,
-    private route: Router
+    private route: Router,
+    private userService: UserService
   ) {
     config.placement = 'bottom-right'
     this.visibleUserList = false
@@ -47,7 +50,9 @@ export class NavRightComponent implements OnInit, DoCheck {
     this.dattaConfig = DattaConfig.config
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.loggedUser = this.userService.loggedUser;
+  }
 
   logout() {
     this.authenticationService.logout();
