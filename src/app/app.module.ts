@@ -7,8 +7,6 @@ import { FormsModule } from '@angular/forms'
 import { MatCardModule } from '@angular/material/card'
 import { AppRoutingModule } from './app-routing.module'
 import { AppComponent } from './app.component'
-import { LoginComponent } from '@auth/login/login.component'
-import { SignupComponent } from '@auth/signup/signup.component'
 import { NotFoundComponent } from '@core/not-found/not-found.component'
 import { HomeComponent } from '@components/home/home.component'
 import { ForgotPasswordComponent } from '@auth/forgot-password/forgot-password.component'
@@ -54,8 +52,6 @@ import {MatPaginatorModule} from '@angular/material/paginator'
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
-    SignupComponent,
     NotFoundComponent,
     HomeComponent,
     ForgotPasswordComponent,
