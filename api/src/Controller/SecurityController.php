@@ -52,18 +52,14 @@ class SecurityController extends AbstractFOSRestController
     public function user(Request $request)
     {
       $email = $request->get('email');
-      $user = $this->userRepository->findOneByEmail($email);
-      if (!is_null($user)) {
+      $user = $this->userRepository->findOneBy(['email' => $email]);
+      if (is_null($user)) {
         return $this->view([
           'message' => 'User Not Found.',
           'code' => Response::HTTP_NOT_FOUND
         ], Response::HTTP_NOT_FOUND);
       }
-      unset($user['password']);
-      return $this->view([
-        'user:' => $user,
-        'code' => Response::HTTP_OK
-      ], Response::HTTP_OK);
+      return $this->view($user,Response::HTTP_OK);
     }
 
     /**
