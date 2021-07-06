@@ -27,18 +27,44 @@ export interface Navigation extends NavigationItem {
 
 const NavigationItems = [
   {
-    id: 'navigation',
-    title: 'Navigation',
+    id: 'dashboard',
+    title: 'Dashboard',
+    type: 'item',
+    url: '/dashboard',
+    icon: 'feather icon-home',
+    classes: 'nav-item',
+  },
+  {
+    id: 'usersGroup',
+    title: 'Users',
     type: 'group',
-    icon: 'icon-navigation',
+    icon: 'icon-ui',
     children: [
       {
-        id: 'dashboard',
-        title: 'Dashboard',
-        type: 'item',
-        url: '/dashboard',
-        icon: 'feather icon-home',
-        classes: 'nav-item',
+        id: 'users',
+        title: 'Users',
+        type: 'collapse',
+        icon: 'feather icon-users',
+        children: [
+          {
+            id: 'usersLabo',
+            title: 'Users Laboratory',
+            type: 'item',
+            url: '/dashboard/users/laboratoire'
+          },
+          {
+            id: 'usersLabo',
+            title: 'Users Laboratory',
+            type: 'item',
+            url: '/dashboard/users/laboratoire'
+          },
+          {
+            id: 'usersLabo',
+            title: 'Users Laboratory',
+            type: 'item',
+            url: '/dashboard/users/laboratoire'
+          },
+        ]
       }
     ]
   }
