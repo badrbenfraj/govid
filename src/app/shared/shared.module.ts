@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
-import { BreadcrumbModule } from './components';
+import { BreadcrumbModule, CardModule } from './components';
 
 @NgModule({
   imports: [
@@ -10,12 +10,14 @@ import { BreadcrumbModule } from './components';
     FormsModule,
     ReactiveFormsModule,
     BreadcrumbModule,
+    CardModule
   ],
   exports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
     BreadcrumbModule,
+    CardModule
   ],
   declarations: [
   ],

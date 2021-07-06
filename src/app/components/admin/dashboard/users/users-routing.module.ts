@@ -1,22 +1,18 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import {UsersComponent} from './users.component';
 
 const routes: Routes = [
   {
     path: '',
-    children: [
-      {
-        path: '',
-        loadChildren: () => import('./default/default.module').then(m => m.DefaultModule)
-      }
-    ]
+    component: UsersComponent
   },
   {
     path: '',
     children: [
       {
-        path: 'users',
-        loadChildren: () => import('./users/users.module').then(m => m.UsersModule)
+        path: 'laboratoire',
+        loadChildren: () => import('./laboratory-agent/laboratory-agent.module').then(m => m.LaboratoryAgentModule)
       }
     ]
   },
@@ -26,4 +22,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class DashboardRoutingModule { }
+export class UsersRoutingModule { }
