@@ -8,6 +8,7 @@ export interface NavigationItem {
   icon?: string;
   hidden?: boolean;
   url?: string;
+  role?: 'ROLE_ADMIN' | 'ROLE_USER';
   classes?: string;
   exactMatch?: boolean;
   external?: boolean;
@@ -33,6 +34,7 @@ const NavigationItems = [
     url: '/dashboard',
     icon: 'feather icon-home',
     classes: 'nav-item',
+    role: 'ROLE_ADMIN',
   },
   {
     id: 'usersGroup',
@@ -44,13 +46,16 @@ const NavigationItems = [
         id: 'users',
         title: 'Users',
         type: 'collapse',
+        url: '/dashboard/users',
         icon: 'feather icon-users',
         children: [
           {
             id: 'usersLabo',
             title: 'Users Laboratory',
             type: 'item',
-            url: '/dashboard/users/laboratoire'
+            url: '/dashboard/users/laboratoire',
+            role: 'ROLE_ADMIN',
+
           },
           {
             id: 'usersLabo',

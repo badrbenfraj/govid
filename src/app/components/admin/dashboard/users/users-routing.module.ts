@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import {UsersComponent} from './users.component';
-import {LaboratoireDashboardComponent} from '@components/laboratoires/laboratoire-dashboard/laboratoire-dashboard.component';
 
 const routes: Routes = [
   {
@@ -9,9 +8,14 @@ const routes: Routes = [
     component: UsersComponent
   },
   {
-    path: 'laboratoire',
-    component: LaboratoireDashboardComponent
-  }
+    path: '',
+    children: [
+      {
+        path: 'laboratoire',
+        loadChildren: () => import('./laboratory-agent/laboratory-agent.module').then(m => m.LaboratoryAgentModule)
+      }
+    ]
+  },
 ];
 
 @NgModule({

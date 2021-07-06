@@ -82,7 +82,7 @@ export class NavContentComponent implements OnInit, AfterViewInit {
     if (this.location['_baseHref']) {
       current_url = this.location['_baseHref'] + this.location.path();
     }
-    const link = "a.nav-link[ href='" + current_url + "' ]";
+    const link = 'a.nav-link[ href=\'' + current_url + '\' ]';
     const ele = document.querySelector(link);
     if (ele !== null && ele !== undefined) {
       const parent = ele.parentElement;
@@ -90,7 +90,7 @@ export class NavContentComponent implements OnInit, AfterViewInit {
       const last_parent = up_parent.parentElement;
       if (parent.classList.contains('pcoded-hasmenu')) {
         parent.classList.add('active');
-      } else if(up_parent.classList.contains('pcoded-hasmenu')) {
+      } else if (up_parent.classList.contains('pcoded-hasmenu')) {
         up_parent.classList.add('active');
       } else if (last_parent.classList.contains('pcoded-hasmenu')) {
         last_parent.classList.add('active');
@@ -109,7 +109,7 @@ export class NavContentComponent implements OnInit, AfterViewInit {
     if (this.location['_baseHref']) {
       current_url = this.location['_baseHref'] + this.location.path();
     }
-    const link = "a.nav-link[ href='" + current_url + "' ]";
+    const link = 'a.nav-link[ href=\'' + current_url + '\' ]';
     const ele = document.querySelector(link);
     if (ele !== null && ele !== undefined) {
       const parent = ele.parentElement;
@@ -120,7 +120,7 @@ export class NavContentComponent implements OnInit, AfterViewInit {
           parent.classList.add('pcoded-trigger');
         }
         parent.classList.add('active');
-      } else if(up_parent.classList.contains('pcoded-hasmenu')) {
+      } else if (up_parent.classList.contains('pcoded-hasmenu')) {
         if (this.dattaConfig['layout'] === 'vertical') {
           up_parent.classList.add('pcoded-trigger');
         }

@@ -2,6 +2,7 @@ import {Component, Input, NgZone, OnInit} from '@angular/core';
 import {NavigationItem} from '../../navigation';
 import {DattaConfig} from '@config';
 import {Location} from '@angular/common';
+import {UserService} from '@auth/services';
 
 @Component({
   selector: 'app-nav-item',
@@ -12,13 +13,15 @@ export class NavItemComponent implements OnInit {
   @Input() item: NavigationItem;
   public dattaConfig: any;
   public themeLayout: string;
+  public loggedUser: any;
 
-  constructor(private location: Location) {
+  constructor(private location: Location, private userService: UserService) {
     this.dattaConfig = DattaConfig.config;
     this.themeLayout = this.dattaConfig['layout'];
   }
 
   ngOnInit() {
+    this.loggedUser = this.userService.loggedUser;
   }
 
   closeOtherMenu(event) {
@@ -60,7 +63,7 @@ export class NavItemComponent implements OnInit {
         if (this.location['_baseHref']) {
           current_url = this.location['_baseHref'] + this.location.path();
         }
-        const link = "a.nav-link[ href='" + current_url + "' ]";
+        const link = 'a.nav-link[ href=\'' + current_url + '\' ]';
         const ele = document.querySelector(link);
         if (ele !== null && ele !== undefined) {
           const parent = ele.parentElement;
