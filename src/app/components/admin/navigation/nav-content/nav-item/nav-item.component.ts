@@ -3,6 +3,7 @@ import {NavigationItem} from '../../navigation';
 import {DattaConfig} from '@config';
 import {Location} from '@angular/common';
 import {UserService} from '@auth/services';
+import {User} from '@auth/models';
 
 @Component({
   selector: 'app-nav-item',
@@ -13,7 +14,7 @@ export class NavItemComponent implements OnInit {
   @Input() item: NavigationItem;
   public dattaConfig: any;
   public themeLayout: string;
-  public loggedUser: any;
+  public loggedUser: User;
 
   constructor(private location: Location, private userService: UserService) {
     this.dattaConfig = DattaConfig.config;

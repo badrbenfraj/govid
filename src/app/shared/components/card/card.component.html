@@ -3,7 +3,7 @@
     <h5 *ngIf="!customHeader">{{ cardTitle }}</h5>
     <div class="card-header-right" *ngIf="button">
 
-        <button type="button" class="btn dropdown-toggle btn-icon" routerLink="{{button.path}}" style="border-radius: 10px;border: 1px solid lightgray;">
+        <button type="button" class="btn dropdown-toggle btn-icon" [routerLink]="button.param ? [button.path, button.param] : button.path" style="border-radius: 10px;border: 1px solid lightgray;">
           {{button.label}}
         </button>
 

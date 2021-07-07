@@ -14,10 +14,26 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class UserRepository extends ServiceEntityRepository
 {
-    public function __construct(ManagerRegistry $registry)
-    {
-        parent::__construct($registry, User::class);
-    }
+  public function __construct(ManagerRegistry $registry)
+  {
+    parent::__construct($registry, User::class);
+  }
+
+  /**
+   * @param string $role
+   *
+   * @return array
+   */
+  public function findByRole($role)
+  {
+    $qb = $this->_em->createQueryBuilder();
+    $qb->select('u')
+      ->from($this->_entityName, 'u')
+      ->where('u.roles LIKE :roles')
+      ->setParameter('roles', '%"' . $role . '"%');
+
+    return $qb->getQuery()->getResult();
+  }
 
   public function findOneByEmail($email)
   {
@@ -27,32 +43,32 @@ class UserRepository extends ServiceEntityRepository
       ->getQuery();
     return $q->getOneOrNullResult(); // will return only one result or null 'getResult' will return a collection
   }
-    // /**
-    //  * @return User[] Returns an array of User objects
-    //  */
-    /*
-    public function findByExampleField($value)
-    {
-        return $this->createQueryBuilder('u')
-            ->andWhere('u.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('u.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
+  // /**
+  //  * @return User[] Returns an array of User objects
+  //  */
+  /*
+  public function findByExampleField($value)
+  {
+      return $this->createQueryBuilder('u')
+          ->andWhere('u.exampleField = :val')
+          ->setParameter('val', $value)
+          ->orderBy('u.id', 'ASC')
+          ->setMaxResults(10)
+          ->getQuery()
+          ->getResult()
+      ;
+  }
+  */
 
-    /*
-    public function findOneBySomeField($value): ?User
-    {
-        return $this->createQueryBuilder('u')
-            ->andWhere('u.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
+  /*
+  public function findOneBySomeField($value): ?User
+  {
+      return $this->createQueryBuilder('u')
+          ->andWhere('u.exampleField = :val')
+          ->setParameter('val', $value)
+          ->getQuery()
+          ->getOneOrNullResult()
+      ;
+  }
+  */
 }
