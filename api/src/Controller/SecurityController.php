@@ -63,6 +63,19 @@ class SecurityController extends AbstractFOSRestController
     }
 
     /**
+     * @Route("/users/{role}", name="usersRole", methods={"GET"})
+     * @param Request $request
+     * @return \FOS\RestBundle\View\View
+     */
+    public function users(Request $request)
+    {
+      $role = $request->get('role');
+      $users = $this->userRepository->findByRole($role);
+
+      return $this->view($users,Response::HTTP_OK);
+    }
+
+    /**
      * @Route("/logout", name="app_logout")
      */
     public function logout()

@@ -1,11 +1,16 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import {UsersComponent} from './users.component';
+import {NewAgentComponent} from '@components/admin/dashboard/users/new-agent/new-agent.component';
 
 const routes: Routes = [
   {
     path: '',
     component: UsersComponent
+  },
+  {
+    path: 'new/:name',
+    component: NewAgentComponent
   },
   {
     path: '',

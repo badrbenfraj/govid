@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { UsersRoutingModule } from './users-routing.module';
 import {SharedModule} from '@shared/shared.module';
 import { UsersComponent } from './users.component';
+import { NewAgentComponent } from './new-agent/new-agent.component';
 
 @NgModule({
   imports: [
@@ -11,6 +12,6 @@ import { UsersComponent } from './users.component';
     UsersRoutingModule,
     SharedModule
   ],
-  declarations: [UsersComponent]
+  declarations: [UsersComponent, NewAgentComponent]
 })
 export class UsersModule { }
