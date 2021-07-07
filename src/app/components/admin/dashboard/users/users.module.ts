@@ -5,6 +5,7 @@ import { UsersRoutingModule } from './users-routing.module';
 import {SharedModule} from '@shared/shared.module';
 import { UsersComponent } from './users.component';
 import { NewAgentComponent } from './new-agent/new-agent.component';
+import { EditAgentComponent } from './edit-agent/edit-agent.component';
 
 @NgModule({
   imports: [
@@ -12,6 +13,6 @@ import { NewAgentComponent } from './new-agent/new-agent.component';
     UsersRoutingModule,
     SharedModule
   ],
-  declarations: [UsersComponent, NewAgentComponent]
+  declarations: [UsersComponent, NewAgentComponent, EditAgentComponent]
 })
 export class UsersModule { }

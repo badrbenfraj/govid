@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-xl-12">
-    <app-card cardTitle="Add {{capitalize(agent)}} Agents" [button]="buttonCancel" [options]="false" blockClass="table-border-style">
+    <app-card cardTitle="Update {{capitalize(agent)}} Agents" [button]="buttonCancel" [options]="false" blockClass="table-border-style">
       <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
         <div class="form-group">
           <input type="text" placeholder="First Name" formControlName="firstName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }" />
@@ -30,7 +30,7 @@
         <div class="form-group">
           <button [disabled]="loading" class="btn btn-primary">
             <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
-            Add Agent
+            Update Agent
           </button>
         </div>
       </form>

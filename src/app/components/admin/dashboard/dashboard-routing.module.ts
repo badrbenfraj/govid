@@ -19,6 +19,14 @@ const routes: Routes = [
         loadChildren: () => import('./users/users.module').then(m => m.UsersModule)
       }
     ]
+  },  {
+    path: '',
+    children: [
+      {
+        path: 'users/:id',
+        loadChildren: () => import('./users/users.module').then(m => m.UsersModule)
+      }
+    ]
   },
 ];
 

@@ -15,7 +15,7 @@ export class UserService {
     }
 
     getById(id: number) {
-        return this.http.get<User>(`${environment.base_path}/user/${id}`);
+        return this.http.get<User>(`${environment.base_path}/agent/${id}`);
     }
 
     getByRole(role: string): Observable<User[]> {
