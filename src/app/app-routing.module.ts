@@ -60,16 +60,6 @@ const routes: Routes = [
     ],
   },
   {
-    path: 'ListMedecins',
-    component: ListMedecinsComponent,
-    canActivate: [AuthGuard],
-  },
-  {
-    path: 'AddMedecin',
-    component: AjouterMedecinComponent,
-    canActivate: [AuthGuard],
-  },
-  {
     path: 'Machine',
     component: ChooseActionComponent,
     canActivate: [AuthGuard]
