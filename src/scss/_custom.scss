@@ -113,3 +113,15 @@ pre code{
   bottom: 50px;
   opacity: 1;
 }
+
+.table .action {
+  margin: 0 10px
+}
+
+.table .action.edit-action {
+  color: green;
+}
+
+.table .action.delete-action {
+  color: red;
+}

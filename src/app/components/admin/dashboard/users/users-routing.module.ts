@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import {UsersComponent} from './users.component';
 import {NewAgentComponent} from '@components/admin/dashboard/users/new-agent/new-agent.component';
+import {EditAgentComponent} from '@components/admin/dashboard/users/edit-agent/edit-agent.component';
 
 const routes: Routes = [
   {
@@ -11,6 +12,10 @@ const routes: Routes = [
   {
     path: 'new/:name',
     component: NewAgentComponent
+  },
+  {
+    path: 'edit',
+    component: EditAgentComponent
   },
   {
     path: '',
