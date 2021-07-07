@@ -72,7 +72,16 @@ const NavigationItems = [
         ]
       }
     ]
-  }
+  },
+  {
+    id: 'medecin',
+    title: 'Medecin',
+    type: 'item',
+    url: '/dashboard/medecin/list-medecin',
+    icon: 'feather icon-activity',
+    classes: 'nav-item',
+    role: 'ROLE_ADMIN',
+  },
 ];
 
 @Injectable()

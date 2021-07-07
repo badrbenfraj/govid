@@ -1,7 +1,3 @@
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
 <h3 style="color:dodgerblue; padding-left: 460px;padding-top: 80px;"> Ajoutez votre nouveau médecin</h3>
 <form #medForm="ngForm" (ngSubmit)="save(medForm.value)">
     <div style="position: absolute; top:200px; left:25%; width:50%;">
@@ -57,7 +53,7 @@
         </div>
         <br>
         <button  type="submit" class="btn btn-primary" style="margin-bottom: 32px; margin-top: 16px;" [disabled]="medForm.invalid">Enregistrer</button>
-        <button routerLink="/ListMedecins" class="btn btn-primary"
+        <button routerLink="/dashboard/medecin/list-medecin" class="btn btn-primary"
             style="margin-bottom: 32px; margin-left:10px; margin-top: 16px;">Annuler</button>
     </div>
 </form>
