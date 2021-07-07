@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { MedecinInput } from 'src/app/core/models/medecinInput';
 import { MedecinService } from 'src/app/core/services/medecin.service';
 
@@ -10,14 +11,17 @@ import { MedecinService } from 'src/app/core/services/medecin.service';
 })
 export class AjouterMedecinComponent implements OnInit {
  med: MedecinInput;
-  constructor(private medecinSer: MedecinService) { }
+  constructor(private medecinSer: MedecinService, private router: Router) { }
 
   ngOnInit(): void {
-    this.med = new MedecinInput();
   }
 
-  save(){
-this.medecinSer.createMedecin(this.med).subscribe();
-  }
-
-}
+  save(data){
+    if (data.cnamConvention =! true) {data.cnamConvention = false}
+    this.medecinSer.createMedecin(data).subscribe((result)=>{
+    console.warn("result",result);
+    console.log('Medecin créé avec succès !');
+    this.router.navigateByUrl('/ListMedecins');
+  })
+console.warn(data);
+}}
