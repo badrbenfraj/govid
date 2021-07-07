@@ -1,60 +1,63 @@
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-<h3 style="color:dodgerblue; padding-left: 480px;padding-top: 80px;"> Ajoutez votre nouveau médecin</h3>
-<form>
-
-<div style="position: absolute; top:200px; left:25%; width:50%;">
-
-    <div class="form-row">
-        <div class="form-group col-md-6">
-            <label for="inputName">Nom et Prénom </label>
-            <input  type="text" class="form-control" id="inputName" placeholder="Nom et Prénom">
+<h3 style="color:dodgerblue; padding-left: 460px;padding-top: 80px;"> Ajoutez votre nouveau médecin</h3>
+<form #medForm="ngForm" (ngSubmit)="save(medForm.value)">
+    <div style="position: absolute; top:200px; left:25%; width:50%;">
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="inputName">Nom et Prénom </label>
+                <input type="text" class="form-control" name="fullName" id="inputName" placeholder="Nom et Prénom" ngModel required>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="inputEmail4">Email</label>
+                <input type="email" class="form-control" name="email" id="inputEmail4" placeholder="contact@example.com" ngModel required>
+            </div>
         </div>
-        <div class="form-group col-md-6">
-            <label for="inputEmail4">Email</label>
-            <input  type="email" class="form-control" id="inputEmail4" placeholder="contact@example.com">
+        <div class="form-row">
+            <div class="form-group col-md-12">
+                <label for="inputName">Adresse </label>
+                <input type="text" class="form-control" name="address" id="inputAddress" placeholder="Tapez votre adresse" ngModel required>
+            </div>
         </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="inputAddress">Numéro de téléphone</label>
+                <input type="number" class="form-control"  name="phoneNumber" id="inputNumTel" placeholder="11 11 11 11" pattern="[0-9]{8}"
+                    maxlength="8" ngModel required>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="inputState">Spécialité</label>
+                <select id="inputState" class="form-control"  name="speciality" ngModel required>
+                    <option>Generaliste</option>
+                    <option>Pneumologue</option>
+                    <option>Infectiologue</option>
+                    <option>Interniste</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-check form-check-inline col-md-2">
+                <input class="form-check-input" type="radio" name="gender" id="inlineRadio1" value="Homme" ngModel>
+                <label class="form-check-label" for="inlineRadio1">Homme</label>
+            </div>
+            <div class="form-check form-check-inline col-md-2">
+                <input class="form-check-input" type="radio" name="gender" id="inlineRadio2" value="Femme" ngModel>
+                <label class="form-check-label" for="inlineRadio2">Femme</label>
+            </div>
+            <div class="form-check form-check-inline col-md-2">
+                <input class="form-check-input" type="radio" name="gender" id="inlineRadio2" value="NONE" ngModel>
+                <label class="form-check-label" for="inlineRadio2">NONE</label>
+            </div>
+            <div class="form-check col-md-4">
+                <input class="form-check-input" type="checkbox" name="cnamConvention" id="gridCheck" ngModel>
+                <label class="form-check-label" for="gridCheck"> Conventionné avec la CNAM </label>
+            </div>
+        </div>
+        <br>
+        <button  type="submit" class="btn btn-primary" style="margin-bottom: 32px; margin-top: 16px;" [disabled]="medForm.invalid">Enregistrer</button>
+        <button routerLink="/ListMedecins" class="btn btn-primary"
+            style="margin-bottom: 32px; margin-left:10px; margin-top: 16px;">Annuler</button>
     </div>
-    <div class="form-row">
-        <div class="form-group col-md-6">
-            <label for="inputAddress">Numéro de téléphone</label>
-            <input  type="text" class="form-control" id="inputNumTel" placeholder="11 11 11 11"
-                pattern="[0-9]{8}" maxlength="8">
-        </div>
-        <div class="form-group col-md-6">
-            <label for="inputState">Spécialité</label>
-            <select  id="inputState" class="form-control">
-                <option selected>NONE</option>
-                <option>Generaliste</option>
-                <option>Pneumologue</option>
-                <option>Infectiologue</option>
-                <option>Interniste</option>
-            </select>
-        </div>
-    </div>
-    <div class="form-row">
-        <div class="form-check form-check-inline col-md-2">
-            <input class="form-check-input" type="radio" name="gender" id="inlineRadio1" value="Homme">
-            <label class="form-check-label" for="inlineRadio1">Homme</label>
-        </div>
-        <div class="form-check form-check-inline col-md-2">
-            <input class="form-check-input" type="radio" name="gender" id="inlineRadio2" value="Femme">
-            <label class="form-check-label" for="inlineRadio2">Femme</label>
-        </div>
-        <div class="form-check form-check-inline col-md-2">
-            <input  class="form-check-input" type="radio" name="gender" id="inlineRadio2" value="NONE">
-            <label class="form-check-label" for="inlineRadio2">NONE</label>
-        </div>
-        <div class="form-check col-md-4">
-            <input  class="form-check-input" type="checkbox" id="gridCheck">
-            <label class="form-check-label" for="gridCheck"> Conventionné avec la CNAM </label>
-        </div>
-    </div>
-    <br>
-
-    <button  class="btn btn-primary" style="margin-bottom: 32px; margin-left: 574px; margin-top: 10px;">Enregistrer</button>
-  
-</div>
 </form>

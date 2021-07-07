@@ -78,4 +78,27 @@ class MedecinController extends AbstractController
        $entityManager->flush();
        return new Response();
     }
+
+ /**
+ * @Route("updateMedecin/{id}", name="medecinUpdate",methods={"POST"})
+ */
+public function UpdateMedecin(int $id, Request $request, SerializerInterface $serializer) : Response
+{
+           $em=$this->getDoctrine()->getManager();
+           $medecin = $em->getRepository(Medecin::class)->find($id);
+
+      
+            $medecin->setFullName($request->get("fullName"));
+            $medecin->setEmail($request->get("email"));
+            $medecin->setAddress($request->get("address"));
+            $medecin->setPhoneNumber($request->get("phoneNumber"));
+            $medecin->setSpeciality($request->get("speciality"));
+            $medecin->setGender($request->get("gender"));
+            $medecin->setCnamConvention($request->get("cnamConvention"));
+
+           $em->persist($medecin);
+           $em->flush();
+           $jsonContent = $serializer->serialize($medecin,"json");
+           return new Response($jsonContent);
+}
 }
