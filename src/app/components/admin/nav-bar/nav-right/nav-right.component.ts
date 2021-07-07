@@ -56,7 +56,6 @@ export class NavRightComponent implements OnInit, DoCheck {
 
   logout() {
     this.authenticationService.logout();
-    this.route.navigate(['/login']);
   }
 
   onChatToggle(friend_id) {

@@ -41,6 +41,7 @@ const NavigationItems = [
     title: 'Users',
     type: 'group',
     icon: 'icon-ui',
+    role: 'ROLE_ADMIN',
     children: [
       {
         id: 'users',
@@ -48,6 +49,7 @@ const NavigationItems = [
         type: 'collapse',
         url: '/dashboard/users',
         icon: 'feather icon-users',
+        role: 'ROLE_ADMIN',
         children: [
           {
             id: 'usersLabo',
