@@ -47,6 +47,12 @@ const routes: Routes = [
     data: {roles: [Role.Admin]},
   },
   {
+    path: 'laboratoireHome',
+    component: LaboratoireHomeComponent,
+    canActivate: [AuthGuard],
+    data: {roles: [Role.Admin]},
+  },
+  {
     path: 'dashboard',
     component: AdminComponent,
     canActivate: [AuthGuard],

@@ -49,6 +49,7 @@ import {MatNativeDateModule} from '@angular/material/core';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { LaboratoireHomeComponent } from './components/laboratoires/laboratoire-home/laboratoire-home.component';
 import { AddLaboComponent } from './components/laboratoires/add-labo/add-labo.component';
+import { CommentsLaboComponent } from './components/laboratoires/comments-labo/comments-labo.component';
 
 
 @NgModule({
@@ -77,6 +78,8 @@ import { AddLaboComponent } from './components/laboratoires/add-labo/add-labo.co
     NavRightComponent,
     ChooseActionComponent,
     ListeMachineComponent,
+    AddLaboComponent,
+    CommentsLaboComponent
   ],
   imports: [
     //  MatFormFieldModule,
@@ -103,7 +106,7 @@ import { AddLaboComponent } from './components/laboratoires/add-labo/add-labo.co
     MatDatepickerModule,
     MatNativeDateModule,
     MatPaginatorModule,
-    AddLaboComponent
+    
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
