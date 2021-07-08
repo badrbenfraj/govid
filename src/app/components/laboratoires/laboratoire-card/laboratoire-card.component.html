@@ -12,10 +12,10 @@
 			<div class="tab-content text-left">
 				<div role="tabpanel" class="tab-pane fade active show" id="hot-jobs">
 					<div >
-						<div style="    width: 275px;    box-shadow: 0px 8px 20px 0px rgb(0 0 0 / 15%);">
+						<div style="    width: 257px;    box-shadow: 0px 8px 20px 0px rgb(0 0 0 / 15%);">
 							<div class="job-item">
 								<div class="item-overlay">
-									<div class="job-info">
+									<div class="job-info" style="margin-top: 330px;">
 										<!--a href="#" class="btn btn-primary">Full Time</a>
 										<span class="tr-title">
 											<a href="#">Project Manager</a>
@@ -27,29 +27,53 @@
 											<li><i class="fa fa-money" aria-hidden="true"></i>$5,000 - $6,000</li>
 										</ul-->
 										<ul class="job-social tr-list">
-											<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+											<li><a (click)="removeLabo()"><i class="fa fa-trash" aria-hidden="true"></i></a></li>
 											<li><a (click)="previewLabo()"><i class="fa fa-expand" aria-hidden="true"></i></a></li>
-											<li><a href="#"><i class="fa fa-bookmark-o" aria-hidden="true"></i></a></li>
 											<li><a (click)="updateLabo()"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></li>
+											<li><a (click)="openLocation()"><i class="fa fa-map-marker" aria-hidden="true"></i></a></li>
+
+											<li></li>
 										</ul>
-									</div>										
+									</div>	
+
 								</div>
+							
 								<div class="job-info">
 									<div class="company-logo">
-										<img src="../../assets/imgs/labo1.jpg" alt="images" class="img-fluid">
+										<img src="../../assets/imgs/labo7.jpg" alt="images" class="img-fluid">
 									</div>
+									<div class="stars"style="margin-left: 49px;" >
+										<div *ngIf="laboratoire.rating==1">
+											<i class="fa fa-star"></i> <i class="fa fa-star-o" aria-hidden="true"></i><i class="fa fa-star-o" aria-hidden="true"></i><i class="fa fa-star-o" aria-hidden="true"></i><i class="fa fa-star-o" aria-hidden="true"></i>
+										</div>
+										<div *ngIf="laboratoire.rating==2">
+									  <i class="fa fa-star"></i> <i class="fa fa-star"></i><i class="fa fa-star-o" aria-hidden="true"></i><i class="fa fa-star-o" aria-hidden="true"></i><i class="fa fa-star-o" aria-hidden="true"></i>
+										</div>
+										<div *ngIf="laboratoire.rating==3">
+											 <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i><i class="fa fa-star-o" aria-hidden="true"></i><i class="fa fa-star-o" aria-hidden="true"></i>
+										</div>
+										<div *ngIf="laboratoire.rating==4">
+											<i class="fa fa-star"></i>  <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i><i class="fa fa-star-o" aria-hidden="true"></i>
+										</div>
+										<div *ngIf="laboratoire.rating==5">
+											<i class="fa fa-star"></i>  <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i>
+										</div>
+									   
+									   
+										
+										</div>
 									<span class="tr-title">
-										<a href="#">{{laboratoire.name}}</a>
+										<a href="#" style="font-weight: 500;color:#284b63">{{laboratoire.name}}</a>
 										<span><a href="#">{{laboratoire.gouvernorat}}</a></span>
 									</span>
 									<ul class="tr-list job-meta">
-										<li><span><i class="fa fa-fax" aria-hidden="true"></i></span>{{laboratoire.fax}}</li>
-										<li><span><i class="fa fa-phone" aria-hidden="true"></i></span>{{laboratoire.phoneNumber}}</li>
-										<li><span><i class="fa fa-map-marker" aria-hidden="true"></i></span>{{laboratoire.adresse}}</li>
+										<li><span><i class="fa fa-fax" style="color: #57b846;" aria-hidden="true"></i></span>{{laboratoire.fax}}</li>
+										<li><span><i class="fa fa-phone"style="color: #57b846;" aria-hidden="true"></i></span>{{laboratoire.phoneNumber}}</li>
+										<li><span><i class="fa fa-map-marker" style="color: #57b846;"aria-hidden="true"></i></span>{{laboratoire.adresse}}</li>
 									</ul>
 									<div class="time">
-										<a href="#"><span>Full Time</span></a>
-										<span class="pull-right">{{laboratoire.updateDate}}</span>
+										<a href="#" style="margin-left: -9px"><span>Full Time</span></a>
+										<span class="pull-right">{{laboratoire.updateDate |date:'fullDate'}}</span>
 									</div>																				
 								</div>
 							</div>

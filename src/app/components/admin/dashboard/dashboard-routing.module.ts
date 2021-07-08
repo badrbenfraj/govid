@@ -38,6 +38,15 @@ const routes: Routes = [
       }
     ]
   },
+    {
+    path: '',
+    children: [
+      {
+        path: 'laboratoire',
+        loadChildren: () => import('../../laboratoires/laboratoires.module').then(m => m.LaboratoiresModule)
+      }
+    ]
+  }
 ];
 
 @NgModule({

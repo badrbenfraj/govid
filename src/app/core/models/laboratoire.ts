@@ -11,4 +11,5 @@ export class laboratoire {
     latitude: number;
     longitude: number;
     workingTime: string;
+    totalReviews:number
 }

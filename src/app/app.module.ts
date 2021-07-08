@@ -47,6 +47,9 @@ import {ListeMachineComponent} from './components/Machines/liste-machine/liste-m
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material/core';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import { LaboratoireHomeComponent } from './components/laboratoires/laboratoire-home/laboratoire-home.component';
+import { AddLaboComponent } from './components/laboratoires/add-labo/add-labo.component';
+import { CommentsLaboComponent } from './components/laboratoires/comments-labo/comments-labo.component';
 
 
 @NgModule({
@@ -56,6 +59,7 @@ import {MatPaginatorModule} from '@angular/material/paginator';
     HomeComponent,
     ForgotPasswordComponent,
     LaboratoireListComponent,
+    LaboratoireHomeComponent,
     LaboratoireCardComponent,
     LaboratoireDashboardComponent,
     LaboratoireMapComponent,
@@ -74,6 +78,8 @@ import {MatPaginatorModule} from '@angular/material/paginator';
     NavRightComponent,
     ChooseActionComponent,
     ListeMachineComponent,
+    AddLaboComponent,
+    CommentsLaboComponent
   ],
   imports: [
     //  MatFormFieldModule,
@@ -92,8 +98,6 @@ import {MatPaginatorModule} from '@angular/material/paginator';
     ConfirmDialogModule,
     ToastModule,
     ButtonModule,
-    FormsModule,
-    ReactiveFormsModule,
     DialogModule,
     NgbModule,
     MatFormFieldModule,
@@ -101,7 +105,8 @@ import {MatPaginatorModule} from '@angular/material/paginator';
     SharedModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
