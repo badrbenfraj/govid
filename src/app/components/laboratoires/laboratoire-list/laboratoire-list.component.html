@@ -1,18 +1,90 @@
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<app-search-bar></app-search-bar>
-<div class="container" style="padding-left: 126px;">
 
 
-<div class="flex-row" style="display:inline-block"*ngFor="let laboratoire of laboratoiresList">
-    
-    <app-laboratoire-card class="col-md-6"  [laboratoire]="laboratoire" ></app-laboratoire-card>
+
+<!--search bar-->
+<div class="s007">
+    <form>
+      <div class="inner-form">
+        <div class="basic-search">
+          <div class="input-field">
+            <div class="icon-wrap">
+              <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20" height="20" viewBox="0 0 20 20">
+                <path d="M18.869 19.162l-5.943-6.484c1.339-1.401 2.075-3.233 2.075-5.178 0-2.003-0.78-3.887-2.197-5.303s-3.3-2.197-5.303-2.197-3.887 0.78-5.303 2.197-2.197 3.3-2.197 5.303 0.78 3.887 2.197 5.303 3.3 2.197 5.303 2.197c1.726 0 3.362-0.579 4.688-1.645l5.943 6.483c0.099 0.108 0.233 0.162 0.369 0.162 0.121 0 0.242-0.043 0.338-0.131 0.204-0.187 0.217-0.503 0.031-0.706zM1 7.5c0-3.584 2.916-6.5 6.5-6.5s6.5 2.916 6.5 6.5-2.916 6.5-6.5 6.5-6.5-2.916-6.5-6.5z"></path>
+              </svg>
+            </div>
+            <input class="form-control" id="search" type="text" placeholder="Recherche rapide d'un laboratoire..." />
+            <div class="result-count">
+                
+              <span>{{laboratoiresList.length}} </span>resultats
+              <div *ngIf="!advancedOpened" (click)="openAdvanced()"><mat-icon>keyboard_arrow_down</mat-icon></div>
+              <div *ngIf="advancedOpened" (click)="closeAdvanced()"><mat-icon>keyboard_arrow_up</mat-icon></div>
+
+            </div>
+
+          </div>
+        </div>
+        <div [formGroup]="laboratoireForm" class="advance-search" *ngIf="advancedOpened">
+         
+          <div class="row">
+              
+            <div class="form-group" style="float:left;margin-right:20px;">
+                <label for="name">Name</label>
+                <input id="name" type="text" class="form-control" value=""[formControlName]="'name'" name="name">
+              </div>
+              <div class="form-group"style="float:left;margin-right:20px;">
+                <label for="gouvernorat">Gouvernorat</label>
+                <input id="gouvernorat" type="text" class="form-control" value="" [formControlName]="'gouvernorat'" name="gouvernorat">
+              </div>
+              <div class="form-group" style="float:left;margin-right:20px;">
+                <label for="updateDate">Date de modification</label>
+                <input id="updateDate" type="Date" class="form-control"value=""[formControlName]="'updateDate'" name="updateDate">
+              </div>
+          </div>
+          <div class="row second">
+            <div class="form-group" style="width: 197px;float:left;margin-right:40px;">
+                <label for="workingTime">Working time</label>
+                <select d="workingTime" class="form-control" [formControlName]="'workingTime'" >
+                    <option *ngFor="let option of workingTimes" [ngValue]="state">
+                      {{ option.name }}
+                    </option>
+                  </select>              </div>
+              <div class="form-group" style="float:left;margin-right:12px;">
+                <label for="phoneNumber">Numero du téléphone</label>
+                <input id="phoneNumber" type="text" class="form-control"value=""[formControlName]="'phoneNumber'" name="phoneNumber">
+              </div>
+              <div class="form-group" style="float:left;margin-right:20px;">
+                <label for="email">Adresse mail</label>
+                <input id="email" type="text" class="form-control"value="" [formControlName]="'email'"name="email">
+              </div>
+          </div>
+          <div class="row third">
+            <div class="input-field">
+              <button class="btn btn-primary" (click)="search()">Search</button>
+              <button class="btn-delete" id="delete" (click)="deleteFilter()">Delete</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+
+<!-- end searchBar-->
+<div class="container" style=" width: 106%;
+/* width: 171px; */
+padding-left: 96px;
+flex-wrap: wrap;
+display: inline-flex;">
+
+<div *ngIf="showSpinner"  class="spinner-border text-primary "style="width: 5rem; height: 5rem;    margin-left: 44%;
+margin-top: 10%;" role="status">
+  <span class="sr-only">Loading...</span>
+</div>
+
+<div class="flex-row" style="display: contents;">
+    <div *ngFor="let laboratoire of laboratoiresList">
+      <app-laboratoire-card class="col-md-6"  [laboratoire]="laboratoire" ></app-laboratoire-card>
+
+    </div>
 </div>
 
 </div>

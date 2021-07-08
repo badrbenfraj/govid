@@ -1,0 +1,113 @@
+       
+<div class="container-fluid px-1 py-5 mx-auto">
+    <div class="row d-flex justify-content-center">
+        <div class="col-xl-7 col-lg-8 col-md-9 col-11 ">
+            <div class="card cardStyle">
+                <h1 class="text-center mb-4 title" style="font-weight: 500;">Ajout d'un laboratoire</h1>
+                <form #form="ngForm"  autocomplete="off">
+                    <div class="form-group">
+                    
+                        <label for="name" class="form-label">Nom du laboratoire <span class="text-danger"> *</span></label>
+
+                        <input name="name" #name="ngModel" minlength="4" [(ngModel)]="formData.name" class="form-control"
+                           required>
+                          <div *ngIf="name.invalid && (name.dirty || name.touched)"
+                          class="alert">
+                      
+                        <div *ngIf="name.errors?.required">
+                            <small class="text-danger">Le nom est requis
+                            </small>
+                        </div>
+                        <div *ngIf="name.errors?.minlength">
+                            <small class="text-danger" >  Le nom doit comporter au moins 4 caractères.</small>
+
+                        
+                        </div>
+                 
+                      
+                      </div>
+                    
+                    </div>
+                    <div class="form-group">
+                    
+                        <label for="gouvernorat" class="form-label">Gouvernorat<span class="text-danger"> *</span></label>
+
+                        <input name="gouvernorat" #gouvernorat="ngModel" [(ngModel)]="formData.gouvernorat" class="form-control"
+                           required>
+                          <div *ngIf="gouvernorat.invalid && (gouvernorat.dirty || gouvernorat.touched)"
+                          class="alert">
+                          <small class="text-danger" *ngIf="gouvernorat.errors?.required">Le gouvernorat est requis</small>
+</div>
+                    
+                    </div>
+                    <div class="form-group">
+                    
+                        <label for="email" class="form-label">Email <span class="text-danger"> *</span></label>
+                        <input email="true"  type="email" name="email" #email="ngModel"  aria-describedby="emailHelp"[(ngModel)]="formData.email" class="form-control"
+               required  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" >
+                          <div *ngIf="email.invalid && (email.dirty || email.touched)"
+                          class="alert">
+                          <small class="text-danger" *ngIf="email.errors?.required">Adresse e-mail est nécessaire</small>
+			<small class="text-danger" *ngIf="email.errors?.pattern">Adresse email invalide</small>
+                         </div>
+                    
+                    </div>
+                   
+                    <div class="form-group">
+                  
+                        <label for="phoneNumber" class="form-label">Téléphone <span class="text-danger"> *</span></label>
+
+                        <input name="phoneNumber" type="tel" #phoneNumber="ngModel" [(ngModel)]="formData.phoneNumber"
+        class="form-control"  required maxlength="16" minlength="8">
+        <div *ngIf="phoneNumber.invalid && (phoneNumber.dirty || phoneNumber.touched)"
+                          class="alert">
+        <small class="text-danger" *ngIf="phoneNumber.errors?.required">Le numéro de téléphone est requis
+        </small>
+</div>
+    </div>
+    <div class="form-group">
+                    
+        <label for="adresse" class="form-label">Adresse<span class="text-danger"> *</span></label>
+
+        <input name="adresse" #adresse="ngModel" [(ngModel)]="formData.adresse" class="form-control"
+           required>
+          <div *ngIf="adresse.invalid && (adresse.dirty || adresse.touched)"
+          class="alert">
+          <small class="text-danger" *ngIf="adresse.errors?.required">L'adresse est requise</small>
+</div>
+    
+    </div>
+    <div class="form-group">
+                    
+        <label for="workingTime" class="form-label">Horaire du travail<span class="text-danger"> *</span></label>
+
+        <select  #workingTime="ngModel" class="form-control" [(ngModel)]="formData.workingTime"
+   required name="workingTime">
+        <option *ngFor="let option of workingTimes" [ngValue]="option.name">
+            {{ option.name }}
+        </option>
+    </select>
+          <small class="text-danger" *ngIf="workingTime.errors?.required">Le gouvernorat est requis</small>
+</div>
+<div class="form-group">
+                  
+    <label for="fax" class="form-label">Fax </label>
+
+    <input name="fax" type="tel" #fax="ngModel" [(ngModel)]="formData.fax"
+class="form-control"   maxlength="16" minlength="8">
+<div *ngIf="fax.invalid && (fax.dirty || fax.touched)"
+      class="alert">
+<small class="text-danger" *ngIf="fax.errors?.required">Le numéro de téléphone est requis
+</small>
+</div>
+</div>
+ 
+    
+    <div class="form-group">
+      <button class="btn btn-primary" type="submit" [disabled]="form.invalid" (click)="addLabo()"> Ajouter</button>
+    </div>
+  </form>
+</div>
+</div>
+</div>
+</div>

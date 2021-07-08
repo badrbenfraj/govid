@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { LaboratoireService } from 'src/app/core/services/laboratoire.service';
+import { LaboratoireService } from 'src/app/services/laboratoire.service';
 
 @Component({
   selector: 'app-test',
@@ -8,12 +8,12 @@ import { LaboratoireService } from 'src/app/core/services/laboratoire.service';
 })
 export class TestComponent implements OnInit {
 
-  constructor(private laboratoireService: LaboratoireService) { }
+  constructor(private laboratoireService:LaboratoireService) { }
 
   ngOnInit(): void {
-    this.laboratoireService.getAllLaboratoires().subscribe(res => {
-      console.log('res', res);
-    });
+    this.laboratoireService.getAllLaboratoires().subscribe(res=>{
+      console.log("res",res)
+    })
   }
 
 }

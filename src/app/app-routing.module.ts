@@ -12,6 +12,7 @@ import {Role} from './core/auth/models';
 import {AdminComponent} from './components/admin/admin.component';
 import {ChooseActionComponent} from './components/Machines/choose-action/choose-action.component';
 import {ListeMachineComponent} from './components/Machines/liste-machine/liste-machine.component';
+import { LaboratoireHomeComponent } from './components/laboratoires/laboratoire-home/laboratoire-home.component';
 
 const routes: Routes = [
   {
@@ -34,10 +35,10 @@ const routes: Routes = [
     component: ForgotPasswordComponent,
   },
   {
-    path: 'laboratoireList',
-    component: LaboratoireListComponent,
+    path: 'laboratoireHome',
+    component: LaboratoireHomeComponent,
     canActivate: [AuthGuard],
-    data: {roles: [Role.Admin]},
+   
   },
   {
     path: 'laboratoireDashboard',
