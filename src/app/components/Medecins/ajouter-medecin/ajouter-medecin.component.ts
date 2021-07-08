@@ -19,9 +19,6 @@ export class AjouterMedecinComponent implements OnInit {
   }
 
   save(data) {
-    if (data.cnamConvention = !true) {
-      data.cnamConvention = false;
-    }
     this.medecinSer.createMedecin(data).subscribe((result) => {
       this.router.navigateByUrl('/dashboard/medecin/list-medecin');
     });
