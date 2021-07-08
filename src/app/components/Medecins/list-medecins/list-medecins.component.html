@@ -54,14 +54,12 @@
     </div>
   </div>
   <br>
-
-  <button type="submit" class="btn btn-primary" style="margin-bottom: 32px;"
+  <button type="submit" class="btn btn-primary" style="margin-bottom: 32px;" 
           (click)="filtrer(fullName.value,email.value, phoneNumber.value, speciality.value,  rad1.checked ? rad1.value : rad2.checked ? rad2.value : rad3.value, cnamConvention.checked ? true : null)">
-    Rechercher
+          <i class="fas fa-search"></i> Rechercher
   </button>
-
   <button routerLink="/dashboard/medecin/new" class="btn btn-primary"
-          style="margin-bottom: 32px; margin-left: 16px;">Ajouter médecin
+          style="margin-bottom: 32px; margin-left: 16px;"> <i class="fas fa-user-plus"></i>Ajouter médecin
   </button>
   <br>
 
