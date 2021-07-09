@@ -45,6 +45,41 @@ class SecurityController extends AbstractFOSRestController
   }
 
   /**
+   * @Route("/user/update/{id}", name="update_user", methods={"POST"})
+   * @param Request $request
+   * @return \FOS\RestBundle\View\View
+   */
+  public function update_user(Request $request)
+  {
+    $id = $request->get('id');
+
+    $data = json_decode($request->getContent(), true);
+    $email = $data['email'];
+    $firstName = $data['firstName'];
+    $lastName = $data['lastName'];
+    $password = $data['password'];
+
+    $user = $this->userRepository->findOneBy([
+      'id' => $id,
+    ]);
+
+    $user->setEmail($email);
+    $user->setFirstName($firstName);
+    $user->setLastName($lastName);
+    $user->setPassword(
+      $this->passwordEncoder->encodePassword($user, $password)
+    );
+
+    $this->entityManager->persist($user);
+    $this->entityManager->flush();
+
+    return $this->view([
+      'message' => 'User Updated Successfully',
+      'code' => Response::HTTP_OK
+    ], Response::HTTP_OK)->setContext((new Context())->setGroups(['public']));
+  }
+
+  /**
    * @Route("/user/{email}", name="user", methods={"GET"})
    * @param Request $request
    * @return \FOS\RestBundle\View\View
@@ -147,21 +182,5 @@ class SecurityController extends AbstractFOSRestController
     ], Response::HTTP_CREATED)->setContext((new Context())->setGroups(['public']));
   }
 
-  /**
-   * @Route("/deleteUser/{id}", name="deleteUser")
-   * @param Request $request
-   * @return \FOS\RestBundle\View\View
-   */
-  public function deleteUser(Request $request): Response
-  {
-    $id = $request->get('id');
-    $user = $this->userRepository->findOneBy(['id' => $id]);
-    $this->entityManager->remove($user);
-    $this->entityManager->flush();
 
-    return $this->view([
-      'message' => 'User deleted Successfully.',
-      'code' => Response::HTTP_OK
-    ], Response::HTTP_OK);
-  }
 }

@@ -22,8 +22,10 @@ export class LaboratoryAgentComponent implements OnInit {
     };
     this.userService.getByRole('ROLE_LABORATOIRE_AGENT').subscribe(users => {
       this.agentUser = users;
-      console.log(this.agentUser);
     });
   }
 
+  delete(id): void {
+    this.userService.delete(id);
+  }
 }
