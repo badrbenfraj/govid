@@ -1,31 +1,42 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import {Injectable} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
 
-import { environment } from '@environment/environment';
-import { User } from '@auth/models';
+import {environment} from '@environment/environment';
+import {User} from '@auth/models';
 import {Observable} from 'rxjs';
 
-@Injectable({ providedIn: 'root' })
+@Injectable({providedIn: 'root'})
 export class UserService {
-    loggedUser = JSON.parse(localStorage.getItem('loggedUser'));
-    constructor(private http: HttpClient) { }
+  loggedUser = JSON.parse(localStorage.getItem('loggedUser'));
 
-    getAll() {
-        return this.http.get<User[]>(`${environment.base_path}/users`);
-    }
+  constructor(private http: HttpClient) {
+  }
 
-    getById(id: number) {
-        return this.http.get<User>(`${environment.base_path}/agent/${id}`);
-    }
+  getAll() {
+    return this.http.get<User[]>(`${environment.base_path}/users`);
+  }
 
-    getByRole(role: string): Observable<User[]> {
-        return this.http.get<User[]>(`${environment.base_path}/users/${role}`);
-    }
+  getById(id: number) {
+    return this.http.get<User>(`${environment.base_path}/agent/${id}`);
+  }
 
-    getByEmail(email: string) {
-        return this.http.get<User>(`${environment.base_path}/user/${email}`).subscribe((user) => {
-          localStorage.setItem('loggedUser', JSON.stringify(user));
-          this.loggedUser = JSON.parse(localStorage.getItem('loggedUser'));;
-        });
-    }
+  getByRole(role: string): Observable<User[]> {
+    return this.http.get<User[]>(`${environment.base_path}/users/${role}`);
+  }
+
+  getByEmail(email: string) {
+    return this.http.get<User>(`${environment.base_path}/user/${email}`).subscribe((user) => {
+      localStorage.setItem('loggedUser', JSON.stringify(user));
+      this.loggedUser = JSON.parse(localStorage.getItem('loggedUser'));
+      ;
+    });
+  }
+
+  update(id: number, user: User): Observable<User> {
+    return this.http.post<User>(`${environment.base_path}/user/update/${id}`, {...user});
+  }
+
+  delete(id: number): Observable<User>{
+    return this.http.post<User>(`${environment.base_path}/user/delete/${id}`, {});
+  }
 }

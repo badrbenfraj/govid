@@ -115,13 +115,16 @@ pre code{
 }
 
 .table .action {
-  margin: 0 10px
+  margin: 0 8px;
+  cursor: pointer;
 }
 
 .table .action.edit-action {
   color: green;
+  padding: 10px;
 }
 
 .table .action.delete-action {
   color: red;
+  padding: 10px;
 }
