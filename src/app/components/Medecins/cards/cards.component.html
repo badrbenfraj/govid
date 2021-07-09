@@ -1,37 +1,114 @@
-
-            <!-- member -->
-            <div class="col-md-6" >
-                <div class="image-flip" >
-                    <div class="mainflip flip-0">
-                        <div class="frontside">
-                            <div class="card" style="width: 19rem;">
-                                <div class="card-body text-center mt-2">
-                                    <p><img class=" img-fluid" src="../../assets/images/medecin.jpg" alt="card image"></p>
-                                    <h4 class="card-title">{{medecin.fullName}}</h4>
-                                    <p class="card-text">Specialité: {{medecin.speciality}}</p>
-                                    <p class="card-text">Sexe: {{medecin.gender}}</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="backside">
-                            <div class="card" style="width: 19rem;">
-                                <div class="card-body text-center mt-4">
-                                    <h4 class="card-title">Informations de contact</h4>
-                                    <p class="card-text">Num Téléphone: {{medecin.phoneNumber}}</p>
-                                    <p class="card-text">Email: {{medecin.email}}</p>
-                                    <p class="card-text" *ngIf="medecin.cnamConvention == true else elseBlock">Medecin conventionné avec la CNAM</p>
-                                    <ng-template #elseBlock>
-                                        <div class="alternative">
-                                          <p class="card-text"> Medecin n'est pas conventionné avec la CNAM </p>
-                                        </div>
-                                     </ng-template>
-                                    <p class="card-text">Adresse: {{medecin.address}}</p>
-                                    <button type="submit" class="btn btn-primary btn-sm, fa fa-trash" style="margin-right: 10px; padding: 11px" (click)="deleteMedecin(medecin.id)"></button>
-                                    <button type="submit" class="btn btn-primary btn-sm, fa fa-edit" style="padding: 11px"></button>
-                                </div>
-                            </div>
-                        </div>
+<!-- member -->
+<div class="col-md-6">
+    <div class="image-flip">
+        <div class="mainflip flip-0">
+            <div class="frontside">
+                <div class="card" style="width: 19rem;">
+                    <div class="card-body text-center mt-2">
+                        <p><img class=" img-fluid" src="../../assets/images/medecin.jpg" alt="card image"></p>
+                        <h4 class="card-title">{{medecin.fullName}}</h4>
+                        <p class="card-text">Specialité: {{medecin.speciality}}</p>
+                        <p class="card-text">Sexe: {{medecin.gender}}</p>
                     </div>
                 </div>
             </div>
-            <!-- ./member -->
+            <div class="backside">
+                <div class="card" style="width: 19rem;">
+                    <div class="card-body text-center mt-4">
+                        <h4 class="card-title">Informations de contact</h4>
+                        <p class="card-text">Num Téléphone: {{medecin.phoneNumber}}</p>
+                        <p class="card-text">Email: {{medecin.email}}</p>
+                        <p class="card-text" *ngIf="medecin.cnamConvention == true else elseBlock">Medecin conventionné
+                            avec la CNAM</p>
+                        <ng-template #elseBlock>
+                            <div class="alternative">
+                                <p class="card-text"> Medecin n'est pas conventionné avec la CNAM </p>
+                            </div>
+                        </ng-template>
+                        <p class="card-text">Adresse: {{medecin.address}}</p>
+                        <button type="submit" class="btn btn-primary btn-sm, fa fa-trash"
+                            style="margin-right: 10px; padding: 11px" (click)="deleteMedecin(medecin.id)"></button>
+                        <button type="submit" class="btn btn-primary btn-sm, fa fa-edit" style="padding: 11px"
+                            (click)="triggerModal(modalData); edit(medecin)"></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ./member -->
+
+<!-- Modal -->
+
+<ng-template #modalData let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title" style="padding-left: 114px; color:dodgerblue;">Mettez à jour
+            votre médecin</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">×</span>
+        </button>
+    </div>
+<div class="modal-body">
+    <form #medForm="ngForm" (ngSubmit)="save(medForm.value)">
+        <div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="inputName">Nom et Prénom </label>
+                    <input type="text" class="form-control" name="fullName" id="inputName" placeholder="Nom et Prénom"
+                       #fullName [(ngModel)]="medecinToUpdate.fullName" required>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="inputEmail4">Email</label>
+                    <input type="email" class="form-control" name="email" id="inputEmail4"
+                        placeholder="contact@example.com" #email [(ngModel)]="medecinToUpdate.email" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-12">
+                    <label for="inputName">Adresse </label>
+                    <input type="text" class="form-control" name="address" id="inputAddress"
+                        placeholder="Tapez votre adresse" #address [(ngModel)]="medecinToUpdate.address"  required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="inputAddress">Numéro de téléphone</label>
+                    <input type="number" class="form-control" name="phoneNumber" id="inputNumTel"
+                        placeholder="11 11 11 11" pattern="[0-9]{8}" maxlength="8" #phoneNumber [(ngModel)]="medecinToUpdate.phoneNumber"  required>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="inputState">Spécialité</label>
+                    <select id="inputState" class="form-control" name="speciality" #speciality [(ngModel)]="medecinToUpdate.speciality"  required>
+                        <option>Generaliste</option>
+                        <option>Pneumologue</option>
+                        <option>Infectiologue</option>
+                        <option>Interniste</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-check form-check-inline col-md-2">
+                    <input class="form-check-input" type="radio" name="gender" id="inlineRadio1" value="Homme" #gender1 [(ngModel)]="medecinToUpdate.gender" >
+                    <label class="form-check-label" for="inlineRadio1">Homme</label>
+                </div>
+                <div class="form-check form-check-inline col-md-2">
+                    <input class="form-check-input" type="radio" name="gender" id="inlineRadio2" value="Femme" #gender2 [(ngModel)]="medecinToUpdate.gender" >
+                    <label class="form-check-label" for="inlineRadio2">Femme</label>
+                </div>
+                <div class="form-check form-check-inline col-md-2">
+                    <input class="form-check-input" type="radio" name="gender" id="inlineRadio2" value="NONE" #gender3 [(ngModel)]="medecinToUpdate.gender" >
+                    <label class="form-check-label" for="inlineRadio2">NONE</label>
+                </div>
+                <div class="form-check col-md-4">
+                    <input class="form-check-input" type="checkbox" name="cnamConvention" id="gridCheck" #cnamConvention [(ngModel)]="medecinToUpdate.cnamConvention" >
+                    <label class="form-check-label" for="gridCheck"> Conventionné avec la CNAM </label>
+                </div>
+            </div>
+             <br>
+                <button type="button" class="btn btn-secondary" (click)="modal.close('Save click')">Annuler</button>
+                <button type="submit" value="Update" class="btn btn-primary">Enregistrer</button>
+        </div>
+    </form>
+</div>
+</ng-template>
+<!-- ./Modal -->
