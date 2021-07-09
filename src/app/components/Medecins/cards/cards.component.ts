@@ -60,5 +60,10 @@ export class CardsComponent implements OnInit {
     this.medecinToUpdate = medecin;
 }
 
+updateMedecin(){
+
+  
+}
+
 }
 
