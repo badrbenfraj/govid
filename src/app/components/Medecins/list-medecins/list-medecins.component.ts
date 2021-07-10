@@ -7,12 +7,17 @@ import { MedecinService } from 'src/app/core/services/medecin.service';
   styleUrls: ['./list-medecins.component.scss']
 })
 export class ListMedecinsComponent implements OnInit {
+  addButton;
 
   constructor(private medecinService: MedecinService) { }
   listMedecin: any[] = [];
   listMedecinFiltred: any[] = [];
   ngOnInit(): void {
-
+    this.addButton = {
+      label: 'Ajouter médecin',
+      path: '/dashboard/medecin/new',
+      icon: 'fas fa-user-plus'
+    };
     this.medecinService.getAllMedecins().subscribe(res => {
       this.listMedecin = res;
     });
