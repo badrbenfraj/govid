@@ -1,6 +1,8 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {MedecinService} from 'src/app/core/services/medecin.service';
 import {ModalDismissReasons, NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import { MedecinInput } from '@app/core/models/medecinInput';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -11,19 +13,9 @@ import {ModalDismissReasons, NgbModal} from '@ng-bootstrap/ng-bootstrap';
 export class CardsComponent implements OnInit {
   @Input() medecin: any;
   closeModal: string;
-  medecinToUpdate ={
+  medecinToUpdate : MedecinInput;
 
-    fullName: "",
-    email: "",
-    address: "",
-    phoneNumber: "",
-    speciality: "",
-    gender: "",
-    cnamConvention: ""
-
-  };
-
-  constructor(private medecinService: MedecinService, private modalService: NgbModal) {
+  constructor(private medecinService: MedecinService, private modalService: NgbModal, private router: Router) {
   }
 
   id: string;
@@ -61,8 +53,7 @@ export class CardsComponent implements OnInit {
 }
 
 updateMedecin(){
-
-  
+this.medecinService.updateMedecin(this.medecinToUpdate.id,this.medecinToUpdate).subscribe();
 }
 
 }

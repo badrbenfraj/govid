@@ -37,4 +37,9 @@ export class MedecinService {
       `/api/removeMedecin/` + identifier, {}
     );
   }
+  updateMedecin(identifier: string, body: MedecinInput){
+    return this._http.post<any>(
+      `api/updateMedecin/`+ identifier , body
+    );
+  }
 }
