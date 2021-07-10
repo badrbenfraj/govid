@@ -7,7 +7,6 @@ import {Observable} from 'rxjs';
 
 @Injectable({providedIn: 'root'})
 export class UserService {
-  loggedUser = JSON.parse(localStorage.getItem('loggedUser'));
 
   constructor(private http: HttpClient) {
   }
@@ -25,11 +24,7 @@ export class UserService {
   }
 
   getByEmail(email: string) {
-    return this.http.get<User>(`${environment.base_path}/user/${email}`).subscribe((user) => {
-      localStorage.setItem('loggedUser', JSON.stringify(user));
-      this.loggedUser = JSON.parse(localStorage.getItem('loggedUser'));
-      ;
-    });
+    return this.http.get<User>(`${environment.base_path}/user/${email}`);
   }
 
   update(id: number, user: User): Observable<User> {

@@ -2,7 +2,7 @@ import {Component, Input, NgZone, OnInit} from '@angular/core';
 import {NavigationItem} from '../../navigation';
 import {DattaConfig} from '@config';
 import {Location} from '@angular/common';
-import {UserService} from '@auth/services';
+import {AuthenticationService} from '@auth/services';
 import {User} from '@auth/models';
 
 @Component({
@@ -16,13 +16,13 @@ export class NavItemComponent implements OnInit {
   public themeLayout: string;
   public loggedUser: User;
 
-  constructor(private location: Location, private userService: UserService) {
+  constructor(private location: Location, private authenticationService: AuthenticationService) {
     this.dattaConfig = DattaConfig.config;
     this.themeLayout = this.dattaConfig['layout'];
   }
 
   ngOnInit() {
-    this.loggedUser = this.userService.loggedUser;
+    this.loggedUser = this.authenticationService.getCurrentUser();
   }
 
   closeOtherMenu(event) {
