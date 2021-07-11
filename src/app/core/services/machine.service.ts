@@ -38,4 +38,14 @@ export class MachineService{
         )
       }
 
+    bookMachine(idUser: any, idMachine: any, body: any){
+      return this._http.post<any>(
+        `/api/reservationMachine/` + idUser + `/` + idMachine, body
+      )
+    }
+    getMachinesByOwner(ownerId :string){
+      return this._http.get<any>(
+        `/api/machinesByOwner?owner_id=` + ownerId
+      );
+    }
 }
