@@ -20,12 +20,17 @@ export class LaboratoryAgentComponent implements OnInit {
       path: '/dashboard/users/new',
       param: 'laboratoire'
     };
+    this.getAgents();
+  }
+
+  getAgents(): void {
     this.userService.getByRole('ROLE_LABORATOIRE_AGENT').subscribe(users => {
       this.agentUser = users;
     });
   }
 
   delete(id): void {
-    this.userService.delete(id);
+    this.userService.delete(id).subscribe();
+    this.getAgents();
   }
 }

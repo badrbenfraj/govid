@@ -1,4 +1,4 @@
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {MedecinInput} from '@models/medecinInput';
 import {Observable} from 'rxjs';
@@ -44,8 +44,9 @@ export class MedecinService {
   }
 
   updateMedecin(identifier: number, body: MedecinInput): Observable<any> {
+    const token = localStorage.getItem('user');
     return this._http.post<any>(
-      `api/updateMedecin/${identifier}`, body
-    );
+      `/api/medecin/update/${identifier}`, body
+      );
   }
 }
