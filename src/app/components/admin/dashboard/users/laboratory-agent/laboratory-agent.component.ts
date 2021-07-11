@@ -18,7 +18,8 @@ export class LaboratoryAgentComponent implements OnInit {
     this.buttonAdd = {
       label: 'Add',
       path: '/dashboard/users/new',
-      param: 'laboratoire'
+      param: 'laboratoire',
+      icon: 'fas fa-user-plus'
     };
     this.getAgents();
   }

@@ -40,7 +40,7 @@ export class EditAgentComponent implements OnInit {
       this.buttonCancel = {
         label: 'Cancel',
         path: `/dashboard/users/${this.agent}`,
-        param: ``
+        icon: 'fas fa-undo'
       };
       this.userService.getById(params.id).subscribe(user => {
         this.agentUser = user;
