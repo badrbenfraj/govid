@@ -47,4 +47,16 @@ class MachineRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    
+    public function search_by_owner($owner){
+        return $this->getEntityManager()
+            ->createQuery(
+                'SELECT m
+                FROM App\Entity\Machine m
+                WHERE m.ownerId = :str'
+            )
+            ->setParameter('str', $owner)
+            ->getResult();
+    }
 }

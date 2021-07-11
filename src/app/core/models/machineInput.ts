@@ -5,5 +5,7 @@ export class MachineInput {
     alimentation: number;
     saturation: number;
     weight: number;
+    booked: boolean;
+    owner_id: number;
 
 }

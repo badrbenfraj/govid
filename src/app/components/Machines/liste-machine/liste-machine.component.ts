@@ -1,7 +1,12 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MachineService } from 'src/app/core/services/machine.service';
-import {MatDatepickerModule} from '@angular/material/datepicker';
-import {MatPaginator} from '@angular/material/paginator';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatPaginator } from '@angular/material/paginator';
+import { DatePipe } from '@angular/common';
+import { element } from 'protractor';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { AuthenticationService } from '@app/core/auth/services';
+
 
 
 @Component({
@@ -12,16 +17,21 @@ import {MatPaginator} from '@angular/material/paginator';
 export class ListeMachineComponent implements OnInit {
   listeMachine: any;
   pageSize = 10;
-  filter:any;
+  filter: any;
   pageSizeOptions: number[] = [10, 25, 50, 100];
   pageFirstRow: number;
   rowsPerPage: number;
   pageLastRow: number;
   displayedList: any = [];
   filteredList: any = [];
+  showBookingDialog: boolean = false;
+  currentUserId: any;
+  dateTo: any;
+  dateFrom: any;
+  idbookedMachine: any;
   @ViewChild('paginator', { static: false }) paginator: MatPaginator;
 
-  constructor(private machineService: MachineService) { }
+  constructor(private machineService: MachineService, private datePipe: DatePipe, private modalService: NgbModal, private authService: AuthenticationService) { }
 
   ngOnInit(): void {
     this.filter = {
@@ -32,34 +42,40 @@ export class ListeMachineComponent implements OnInit {
       saturation: ''
     }
     this.getMachines();
+    this.currentUserId = this.authService.getCurrentUser().id;
+    console.log(this.currentUserId);
 
   }
 
+  open(content) {
+    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
+    });
+  }
 
   getMachines() {
     this.rowsPerPage = 10;
     this.pageFirstRow = 0;
     this.pageLastRow = (this.pageFirstRow + this.rowsPerPage) - 1;
-    this.machineService.getAllMachines().subscribe(data=>{
-      this.listeMachine= [];
+    this.machineService.getAllMachines().subscribe(data => {
+      this.listeMachine = [];
       //this.listeMachine=data;
+      console.log(data);
       data.forEach((machine, index) => {
         this.listeMachine.push({
-          
+
           id: machine.id,
-          date: machine.purchase_date,
+          date: machine.purchaseDate,
           frequence: machine.frequency,
           debit: machine.debit,
           alimentation: machine.alimentation,
-          saturation: machine.saturation
+          saturation: machine.saturation,
+          ownerId: machine.ownerId,
+          booked: machine.booked,
         });
       })
       this.filteredList = this.listeMachine;
       this.displayedList = this.filteredList.slice(0, this.pageSize);
       let pageIndex = 0;
-      console.log(this.listeMachine);
-      console.log(this.filteredList);
-      console.log(this.displayedList);
 
 
     });
@@ -68,7 +84,7 @@ export class ListeMachineComponent implements OnInit {
   loadFilter() {
     this.filteredList = this.listeMachine.filter((element) => this.filterCheck(element));
     this.displayedList = this.filteredList.slice(0, this.pageSize);
-    this.paginator.firstPage();
+    // this.paginator.firstPage();
   }
 
   filterCheck(element): boolean {
@@ -90,8 +106,8 @@ export class ListeMachineComponent implements OnInit {
       saturationEvaluation = element.saturation && element.saturation.toString().includes(this.filter.saturation);
     }
     if (this.filter.date) {
-      element.date.setHours(0, 0, 0, 0);
-      dateEvaluation = element.date && element.date.getTime() === new Date(this.filter.date).getTime();
+      // element.date.setHours(0, 0, 0, 0);
+      dateEvaluation = this.datePipe.transform(element.date, "yyyy-MM-dd").toString() === this.filter.date;
     }
     return frequencyEvaluation && debitEvaluation && alimentationEvaluation && saturationEvaluation && dateEvaluation;
   }
@@ -113,6 +129,48 @@ export class ListeMachineComponent implements OnInit {
     this.filteredList = this.listeMachine.filter((element) => this.filterCheck(element));
     this.displayedList = this.filteredList.slice($event.pageIndex * $event.pageSize,
       $event.pageIndex * $event.pageSize + $event.pageSize);
+  }
+  showModalBook(id) {
+    this.showBookingDialog = true;
+     this.idbookedMachine = id;
+  }
+  bookMachine() {
+    console.log(this.dateFrom);
+    this.showBookingDialog = false;
+    this.machineService.bookMachine(this.currentUserId, this.idbookedMachine, this.dateTo).subscribe(data=>{
+      console.log("reserved with success")
+    })
+
+  }
+
+  showMyMachines(){
+      this.rowsPerPage = 10;
+      this.pageFirstRow = 0;
+      this.pageLastRow = (this.pageFirstRow + this.rowsPerPage) - 1;
+      this.machineService.getMachinesByOwner(this.currentUserId).subscribe(data => {
+        this.listeMachine = [];
+        //this.listeMachine=data;
+        console.log(data);
+        data.forEach((machine, index) => {
+          this.listeMachine.push({
+  
+            id: machine.id,
+            date: machine.purchaseDate,
+            frequence: machine.frequency,
+            debit: machine.debit,
+            alimentation: machine.alimentation,
+            saturation: machine.saturation,
+            ownerId: machine.ownerId,
+            booked: machine.booked,
+          });
+        })
+        this.filteredList = this.listeMachine;
+        this.displayedList = this.filteredList.slice(0, this.pageSize);
+        let pageIndex = 0;
+  
+  
+      });
+    
   }
 
 }

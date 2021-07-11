@@ -1,94 +1,96 @@
-<div class="container machine-container">
-    <div class="row" fxLayout="row wrap" style="padding: 0;">
-        <!-- <div class="ui-g"> -->
-        <div class="col-g-12 col-md-6 col-lg-2" style="margin-right: 5%;" fxFlex="12%">
-            <mat-label  class="filter-label">
-                Date d'achat
-            </mat-label>
-            <mat-form-field class="custom-form-field"  appearance="outline">
-                <input class="custom-input-field"  matInput [matDatepicker]="picker2" [(ngModel)]="filter.date" (ngModelChange)="loadFilter()" placeholder="Date d'achat">
-                <mat-datepicker-toggle matSuffix [for]="picker2">
-                </mat-datepicker-toggle>
-                <mat-datepicker #picker2 ></mat-datepicker>
-            </mat-form-field>
-            <!-- <p-calendar [(ngModel)]="filter.date" (ngModelChange)="loadFilter()" [locale]="local" dateFormat="{{formatDate}}"
-                placeholder="Bill generation date"  [showIcon]="true"></p-calendar> -->
-        </div>
-        <div class="col-g-12 col-md-6 col-lg-2" style="margin-right: 2%;" fxFlex="11%">
-            <mat-label  class="filter-label">
-                Fréquence
-            </mat-label>
-            <mat-form-field class="custom-form-field" appearance="outline">
-                <input class="custom-input-field"[(ngModel)]="filter.frequence" (ngModelChange)="loadFilter()" matInput placeholder="Fréquence">
-            </mat-form-field>
-            <!-- <input type="text" placeholder="Contract id" ,feature:home,screen:primesWidget" pInputText [(ngModel)]="filter.title"
-                (ngModelChange)="loadFilter()"  style="margin: 0;font-size: 1em" /> -->
-        </div>
-        <div class="col-md-6 col-lg-2" style="margin-right: 2%;" fxFlex="17%">
-            <mat-label class="filter-label">
-                Débit
-            </mat-label>
-            <mat-form-field class="custom-form-field" appearance="outline">
-                <input class="custom-input-field" [(ngModel)]="filter.debit" (ngModelChange)="loadFilter()" matInput placeholder="Débit">
-            </mat-form-field>
-            <!-- <input type="text" placeholder="Insured",feature:home,screen:primesWidget" pInputText [(ngModel)]="filter.desc"
-                (ngModelChange)="loadFilter()" style="margin: 0;font-size: 1em"/> -->
-        </div>
-        <div class="col-md-6 col-lg-2" style="margin-right: 2%;" fxFlex="22%">
-            <mat-label  class="filter-label">
-                Alimentaion
-            </mat-label>
-            <mat-form-field class="custom-form-field" appearance="outline">
-                <input class="custom-input-field" [(ngModel)]="filter.alimentation" (ngModelChange)="loadFilter()" matInput  placeholder="Alimentaion">
-            </mat-form-field>
-            <!-- <input type="text" placeholder="Product" ,feature:home,screen:primesWidget" pInputText [(ngModel)]="filter.prod"
-                (ngModelChange)="loadFilter()" style="margin: 0;font-size: 1em"/> -->
-        </div>
-        <div class="col-md-6 col-lg-2" style="margin-right: 2%;" fxFlex="18%">
-            <mat-label  class="filter-label">
-                Saturation
-            </mat-label>
-            <mat-form-field class="custom-form-field" appearance="outline">
-                <input class="custom-input-field" matInput [(ngModel)]="filter.saturation" (ngModelChange)="loadFilter()"  placeholder="Saturation">
-            </mat-form-field>
-            <!-- <input type="text" placeholder="Email" ,feature:home,screen:primesWidget" pInputText [(ngModel)]="filter.mail"
-                (ngModelChange)="loadFilter()" style="margin: 0;font-size: 1em" /> -->
-        </div>
-
-
-    </div>
-
-    <div class="col-md-6 col-lg-2" style="margin-right: 2%; padding: 0; margin-top: 1%; ">
-        <button class="btn-primary">Ajouter une machine</button>
-    </div>
-
-    <br><br>
-        <!-- paginator -->
-        <mat-paginator #paginator class="paginator"*ngIf="listeMachine && listeMachine.length > 0"
-            [length]="filteredList.length" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions"
-            (page)="onPageChange($event)" (selectionChange)="onPageChange($event)">
-        </mat-paginator>
-
-   
-    <div class="row">
-            <mat-card *ngFor="let machine of displayedList"  class="col example-card">
-                <mat-card-header>
-                  <div mat-card-avatar class="example-header-image"></div>
-                  <mat-card-title>Machine {{machine.saturation}}L</mat-card-title>
-                  <mat-card-subtitle>addresse owner</mat-card-subtitle>
-                </mat-card-header>
-                <mat-card-content>
-                  <span>débit: {{machine.debit}}</span><br>
-                  <span>Alimentaion: </span><br>
-                  <span>Saturation: </span><br>
-
-                </mat-card-content>
-                <mat-card-actions>
-                    <!-- <button class="myButton" mat-button>Modifier</button>
-                  <button mat-button>Supprimer</button> -->
-                  <button class="myPrimaryButton" mat-button>Réserver</button>
-                  <button class="mySecondaryButton" mat-button>Voir historique</button>
-                </mat-card-actions>
-              </mat-card>
+<div class="row">
+    <div class="col-xl-12">
+      <app-card cardTitle="Liste Machines"  blockClass="table-border-style">
+        <div style="float:right; margin-right: 15px; margin-top: 2px;">
+            <img src="../../assets/images/concentratorF.jpg" alt="..." style="width: 180px; height: 180px">
+          </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="inputDate">Date d'achat </label>
+              <input #date type="date" class="form-control" id="inputDate" placeholder="Nom et Prénom"  [(ngModel)]="filter.date" (ngModelChange)="loadFilter()" placeholder="Date d'achat">
             </div>
-</div>
+            <div class="form-group col-md-6">
+              <label for="inputFrequence">Fréquence</label>
+              <input #frequence type="email" class="form-control" id="inputFrequence" [(ngModel)]="filter.frequence" (ngModelChange)="loadFilter()" placeholder="Fréquence">
+            </div>
+        </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="inputDebit">Débit</label>
+              <input #debit type="text" class="form-control" id="inputDebit" [(ngModel)]="filter.debit" (ngModelChange)="loadFilter()"  placeholder="Débit"
+                     pattern="[0-9]{8}" >
+            </div>
+            <div class="form-group col-md-6">
+                <label for="inputAlimentaion">Alimentaion</label>
+                <input #alimentation type="text" class="form-control" id="inputAlimentaion" [(ngModel)]="filter.alimentation" (ngModelChange)="loadFilter()"  placeholder="Alimentaion"
+                       pattern="[0-9]{8}" >
+            </div>
+          </div>
+          <div class="form-row">
+            
+            <div class="form-group col-md-6">
+                <label for="inputSaturation">Saturation</label>
+                <input #saturation type="text" class="form-control" id="inputSaturation" [(ngModel)]="filter.saturation" (ngModelChange)="loadFilter()"  placeholder="Saturation"
+                       pattern="[0-9]{8}" >
+            </div>
+            <div class="form-group col-md-6">
+                <button routerLink="" class="btn btn-primary" routerLink="/addMachine"
+                style="margin-left: 16px; margin-top: 27px; float: right; width: 250px;"> <i class="fas fa-user-plus"></i>Ajouter Machine
+        </button>
+        <button class="btn btn-primary" (click)="showMyMachines()"
+        style="margin-left: 16px; margin-top: 27px; float: right; width: 250px;"> <i class="fas fa-star"></i>Mes Machines
+</button>
+            </div>
+          </div>
+
+          <br>
+        
+          
+          <br>
+
+          <section id="listeMachine" class="pb-5" class="album py-5 bg-light">
+            <div class="container">
+              <h5 class="section-title h4">Liste des machines</h5>
+              <div class="row">
+                <div *ngIf="displayedList && displayedList.length>0 " class="col ">
+                    <div class="card" style="width: 18rem;margin-right: 0px !important;" *ngFor="let machine of displayedList">
+                        <img src="../../assets/images/masque-oxygene.jpg" class="card-img-top" alt="...">
+                        <div class="card-body">
+                          <h5 class="card-title">Machine {{machine.saturation}}L</h5>
+                          <p class="card-text">
+                            <span>débit: {{machine.debit}}</span><br>
+                            <span>Alimentaion: {{machine.alimentation}}</span><br>
+                            <span>Saturation: {{machine.saturation}}</span><br>
+                            <span>Date d'achat: {{machine.date | date: 'dd/MM/yyyy'}}  </span><br>
+
+                        </p>
+                          <button *ngIf="machine.ownerId != currentUserId" [disabled]="machine.booked" (click)="showModalBook(machine.id)" class="btn btn-primary">Réserver</button>
+                          <button  href="#" class="btn btn-primary">Voir historique</button>
+                        </div>
+                      </div>
+                </div>
+               
+              </div>
+        
+            </div>
+          </section>
+      </app-card>
+    </div>
+    </div>
+    
+      <p-dialog header="Voulez vous vraiment réserver cette machine ?" [(visible)]="showBookingDialog">
+        <form #bookForm="ngForm">
+            <!-- <div class="form-group">
+              <label f>A partir de</label>
+                <input [(ngModel)]="dateFrom" type="date" id="inputdateFrom" class="form-control" placeholder="yyyy-mm-dd" name="dateFrom" >
+                
+            </div> -->
+            <div class="form-group">
+                <label for="dateTo">jusqu'aù</label>
+                    <input [(ngModel)]="dateTo" type="date" id="inputdateTo" class="form-control" placeholder="yyyy-mm-dd" name="dateTo" >
+                </div>
+
+                <a  (click)="bookMachine()" class="btn btn-primary">Confirmer</a>
+
+          </form>
+    </p-dialog>
