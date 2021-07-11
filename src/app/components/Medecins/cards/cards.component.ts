@@ -52,7 +52,7 @@ export class CardsComponent implements OnInit {
   }
 
   updateMedecin(): void {
-    this.medecinService.updateMedecin(this.medecinToUpdate.id, this.medecinToUpdate);
+    this.medecinService.updateMedecin(this.medecinToUpdate.id, this.medecinToUpdate).subscribe();
   }
 
 }

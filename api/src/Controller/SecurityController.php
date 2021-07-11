@@ -182,5 +182,21 @@ class SecurityController extends AbstractFOSRestController
     ], Response::HTTP_CREATED)->setContext((new Context())->setGroups(['public']));
   }
 
+  /**
+   * @Route("/user/delete/{id}", name="delete_user", methods={"DELETE", "POST"})
+   * @param Request $request
+   * @return \FOS\RestBundle\View\View
+   */
+  public function delete_user(Request $request)
+  {
+    $id = $request->get('id');
+    $user = $this->userRepository->findOneBy(['id' => $id]);
+    $this->entityManager->remove($user);
+    $this->entityManager->flush();
 
+    return $this->view([
+      'message' => 'User deleted Successfully.',
+      'code' => Response::HTTP_OK
+    ], Response::HTTP_OK);
+  }
 }

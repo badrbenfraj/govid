@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use FOS\RestBundle\Context\Context;
+use FOS\RestBundle\Controller\AbstractFOSRestController;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -13,7 +15,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 
-class MedecinController extends AbstractController
+class MedecinController extends AbstractFOSRestController
 {
 
    /**
@@ -133,5 +135,44 @@ class MedecinController extends AbstractController
     $this->entityManager->flush();
     $jsonContent = $serializer->serialize($medecin,"json");
     return new Response($jsonContent);
+  }
+
+  /**
+   * @Route("/medecin/update/{id}", name="update_medecin", methods={"POST"})
+   * @param Request $request
+   * @return \FOS\RestBundle\View\View
+   */
+  public function update_medecin(Request $request)
+  {
+    $id = $request->get('id');
+
+    $data = json_decode($request->getContent(), true);
+    $fullName = $data['fullName'];
+    $email = $data['email'];
+    $address = $data['address'];
+    $phoneNumber = $data['phoneNumber'];
+    $speciality = $data['speciality'];
+    $gender = $data['gender'];
+    $cnamConvention = $data['cnamConvention'];
+
+    $medecin = $this->medecinRepository->findOneBy([
+      'id' => $id,
+    ]);
+
+    $medecin->setFullName($fullName);
+    $medecin->setEmail($email);
+    $medecin->setAddress($address);
+    $medecin->setPhoneNumber($phoneNumber);
+    $medecin->setSpeciality($speciality);
+    $medecin->setGender($gender);
+    $medecin->setCnamConvention($cnamConvention);
+
+    $this->entityManager->persist($medecin);
+    $this->entityManager->flush();
+
+    return $this->view([
+      'message' => 'Medecin Updated Successfully',
+      'code' => Response::HTTP_OK
+    ], Response::HTTP_OK)->setContext((new Context())->setGroups(['public']));
   }
 }
