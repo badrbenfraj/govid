@@ -6,16 +6,16 @@
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="inputDate">Date d'achat</label>
-              <input #date="ngModel" [(ngModel)]="creationDate"  name="date"  type="date" class="form-control" id="inputDate" required placeholder="Date d'achat" placeholder="Date d'achat">
-                <div class="alert alert-danger" *ngIf="date.invalid && date.touched">
+              <input #date="ngModel" [(ngModel)]="creationDate" [ngClass]="{ 'is-invalid': date.invalid && date.touched }"  name="date"  type="date" class="form-control" id="inputDate" required placeholder="Date d'achat" placeholder="Date d'achat">
+                <div  class="invalid-feedback" *ngIf="date.invalid && date.touched">
                     <div *ngIf="date.errors.required"> Ce champ est obligatoire !</div>
                 </div>
             </div>
 
             <div class="form-group col-md-6">
                 <label for="inputFrequence">Fréquence</label>
-                <input #frequence="ngModel" name="frequence" [(ngModel)]="machineInput.frequency" required type="number" class="form-control" id="inputFrequence" placeholder="Fréquence" >
-                <div class="alert alert-danger" *ngIf="frequence.invalid && frequence.touched">
+                <input #frequence="ngModel" name="frequence" [ngClass]="{ 'is-invalid': frequence.invalid && frequence.touched }" [(ngModel)]="machineInput.frequency" required type="number" class="form-control" id="inputFrequence" placeholder="Fréquence" >
+                <div  class="invalid-feedback" *ngIf="frequence.invalid && frequence.touched">
                     <div *ngIf="frequence.errors.required"> Ce champ est obligatoire !</div>
                 </div>
             </div>
@@ -23,17 +23,17 @@
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="inputDebit">Débit</label>
-                <input #debit="ngModel" [(ngModel)]="machineInput.debit"  name="debit" type="number" class="form-control" id="inputDebit" required placeholder="Débit"
+                <input #debit="ngModel" [(ngModel)]="machineInput.debit" [ngClass]="{ 'is-invalid': debit.invalid && debit.touched }"  name="debit" type="number" class="form-control" id="inputDebit" required placeholder="Débit"
                         >
-                <div class="alert alert-danger" *ngIf="debit.invalid && debit.touched">
+                <div  class="invalid-feedback" *ngIf="debit.invalid && debit.touched">
                     <div *ngIf="debit.errors.required"> Ce champ est obligatoire !</div>
                 </div>
             </div>
             <div class="form-group col-md-6">
                 <label for="inputAlimentaion">Alimentaion</label>
-                <input #alimentation="ngModel" name="alimentation" [(ngModel)]="machineInput.alimentation"  type="number" class="form-control" id="inputAlimentaion" required placeholder="Alimentaion"
+                <input #alimentation="ngModel" name="alimentation" [ngClass]="{ 'is-invalid': alimentation.invalid && alimentation.touched }" [(ngModel)]="machineInput.alimentation"  type="number" class="form-control" id="inputAlimentaion" required placeholder="Alimentaion"
                       >
-                <div class="alert alert-danger" *ngIf="alimentation.invalid && alimentation.touched">
+                <div  class="invalid-feedback" *ngIf="alimentation.invalid && alimentation.touched">
                     <div *ngIf="alimentation.errors.required"> Ce champ est obligatoire !</div>
                 </div>
             </div>
@@ -41,17 +41,17 @@
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="inputSaturation">Saturation</label>
-                <input #saturation="ngModel" [(ngModel)]="machineInput.saturation"  name="saturation" type="number" class="form-control" id="inputSaturation" required  placeholder="Saturation"
+                <input #saturation="ngModel" [(ngModel)]="machineInput.saturation"  name="saturation" [ngClass]="{ 'is-invalid': saturation.invalid && saturation.touched }" type="number" class="form-control" id="inputSaturation" required  placeholder="Saturation"
                        >
-                    <div class="alert alert-danger" *ngIf="saturation.invalid && saturation.touched">
+                    <div  *ngIf="saturation.invalid && saturation.touched"  class="invalid-feedback">
                         <div *ngIf="saturation.errors.required"> Ce champ est obligatoire !</div>
                     </div>
             </div>
             <div class="form-group col-md-6">
                 <label for="inputPoids">Poids</label>
-                <input #poids="ngModel" [(ngModel)]="machineInput.weight" name="poids" type="number" class="form-control" id="inputPoids" required  placeholder="Poids en (Kg)"
+                <input #poids="ngModel" [(ngModel)]="machineInput.weight" name="poids" [ngClass]="{ 'is-invalid': poids.invalid && poids.touched }" type="number" class="form-control" id="inputPoids" required  placeholder="Poids en (Kg)"
                       >
-                    <div class="alert alert-danger" *ngIf="poids.invalid && poids.touched">
+                    <div  class="invalid-feedback" *ngIf="poids.invalid && poids.touched">
                         <div *ngIf="poids.errors.required"> Ce champ est obligatoire !</div>
                     </div>
             </div>
