@@ -213,5 +213,38 @@ class MachineController extends AbstractController
        return new Response($jsonContent);
     }
 
+    /**
+    * @Route("/updateMachine/{id}", name="updateMachine")
+    */
+    public function updateMachine(Request $request, SerializerInterface $serializer)
+    {
+       $id = $request->get('id');
+
+       $data = json_decode($request->getContent(), true);
+       $purchaseDate = $data['purchaseDate'];
+       $frequency = $data['frequency'];
+       $debit = $data['debit'];
+       $alimentation = $data['alimentation'];
+       $saturation = $data['saturation'];
+       $weight = $data['weight'];
+
+       $machine=$this->getDoctrine()->getRepository(Machine::class)->find($id);
+
+       $machine->setPurchaseDate(new \DateTime($purchaseDate));
+       $machine->setFrequency($frequency);
+       $machine->setDebit($debit);
+       $machine->setAlimentation($alimentation);
+       $machine->setSaturation($saturation);
+       $machine->setWeight($weight);
+
+       $entityManager = $this->getDoctrine()->getManager();
+       $entityManager->persist($machine);
+
+    
+       $entityManager->flush();
+       $jsonContent = $serializer->serialize($machine,"json");
+       return new Response($jsonContent);
+  }
+
 }
 

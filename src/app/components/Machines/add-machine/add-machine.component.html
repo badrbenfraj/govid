@@ -1,12 +1,12 @@
 <div class="row">
     <div class="col-xl-12">
       <app-card cardTitle="Ajouter une machine" >
-  <form #machineForm="ngForm" (ngSubmit)="save(machineForm.value)" >
+  <form #machineForm="ngForm" (ngSubmit)="save()" >
     <div style="position: absolute; top:200px; left:20%; width:60%;">
         <div class="form-row">
             <div class="form-group col-md-6">
-                <label for="inputDate">Date d'achat </label>
-              <input #date="ngModel" ngModel name="date"  type="date" class="form-control" id="inputDate" required placeholder="Date d'achat" placeholder="Date d'achat">
+                <label for="inputDate">Date d'achat</label>
+              <input #date="ngModel" [(ngModel)]="creationDate"  name="date"  type="date" class="form-control" id="inputDate" required placeholder="Date d'achat" placeholder="Date d'achat">
                 <div class="alert alert-danger" *ngIf="date.invalid && date.touched">
                     <div *ngIf="date.errors.required"> Ce champ est obligatoire !</div>
                 </div>
@@ -14,7 +14,7 @@
 
             <div class="form-group col-md-6">
                 <label for="inputFrequence">Fréquence</label>
-                <input #frequence="ngModel" name="frequence" ngModel required type="number" class="form-control" id="inputFrequence" placeholder="Fréquence" pattern="[0-9]">
+                <input #frequence="ngModel" name="frequence" [(ngModel)]="machineInput.frequency" required type="number" class="form-control" id="inputFrequence" placeholder="Fréquence" >
                 <div class="alert alert-danger" *ngIf="frequence.invalid && frequence.touched">
                     <div *ngIf="frequence.errors.required"> Ce champ est obligatoire !</div>
                 </div>
@@ -23,16 +23,16 @@
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="inputDebit">Débit</label>
-                <input #debit="ngModel" ngModel name="debit" type="number" class="form-control" id="inputDebit" required placeholder="Débit"
-                       pattern="[0-9]" >
+                <input #debit="ngModel" [(ngModel)]="machineInput.debit"  name="debit" type="number" class="form-control" id="inputDebit" required placeholder="Débit"
+                        >
                 <div class="alert alert-danger" *ngIf="debit.invalid && debit.touched">
                     <div *ngIf="debit.errors.required"> Ce champ est obligatoire !</div>
                 </div>
             </div>
             <div class="form-group col-md-6">
                 <label for="inputAlimentaion">Alimentaion</label>
-                <input #alimentation="ngModel" name="alimentation" ngModel type="number" class="form-control" id="inputAlimentaion" required placeholder="Alimentaion"
-                       pattern="[0-9]" >
+                <input #alimentation="ngModel" name="alimentation" [(ngModel)]="machineInput.alimentation"  type="number" class="form-control" id="inputAlimentaion" required placeholder="Alimentaion"
+                      >
                 <div class="alert alert-danger" *ngIf="alimentation.invalid && alimentation.touched">
                     <div *ngIf="alimentation.errors.required"> Ce champ est obligatoire !</div>
                 </div>
@@ -41,15 +41,15 @@
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="inputSaturation">Saturation</label>
-                <input #saturation="ngModel" ngModel name="saturation" type="number" class="form-control" id="inputSaturation" required  placeholder="Saturation"
-                       pattern="[0-9]" >
+                <input #saturation="ngModel" [(ngModel)]="machineInput.saturation"  name="saturation" type="number" class="form-control" id="inputSaturation" required  placeholder="Saturation"
+                       >
                     <div class="alert alert-danger" *ngIf="saturation.invalid && saturation.touched">
                         <div *ngIf="saturation.errors.required"> Ce champ est obligatoire !</div>
                     </div>
             </div>
             <div class="form-group col-md-6">
                 <label for="inputPoids">Poids</label>
-                <input #poids="ngModel" ngModel name="poids" type="number" class="form-control" id="inputPoids" required  placeholder="Poids en (Kg)"
+                <input #poids="ngModel" [(ngModel)]="machineInput.weight" name="poids" type="number" class="form-control" id="inputPoids" required  placeholder="Poids en (Kg)"
                       >
                     <div class="alert alert-danger" *ngIf="poids.invalid && poids.touched">
                         <div *ngIf="poids.errors.required"> Ce champ est obligatoire !</div>
@@ -57,12 +57,13 @@
             </div>
         </div>
         <br>
-        <button type="submit" class="btn btn-primary" style="margin-bottom: 32px; margin-top: 16px;"
-        [disabled]="machineForm.invalid"><i class="fas fa-save"></i>Enregistrer</button>
-        <button routerLink="/listeMachine" class="btn btn-primary"
+        <button type="submit" class="btn btn-primary" style="margin-bottom: 32px; margin-top: 16px;"  [disabled]="machineForm.invalid"
+        ><i class="fas fa-save"></i>Enregistrer</button>
+        <!-- <button routerLink="/listeMachine" class="btn btn-primary"
             style="margin-bottom: 32px; margin-left:10px; margin-top: 16px;"> <i
-                class="fas fa-undo"></i>Annuler</button>
+                class="fas fa-undo"></i>Annuler</button> -->
     </div>
+
 </form>
       </app-card>
     </div>
