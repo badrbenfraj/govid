@@ -43,6 +43,9 @@
 										<img src="../../assets/imgs/labo7.jpg" alt="images" class="img-fluid">
 									</div>
 									<div class="stars"style="margin-left: 49px;" >
+										<div *ngIf="laboratoire.rating==0">
+											<i class="fa fa-star-o" aria-hidden="true"> </i>   <i class="fa fa-star-o" aria-hidden="true"></i><i class="fa fa-star-o" aria-hidden="true"></i><i class="fa fa-star-o" aria-hidden="true"></i><i class="fa fa-star-o" aria-hidden="true"></i>
+										</div>
 										<div *ngIf="laboratoire.rating==1">
 											<i class="fa fa-star"></i> <i class="fa fa-star-o" aria-hidden="true"></i><i class="fa fa-star-o" aria-hidden="true"></i><i class="fa fa-star-o" aria-hidden="true"></i><i class="fa fa-star-o" aria-hidden="true"></i>
 										</div>

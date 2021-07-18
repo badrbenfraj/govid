@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { PrimeNGConfig,Message } from 'primeng/api';
 import {ConfirmationService} from 'primeng/api';
 import {DialogModule, Dialog} from 'primeng/dialog';
@@ -7,6 +7,7 @@ import {DialogModule, Dialog} from 'primeng/dialog';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { laboratoire } from '@app/core/models/laboratoire';
 import { LaboratoireService } from '@app/core/services/laboratoire.service';
+import { NgbModal,ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 @Component({
   selector: 'app-laboratoire-dashboard',
   templateUrl: './laboratoire-dashboard.component.html',
@@ -25,10 +26,13 @@ export class LaboratoireDashboardComponent implements OnInit {
   disabled:boolean=true;
   currentLabo:laboratoire;
   msgs: Message[] = [];
+  closeResult = '';
   display: boolean = false;
   laboratoireForm:FormGroup;
   formData:any;
-  constructor(private primengConfig: PrimeNGConfig,private confirmationService: ConfirmationService,private route:ActivatedRoute,private laboratoireService:LaboratoireService) { }
+  bodyText:string="";
+  showPopupButton:boolean=false;
+  constructor(private router:Router,private modalService: NgbModal,private primengConfig: PrimeNGConfig,private confirmationService: ConfirmationService,private route:ActivatedRoute,private laboratoireService:LaboratoireService) { }
 
   ngOnInit(): void {
     this.primengConfig.ripple = true;
@@ -80,56 +84,49 @@ if(localStorage.getItem('laboratoireUpdateMode')=="true"){
 
    })
  }
-  confirm(event: Event) {
-    this.confirmationService.confirm({
-      message: 'Êtes-vous sûr de vouloir continuer?',
-      header: 'Confirmation',
-    //  icon: 'pi pi-exclamation-triangle',
-      accept: () => {
-        this.laboratoireService.removeLaboratoire(this.currentId).subscribe(res=>{
-      
-          this.msgs = [{severity:'info', summary:'Confirmed', detail:'You have accepted'}];
 
-        },err=>{
-          this.msgs = [{severity:'info', summary:'Rejected', detail:'You have rejected'}];
+ removeLabo(content,laboratoire){
+  this.showPopupButton=false;
+  this.laboratoireService.removeLaboratoire(this.currentId.toString()).subscribe(res=>{
+    this.bodyText="le laboratoire a été supprimé avec succees";
 
-        })
-        
-      },
-    /*  reject: () => {
-          this.msgs = [{severity:'info', summary:'Rejected', detail:'You have rejected'}];
-      }*/
-  });
-  /*  this.confirmationService.confirm({
-        target: event.target,
-        message: 'Êtes-vous sûr de vouloir continuer?',
-        icon: 'pi pi-exclamation-triangle',
-        accept: () => {
-          this.laboratoireService.removeLaboratoire(this.currentId).subscribe(res=>{
-      
-            this.messageService.add({
-              severity: "info",
-              summary: "Confirmed",
-              detail: "You have accepted"
-            });
-          },err=>{
-            this.messageService.add({
-              severity: "error",
-              summary: "Rejected",
-              detail: "You have rejected"
-            });
-          })
-        },
-      /*  reject: () => {
+    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+      this.router.navigate(['/laboratoireHome']);
 
-            //reject action
-            this.messageService.add({
-              severity: "error",
-              summary: "Rejected",
-              detail: "You have rejected"
-            });
-        }
-    });*/
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
+  },err=>{
+    this.bodyText="une erreur est apparue , le laboratoire ne peut pas etres supprimer"
+    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+    console.log("result",result)
+  
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
+  })
 }
 
+open(content) {
+  this.showPopupButton=true;
+  this.bodyText="Êtes-vous sûr de vouloir continuer?"
+  this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+  console.log("result",result)
+  if(result=="Supprimer"){
+    this.removeLabo(content,this.currentId);
+  }
+  }, (reason) => {
+    this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+  });
+}
+
+private getDismissReason(reason: any): string {
+  if (reason === ModalDismissReasons.ESC) {
+    return 'by pressing ESC';
+  } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+    return 'by clicking on a backdrop';
+  } else {
+    return `with: ${reason}`;
+  }
+}
 }

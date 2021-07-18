@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators, } from '@angular/forms';
+import { Router } from '@angular/router';
 import { LaboratoireService } from '@app/core/services/laboratoire.service';
 import { of } from 'rxjs';
+import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+
 
 @Component({
   selector: 'app-laboratoire-home',
@@ -24,7 +27,11 @@ export class LaboratoireHomeComponent implements OnInit {
   listLaboAux:any[]=[];
   advancedOpened:boolean=false;
   laboratoireForm:FormGroup;
-    constructor(private laboratoireService:LaboratoireService) { }
+  closeResult = '';
+  laboToDel: any;
+  bodyText:string="";
+  showPopupButton:boolean=false;
+    constructor(private modalService: NgbModal,private router:Router,private laboratoireService:LaboratoireService) { }
      ngOnInit() {
       this.showSpinner=true
       this.createForm();
@@ -132,6 +139,67 @@ export class LaboratoireHomeComponent implements OnInit {
       this.laboratoireForm.controls["email"].reset();
       this.laboratoireForm.controls["gouvernorat"].reset();
     }
-  
+    previewLabo(laboratoire){
+      localStorage.setItem('laboratoireUpdateMode', "false");
+      this.router.navigate(['/laboratoireDashboard'],{queryParams:{
+        id:laboratoire.id
+      }})
+    }
+    openLocation(laboratoire){
+      this.router.navigate(['/laboratoireMap'],{queryParams:{
+        idLocation:laboratoire.id
+      }})
+    }
+    updateLabo(laboratoire){
+      localStorage.setItem('laboratoireUpdateMode', "true");
+      this.router.navigate(['/laboratoireDashboard'],{queryParams:{
+        id:laboratoire.id
+      }})
+    }
+    removeLabo(content,laboratoire){
+      this.showPopupButton=false;
+      this.laboratoireService.removeLaboratoire(laboratoire.id.toString()).subscribe(res=>{
+        this.bodyText="le laboratoire a été supprimé avec succees"
+        console.log("result",this.laboratoiresList)
+        this.laboratoiresList.splice(this.laboratoiresList.indexOf(laboratoire),1);
+        console.log("apres",this.laboratoiresList);
+        this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
 
+        }, (reason) => {
+          this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+        });
+      },err=>{
+        this.bodyText="une erreur est apparue , le laboratoire ne peut pas etres supprimer"
+        this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+        console.log("result",result)
+      
+        }, (reason) => {
+          this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+        });
+      })
+    }
+  
+    open(content,labo) {
+      this.laboToDel=labo;
+      this.showPopupButton=true;
+      this.bodyText="Êtes-vous sûr de vouloir continuer?"
+      this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+      console.log("result",result)
+      if(result=="Supprimer"){
+        this.removeLabo(content,this.laboToDel);
+      }
+      }, (reason) => {
+        this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+      });
+    }
+  
+    private getDismissReason(reason: any): string {
+      if (reason === ModalDismissReasons.ESC) {
+        return 'by pressing ESC';
+      } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+        return 'by clicking on a backdrop';
+      } else {
+        return `with: ${reason}`;
+      }
+    }
 }

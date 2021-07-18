@@ -82,7 +82,7 @@ class Laboratoire
         return $this->name;
     }
 
-    public function setName(string $nom): self
+    public function setName(string $name): self
     {
         $this->name= $name;
 
