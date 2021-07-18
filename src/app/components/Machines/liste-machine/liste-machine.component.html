@@ -72,7 +72,7 @@
                           <button *ngIf="machine.ownerId == currentUserId"  class="btn btn-primary" routerLink="/addMachine"  [queryParams]="{editView: true, data: machine | json }"><i class="fas fa-edit"></i>Modifier details</button>
                           <button *ngIf="machine.ownerId == currentUserId"  class="btn btn-primary" style="width: 15px;" (click)="removeMachine(machine.id)"><i class="fas fa-trash-alt"></i></button>
 
-                          <button  href="#" class="btn btn-primary"><i class="fas fa-history"></i>Voir historique</button>
+                          <button   class="btn btn-primary" routerLink= "/reservationHistory" [queryParams]="{idMachine: machine.id | json }"><i class="fas fa-history"></i>Voir historique</button>
                         </div>
                       </div>
                 </div>
@@ -86,7 +86,7 @@
     </div>
     
       <p-dialog header="Voulez vous vraiment réserver cette machine ?" [(visible)]="showBookingDialog">
-        <form #bookForm="ngForm">
+        <form #bookForm="ngForm"  *ngIf="!reservationOn">
             <!-- <div class="form-group">
               <label f>A partir de</label>
                 <input [(ngModel)]="dateFrom" type="date" id="inputdateFrom" class="form-control" placeholder="yyyy-mm-dd" name="dateFrom" >
@@ -100,4 +100,5 @@
                 <a  (click)="bookMachine()" class="btn btn-primary">Confirmer</a>
 
           </form>
+          <span *ngIf="reservationOn"> Oops! désolé vous ne pouvez pas réserver plus qu'une machine à la fois :( </span>
     </p-dialog>

@@ -54,4 +54,22 @@ export class MachineService{
         `/api/machinesByOwner?owner_id=` + ownerId
       );
     }
+
+    getReservationsByMachine(identifier: any){
+      return this._http.get<any>(
+        `/api/reservationByMachine/?machine_id=`+ identifier
+      )
+    }
+
+
+    sendEmail(body?:any){
+      return this._http.post<any>(
+        `/api/email/`,body
+      )
+    }
+    sendConfirmation(){
+      return this._http.get<any>(
+        `/api/confirmationEmail/`
+      )
+    }
 }
