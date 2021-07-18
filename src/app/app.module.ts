@@ -29,7 +29,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {NavigationItem} from '@components/admin/navigation/navigation';
 import {SharedModule} from './shared/shared.module';
-import {CommonModule} from '@angular/common';
+import {CommonModule, DatePipe} from '@angular/common';
 import {AdminComponent} from './components/admin/admin.component';
 import {NavigationComponent} from './components/admin/navigation/navigation.component';
 import {NavLogoComponent} from './components/admin/navigation/nav-logo/nav-logo.component';
@@ -50,6 +50,7 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import { LaboratoireHomeComponent } from './components/laboratoires/laboratoire-home/laboratoire-home.component';
 import { AddLaboComponent } from './components/laboratoires/add-labo/add-labo.component';
 import { CommentsLaboComponent } from './components/laboratoires/comments-labo/comments-labo.component';
+import { AddMachineComponent } from './components/Machines/add-machine/add-machine.component';
 
 
 @NgModule({
@@ -79,7 +80,8 @@ import { CommentsLaboComponent } from './components/laboratoires/comments-labo/c
     ChooseActionComponent,
     ListeMachineComponent,
     AddLaboComponent,
-    CommentsLaboComponent
+    CommentsLaboComponent,
+    AddMachineComponent
   ],
   imports: [
     //  MatFormFieldModule,
@@ -112,7 +114,8 @@ import { CommentsLaboComponent } from './components/laboratoires/comments-labo/c
     {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
     {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
     NavigationItem,
-    CookieService
+    CookieService,
+    DatePipe
   ],
   exports: [
     SharedModule,

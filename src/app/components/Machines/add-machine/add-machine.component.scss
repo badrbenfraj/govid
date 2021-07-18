@@ -2,8 +2,18 @@
     background: #eee !important;
 }
 
+.btn-primary:hover,
+.btn-primary:focus {
+    background-color: #108d6f;
+    border-color: #108d6f;
+    box-shadow: none;
+    outline: none;
+}
+
 .btn-primary {
     color: #fff;
+    background-color: #007b5e;
+    border-color: #007b5e;
 }
 
 section {
@@ -12,7 +22,7 @@ section {
 
 section .section-title {
     text-align: center;
-    color: #61769e;
+    color: #007b5e;
     margin-bottom: 50px;
     text-transform: uppercase;
 }

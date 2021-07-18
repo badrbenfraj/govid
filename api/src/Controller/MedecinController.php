@@ -2,16 +2,39 @@
 
 namespace App\Controller;
 
+use FOS\RestBundle\Context\Context;
+use FOS\RestBundle\Controller\AbstractFOSRestController;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use App\Entity\Medecin;
+use App\Repository\MedecinRepository;
+use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 
-class MedecinController extends AbstractController
+class MedecinController extends AbstractFOSRestController
 {
+
+   /**
+   * @var MedecinRepository
+   */
+  private $medecinRepository;
+
+   /**
+   * @var EntityManagerInterface
+   */
+  private $entityManager;
+
+  public function __construct(MedecinRepository $medecinRepository, EntityManagerInterface $entityManager)
+  {
+    $this->medecinRepository = $medecinRepository;
+    $this->entityManager = $entityManager;
+  }
+
+
     /**
      * @Route("/medecin", name="medecin")
      */
@@ -80,25 +103,76 @@ class MedecinController extends AbstractController
     }
 
  /**
- * @Route("updateMedecin/{id}", name="medecinUpdate",methods={"POST"})
- */
-public function UpdateMedecin(int $id, Request $request, SerializerInterface $serializer) : Response
-{
-           $em=$this->getDoctrine()->getManager();
-           $medecin = $em->getRepository(Medecin::class)->find($id);
+   * @Route("/updateMedecin/{id}", name="updateMedecin", methods={"POST"})
+   * @param Request $request
+   */
+  public function updateMedecin(Request $request, SerializerInterface $serializer)
+  {
+    $id = $request->get('id');
 
-      
-            $medecin->setFullName($request->get("fullName"));
-            $medecin->setEmail($request->get("email"));
-            $medecin->setAddress($request->get("address"));
-            $medecin->setPhoneNumber($request->get("phoneNumber"));
-            $medecin->setSpeciality($request->get("speciality"));
-            $medecin->setGender($request->get("gender"));
-            $medecin->setCnamConvention($request->get("cnamConvention"));
+    $data = json_decode($request->getContent(), true);
+    $fullName = $data['fullName'];
+    $email = $data['email'];
+    $address = $data['address'];
+    $phoneNumber = $data['phoneNumber'];
+    $speciality = $data['speciality'];
+    $gender = $data['gender'];
+    $cnamConvention = $data['cnamConvention'];
 
-           $em->persist($medecin);
-           $em->flush();
-           $jsonContent = $serializer->serialize($medecin,"json");
-           return new Response($jsonContent);
-}
+    $medecin = $this->medecinRepository->findOneBy([
+      'id' => $id,
+    ]);
+
+    $medecin->setFullName($fullName);
+    $medecin->setEmail($email);
+    $medecin->setAddress($address);
+    $medecin->setPhoneNumber($phoneNumber);
+    $medecin->setSpeciality($speciality);
+    $medecin->setGender($gender);
+    $medecin->setCnamConvention($cnamConvention);
+
+    $this->entityManager->persist($medecin);
+    $this->entityManager->flush();
+    $jsonContent = $serializer->serialize($medecin,"json");
+    return new Response($jsonContent);
+  }
+
+  /**
+   * @Route("/medecin/update/{id}", name="update_medecin", methods={"POST"})
+   * @param Request $request
+   * @return \FOS\RestBundle\View\View
+   */
+  public function update_medecin(Request $request)
+  {
+    $id = $request->get('id');
+
+    $data = json_decode($request->getContent(), true);
+    $fullName = $data['fullName'];
+    $email = $data['email'];
+    $address = $data['address'];
+    $phoneNumber = $data['phoneNumber'];
+    $speciality = $data['speciality'];
+    $gender = $data['gender'];
+    $cnamConvention = $data['cnamConvention'];
+
+    $medecin = $this->medecinRepository->findOneBy([
+      'id' => $id,
+    ]);
+
+    $medecin->setFullName($fullName);
+    $medecin->setEmail($email);
+    $medecin->setAddress($address);
+    $medecin->setPhoneNumber($phoneNumber);
+    $medecin->setSpeciality($speciality);
+    $medecin->setGender($gender);
+    $medecin->setCnamConvention($cnamConvention);
+
+    $this->entityManager->persist($medecin);
+    $this->entityManager->flush();
+
+    return $this->view([
+      'message' => 'Medecin Updated Successfully',
+      'code' => Response::HTTP_OK
+    ], Response::HTTP_OK)->setContext((new Context())->setGroups(['public']));
+  }
 }

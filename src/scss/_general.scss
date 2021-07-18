@@ -189,6 +189,7 @@ p.text-muted {
                 background: transparent;
                 box-shadow: none;
                 color: #888;
+                height: 45px;
 
                 i {
                     margin-right: 0;
@@ -201,6 +202,12 @@ p.text-muted {
                 &:focus {
                     box-shadow: none;
                     outline: none;
+                }
+                &:hover {
+                  color: #fff;
+                  background: #888;
+                  box-shadow: none;
+                  outline: none;
                 }
             }
         }

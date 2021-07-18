@@ -1,6 +1,7 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { MedecinInput } from '@models/medecinInput';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {Injectable} from '@angular/core';
+import {MedecinInput} from '@models/medecinInput';
+import {Observable} from 'rxjs';
 
 
 @Injectable({
@@ -16,25 +17,36 @@ export class MedecinService {
       `/api/listmedecins`
     );
   }
-  getMedecinByIdentifier(identifier: string) {
+
+  getMedecinByIdentifier(identifier: number) {
     return this._http.get<any>(
       `/api/medecin/` + identifier
     );
   }
+
   getMedecinByFilters(filters: string) {
     return this._http.get<any>(
       `/api/medecinWithFilters?` + filters
     );
   }
+
   createMedecin(body: MedecinInput) {
     return this._http.post<any>(
       `/api/addMedecin`,
       body
     );
   }
-  removeMedecin(identifier: string) {
+
+  removeMedecin(identifier: number): Observable<any> {
     return this._http.post<any>(
-      `/api/removeMedecin/` + identifier, {}
+      `/api/removeMedecin/${identifier}`, {}
     );
+  }
+
+  updateMedecin(identifier: number, body: MedecinInput): Observable<any> {
+    const token = localStorage.getItem('user');
+    return this._http.post<any>(
+      `/api/medecin/update/${identifier}`, body
+      );
   }
 }

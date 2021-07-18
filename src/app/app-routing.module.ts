@@ -1,3 +1,4 @@
+import { AddMachineComponent } from './components/Machines/add-machine/add-machine.component';
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 
@@ -74,6 +75,11 @@ const routes: Routes = [
   {
     path: 'ListMachines',
     component: ListeMachineComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'addMachine',
+    component: AddMachineComponent,
     canActivate: [AuthGuard]
   },
   {path: '404', component: NotFoundComponent},

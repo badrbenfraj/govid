@@ -1,86 +1,92 @@
-<h3 style="color:dodgerblue; padding-left: 190px; padding-top: 20px;"> Avec GOVID, trouvez rapidement votre médecin</h3>
+<div class="row">
+  <div class="col-xl-12">
+
+    <app-card cardTitle="Recherche Médecin" [button]="addButton" [options]="false"
+              blockClass="table-border-style">
+
+      <div style="width: 90%;margin: 0 auto;">
+        <div style="text-align: center;margin: 35px 0;">
+          <h3 style="color:dodgerblue;"> Avec GOVID, trouvez rapidement votre
+            médecin</h3>
+        </div>
+
+        <div style="float:right; margin-right: 15px; margin-top: 2px;">
+          <img src="../../assets/images/med.svg" alt="..." style="width: 180px; height: 180px">
+        </div>
 
 
-<div style="float:right; margin-right: 15px; margin-top: 2px;">
-  <img src="../../assets/images/med.svg" alt="..." style="width: 180px; height: 180px">
-</div>
-
-
-<div style="position: absolute; top:200px; left:15%; width:62%;">
-
-  <div class="form-row">
-    <div class="form-group col-md-6">
-      <label for="inputName">Nom et Prénom </label>
-      <input #fullName type="text" class="form-control" id="inputName" placeholder="Nom et Prénom">
-    </div>
-    <div class="form-group col-md-6">
-      <label for="inputEmail4">Email</label>
-      <input #email type="email" class="form-control" id="inputEmail4" placeholder="contact@example.com">
-    </div>
-  </div>
-  <div class="form-row">
-    <div class="form-group col-md-6">
-      <label for="inputAddress">Numéro de téléphone</label>
-      <input #phoneNumber type="text" class="form-control" id="inputNumTel" placeholder="11 11 11 11"
-             pattern="[0-9]{8}" maxlength="8">
-    </div>
-    <div class="form-group col-md-6">
-      <label for="inputState">Spécialité</label>
-      <select #speciality id="inputState" class="form-control">
-        <option selected>NONE</option>
-        <option>Generaliste</option>
-        <option>Pneumologue</option>
-        <option>Infectiologue</option>
-        <option>Interniste</option>
-      </select>
-    </div>
-  </div>
-  <div class="form-row">
-    <div class="form-check form-check-inline col-md-2">
-      <input #rad1 class="form-check-input" type="radio" name="gender" id="inlineRadio1" value="Homme">
-      <label class="form-check-label" for="inlineRadio1">Homme</label>
-    </div>
-    <div class="form-check form-check-inline col-md-2">
-      <input #rad2 class="form-check-input" type="radio" name="gender" id="inlineRadio2" value="Femme">
-      <label class="form-check-label" for="inlineRadio2">Femme</label>
-    </div>
-    <div class="form-check form-check-inline col-md-2">
-      <input #rad3 class="form-check-input" type="radio" name="gender" id="inlineRadio2" value="NONE">
-      <label class="form-check-label" for="inlineRadio2">NONE</label>
-    </div>
-    <div class="form-check col-md-4">
-      <input #cnamConvention class="form-check-input" type="checkbox" id="gridCheck">
-      <label class="form-check-label" for="gridCheck"> Conventionné avec la CNAM </label>
-    </div>
-  </div>
-  <br>
-
-  <button type="submit" class="btn btn-primary" style="margin-bottom: 32px;"
-          (click)="filtrer(fullName.value,email.value, phoneNumber.value, speciality.value,  rad1.checked ? rad1.value : rad2.checked ? rad2.value : rad3.value, cnamConvention.checked ? true : null)">
-    Rechercher
-  </button>
-
-  <button routerLink="/dashboard/medecin/new" class="btn btn-primary"
-          style="margin-bottom: 32px; margin-left: 16px;">Ajouter médecin
-  </button>
-  <br>
-
-  <section id="team" class="pb-5" class="album py-5 bg-light">
-    <div class="container">
-      <h5 class="section-title h4">Liste des médecins</h5>
-      <div class="row">
-        <div *ngIf="listMedecinFiltred && listMedecinFiltred.length>0 else elseBlock">
-          <div *ngFor="let medecin of listMedecinFiltred">
-            <app-cards [medecin]="medecin"></app-cards>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="inputName">Nom et Prénom </label>
+            <input #fullName type="text" class="form-control" id="inputName" placeholder="Nom et Prénom">
+          </div>
+          <div class="form-group col-md-6">
+            <label for="inputEmail4">Email</label>
+            <input #email type="email" class="form-control" id="inputEmail4" placeholder="contact@example.com">
           </div>
         </div>
-        <ng-template #elseBlock>
-          <div *ngFor="let medecin of listMedecin">
-            <app-cards [medecin]="medecin"></app-cards>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="inputAddress">Numéro de téléphone</label>
+            <input #phoneNumber type="text" class="form-control" id="inputNumTel" placeholder="11 11 11 11"
+                   pattern="[0-9]{8}" maxlength="8">
           </div>
-        </ng-template>
+          <div class="form-group col-md-6">
+            <label for="inputState">Spécialité</label>
+            <select #speciality id="inputState" class="form-control">
+              <option selected>NONE</option>
+              <option>Generaliste</option>
+              <option>Pneumologue</option>
+              <option>Infectiologue</option>
+              <option>Interniste</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-check form-check-inline col-md-2">
+            <input #rad1 class="form-check-input" type="radio" name="gender" id="inlineRadio1" value="Homme">
+            <label class="form-check-label" for="inlineRadio1">Homme</label>
+          </div>
+          <div class="form-check form-check-inline col-md-2">
+            <input #rad2 class="form-check-input" type="radio" name="gender" id="inlineRadio2" value="Femme">
+            <label class="form-check-label" for="inlineRadio2">Femme</label>
+          </div>
+          <div class="form-check form-check-inline col-md-2">
+            <input #rad3 class="form-check-input" type="radio" name="gender" id="inlineRadio3" value="NONE">
+            <label class="form-check-label" for="inlineRadio2">NONE</label>
+          </div>
+          <div class="form-check col-md-4">
+            <input #cnamConvention class="form-check-input" type="checkbox" id="gridCheck">
+            <label class="form-check-label" for="gridCheck"> Conventionné avec la CNAM </label>
+          </div>
+        </div>
+        <br>
+        <button type="submit" class="btn btn-primary" style="margin-bottom: 32px;"
+                (click)="filtrer(fullName.value,email.value, phoneNumber.value, speciality.value,  rad1.checked ? rad1.value : rad2.checked ? rad2.value : rad3.value, cnamConvention.checked ? true : null)">
+          <i class="fas fa-search"></i> Rechercher
+        </button>
+        <br>
+
+        <section id="team" class="pb-5" class="album py-5 bg-light">
+          <div class="container" style="width: 85.5%;margin: 0 auto;">
+            <h5 class="section-title h4">Liste des médecins</h5>
+            <div class="row">
+              <div *ngIf="listMedecinFiltred && listMedecinFiltred.length>0 else elseBlock">
+                <div *ngFor="let medecin of listMedecinFiltred">
+                  <app-cards [medecin]="medecin"></app-cards>
+                </div>
+              </div>
+              <ng-template #elseBlock>
+                <div *ngFor="let medecin of listMedecin">
+                  <app-cards [medecin]="medecin"></app-cards>
+                </div>
+              </ng-template>
+            </div>
+
+          </div>
+        </section>
       </div>
 
-    </div>
-  </section>
+    </app-card>
+  </div>
 </div>

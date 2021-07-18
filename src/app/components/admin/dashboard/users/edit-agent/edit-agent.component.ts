@@ -14,7 +14,7 @@ export class EditAgentComponent implements OnInit {
   buttonAdd;
   agentUser: User;
   buttonCancel: any;
-  agent = 'laboratoire';
+  agent;
   registerForm: FormGroup;
   loading = false;
   submitted = false;
@@ -28,11 +28,6 @@ export class EditAgentComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.buttonAdd = {
-      label: 'Add',
-      path: '/dashboard/users/new',
-      param: ``
-    };
     this.registerForm = this.formBuilder.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
@@ -41,6 +36,12 @@ export class EditAgentComponent implements OnInit {
     });
 
     this.route.params.subscribe(params => {
+      this.agent = params.name;
+      this.buttonCancel = {
+        label: 'Cancel',
+        path: `/dashboard/users/${this.agent}`,
+        icon: 'fas fa-undo'
+      };
       this.userService.getById(params.id).subscribe(user => {
         this.agentUser = user;
         this.registerForm.patchValue({
@@ -68,13 +69,15 @@ export class EditAgentComponent implements OnInit {
     }
 
     this.loading = true;
-    this.authenticationService
-      .register(
-        this.f.firstName.value,
-        this.f.lastName.value,
-        this.f.email.value,
-        this.f.password.value,
-        [`ROLE_${this.agent.toUpperCase()}_AGENT`]
+    this.userService
+      .update(
+        this.agentUser.id,
+        {
+          firstName: this.f.firstName.value,
+          lastName: this.f.lastName.value,
+          email: this.f.email.value,
+          password: this.f.password.value
+        }
       )
       .pipe(first())
       .subscribe(

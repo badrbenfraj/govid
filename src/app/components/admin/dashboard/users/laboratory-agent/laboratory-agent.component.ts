@@ -18,12 +18,20 @@ export class LaboratoryAgentComponent implements OnInit {
     this.buttonAdd = {
       label: 'Add',
       path: '/dashboard/users/new',
-      param: 'laboratoire'
+      param: 'laboratoire',
+      icon: 'fas fa-user-plus'
     };
+    this.getAgents();
+  }
+
+  getAgents(): void {
     this.userService.getByRole('ROLE_LABORATOIRE_AGENT').subscribe(users => {
       this.agentUser = users;
-      console.log(this.agentUser);
     });
   }
 
+  delete(id): void {
+    this.userService.delete(id).subscribe();
+    this.getAgents();
+  }
 }

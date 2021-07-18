@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import {NgModule} from '@angular/core';
+import {Routes, RouterModule} from '@angular/router';
 import {UsersComponent} from './users.component';
 import {NewAgentComponent} from '@components/admin/dashboard/users/new-agent/new-agent.component';
 import {EditAgentComponent} from '@components/admin/dashboard/users/edit-agent/edit-agent.component';
@@ -10,11 +10,16 @@ const routes: Routes = [
     component: UsersComponent
   },
   {
-    path: 'new/:name',
-    component: NewAgentComponent
+    path: '',
+    children: [
+      {
+        path: '',
+        loadChildren: () => import('./new-agent/new-agent.module').then(m => m.NewAgentModule)
+      }
+    ]
   },
   {
-    path: 'edit',
+    path: 'edit/:name',
     component: EditAgentComponent
   },
   {
@@ -32,4 +37,5 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class UsersRoutingModule { }
+export class UsersRoutingModule {
+}

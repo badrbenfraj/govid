@@ -1,133 +1,62 @@
-.machine-container{
-    margin-top: 10%;
-    margin-bottom: 5%;
- }
 
-  .mat-input-element::placeholder {
-    text-align: left;
-  }
-  .example-card {
-    max-width: 400px;
-    margin-right: 2%;
-    margin-bottom: 2%;
-    min-width: 30%;
-    max-width: 30%;
-  }
-  
-  .example-header-image {
-    background-image: url("/../assets/images/masque-oxygene.jpg");
-    background-size: cover;
-  }
-  .myPrimaryButton {
-    color: #fff;
-    background-color: #007b5e;
-    border-color: #007b5e;
-    border-radius: 15%;
+#listeMachine {
+  background: #eee !important;
 }
-.myPrimaryButton:hover{
-    background-color: #2dbd9b;
-    border-color: #2dbd9b;
-}
-.myPrimaryButton:focus{
-    background-color: #2dbd9b;
-    border-color: #2dbd9b;
-}
-.mySecondaryButton{
-    border-radius: 15%;
-}
-p-paginator ::ng-deep .ui-paginator {
-    background-color: transparent;
-}
-.paginator {
-    background-color: transparent !important;
-  }
 
-
- /* mat-form-field */
-.custom-form-field {
-    background-color: white;
-    border-radius: 4px;
-  }
-  :host ::ng-deep .custom-form-field mat-form-field {
-    .mat-hint,
-    input,
-    ::placeholder,
-    .mat-form-field-label,
-    .mat-select-value-text,
-    .mat-select-panel mat-option.mat-option {
-      color: #333333 !important;
-    }
-  }
-  
-  :host ::ng-deep .custom-form-field .mat-form-field-wrapper {
-    margin-top: 0 !important;
-    margin-bottom: -1.35em !important;
-  }
-  
-  ::ng-deep .custom-form-field .mat-form-field-flex > .mat-form-field-infix {
-    padding: 0.7em 0px !important;
-  }
-  ::ng-deep .mat-form-field-label-wrapper {
-    top: -1.3em;
-  }
-  
-  :host ::ng-deep mat-form-field.mat-form-field:not(.mat-form-field-has-label) .mat-form-field-infix {
-    border-top-width: 0.4em;
-  }
-  
-  :host ::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
-    color: rgb(207, 207, 207);
-  }
-  .filter-label {
-    color: rgb(153, 153, 153) !important;
-    font-size: 12px;
-    font-weight: normal;
-    letter-spacing: 0px;
-    line-height: 16px;
-  }
-
-  .mat-input-element::placeholder {
-    text-align: left;
-  }
-  
-.row{
-    position: relative;
-    padding: 16px;
-    border-radius: 4px;
-    -ms-flex-wrap: wrap;
-    flex-wrap: wrap;
-    margin-right: -15px;
-    margin-left: -15px;
-    transition:box-shadow 280ms cubic-bezier(.4,0,.2,1);
-    cursor: pointer;
-}
-:host ::ng-deep .mat-button-base{
-    color:  grey;
-}
-// :host ::ng-deep .mat-focus-indicator {
-//     color: dodgerblue;
-// }
-// :host ::ng-deep .mat-icon-button{
-//     color: dodgerblue;
-// }
-:host ::ng-deep .mat-datepicker-toggle-active{
-    color: dodgerblue;
-}
-:host ::ng-deep .mat-calendar-body-selected {
-    background-color:dodgerblue !important;
-}
 .btn-primary:hover,
 .btn-primary:focus {
-    background-color: #108d6f;
-    border-color: #108d6f;
-    box-shadow: none;
-    outline: none;
+  background-color: #108d6f;
+  border-color: #108d6f;
+  box-shadow: none;
+  outline: none;
 }
 
 .btn-primary {
-    color: #fff;
-    background-color: #007b5e;
-    border-color: #007b5e;
-    height: 40px;
+  color: #fff;
+  background-color: #007b5e;
+  border-color: #007b5e;
 }
- 
+
+section {
+  padding: 60px 0;
+}
+
+section .section-title {
+  text-align: center;
+  color: #007b5e;
+  margin-bottom: 50px;
+  text-transform: uppercase;
+}
+.card-img-top{
+  width: 120px;
+  height: 120px;
+  margin-left: 25%;
+}
+.example-card {
+  max-width: 400px;
+  margin-right: 2%;
+  margin-bottom: 2%;
+  min-width: 30%;
+  max-width: 30%;
+}
+::ng-deep .p-dialog{
+  margin: 15px;
+background-color: #fff;
+width: 750px;
+border-radius: 2%;
+border: solid #007b5e;
+}
+::ng-deep .p-dialog-title{
+  font-weight: bold;
+  color:#007b5e  ;
+ // height: 60px;
+  margin: 15px
+
+}
+::ng-deep .p-dialog-content {
+  margin: 15px
+}
+
+
+
+
