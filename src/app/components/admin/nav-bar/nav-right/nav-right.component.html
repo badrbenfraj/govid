@@ -1,4 +1,4 @@
-<ul class="navbar-nav" *ngIf="loggedUser">
+<ul class="navbar-nav">
   <li>
     <div class="dropdown" ngbDropdown placement="auto">
       <a ngbDropdownToggle href="javascript:" data-toggle="dropdown"><i class="icon feather icon-bell"></i></a>
@@ -57,7 +57,7 @@
         <i class="icon feather icon-settings"></i>
       </a>
       <div class="dropdown-menu dropdown-menu-right profile-notification" ngbDropdownMenu>
-        <div class="pro-head">
+        <div class="pro-head" *ngIf="loggedUser">
           <img src="assets/images/user/avatar-1.jpg" class="img-radius" alt="User-Profile-Image">
           <span>{{loggedUser.firstName }} {{loggedUser.lastName }}</span>
           <a (click)="logout()" href="/login" class="dud-logout" title="Logout" style="cursor: pointer;">
@@ -66,7 +66,7 @@
         </div>
         <ul class="pro-body">
           <li><a href="javascript:" class="dropdown-item"><i class="feather icon-settings"></i> Settings</a></li>
-          <li><a href="javascript:" class="dropdown-item"><i class="feather icon-user"></i> Profile</a></li>
+          <li><a [routerLink]="['/dashboard/users/profile']" routerLinkActive="router-link-active"  class="dropdown-item"><i class="feather icon-user"></i> Profile</a></li>
           <li><a href="javascript:" class="dropdown-item"><i class="feather icon-mail"></i> My Messages</a></li>
           <li><a href="javascript:" class="dropdown-item"><i class="feather icon-lock"></i> Lock Screen</a></li>
         </ul>

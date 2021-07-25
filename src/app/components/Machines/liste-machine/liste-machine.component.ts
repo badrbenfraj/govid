@@ -51,7 +51,7 @@ export class ListeMachineComponent implements OnInit {
       saturation: ''
     }
     this.getMachines();
-    this.currentUserId = this.authService.getCurrentUser().id;
+    this.currentUserId = this.authService.getCurrentUser.id;
     console.log(this.currentUserId);
 
   }
@@ -150,7 +150,7 @@ export class ListeMachineComponent implements OnInit {
       console.log(data)
       this.reservationOn = true;
       let emailBody = {
-        message: "Vous avez reserver une machine d'oxygéne sur Govid.tn. vous pouvez prendre contact avec le propriétaire sur son adresse email : " + this.authService.getCurrentUser().email + ". On vous souhaite prompt rétablissement."
+        message: "Vous avez reserver une machine d'oxygéne sur Govid.tn. vous pouvez prendre contact avec le propriétaire sur son adresse email : " + this.authService.getCurrentUser.email + ". On vous souhaite prompt rétablissement."
             }
       this.machineService.sendEmail(emailBody).subscribe(res=>{
         console.log("email sended with success")

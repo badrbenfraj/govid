@@ -44,6 +44,7 @@ export class NavRightComponent implements OnInit, DoCheck {
     private authenticationService: AuthenticationService,
     private route: Router
   ) {
+    this.loggedUser = this.authenticationService.getCurrentUser;
     config.placement = 'bottom-right';
     this.visibleUserList = false;
     this.chatMessage = false;
@@ -51,7 +52,6 @@ export class NavRightComponent implements OnInit, DoCheck {
   }
 
   ngOnInit(): void {
-    this.loggedUser = this.authenticationService.getCurrentUser();
   }
 
   logout(): void {
