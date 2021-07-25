@@ -45,7 +45,11 @@ export class AddMachineComponent implements OnInit {
       this.machineService.createMachine(this.machineInput).subscribe(data=>{
   
         console.log("Machine Créer avec succes");
+        this.machineService.sendConfirmation().subscribe(res=>{
+        })
         this.router.navigate(["/ListMachines"]);
+
+        
 
       })
     }

@@ -242,9 +242,43 @@ class MachineController extends AbstractController
 
     
        $entityManager->flush();
-       $jsonContent = $serializer->serialize($machine,"json");
+       $jsonContent = $serializer->serialize($machine,"json", [
+        'circular_reference_handler' => function ($object) {
+            return $object->getId();
+        }
+    ]);
        return new Response($jsonContent);
   }
+    /**
+     * @Route("/email", name="sendEmail")
+     */
+     public function sendEmail(Request $request, \Swift_Mailer $mailer)
+    {
+      $data = json_decode($request->getContent(), true);
+       $textToSend = $data['message'];
+       $message = (new \Swift_Message('Hello Email'))
+       ->setFrom('hps31389@gmail.com')
+       ->setTo('nouhamejri97@gmail.com')
+       ->setBody( $textToSend)
+       ;
+       $mailer->send($message);
+
+       return new Response("email sended with success");
+    }
+    /**
+     * @Route("/confirmationEmail", name="sendEmailConfirmation")
+     */
+    public function sendConfirmationEmail(\Swift_Mailer $mailer)
+    {
+       $message = (new \Swift_Message('Hello Email'))
+       ->setFrom('hps31389@gmail.com')
+       ->setTo('nouhamejri97@gmail.com')
+       ->setBody('Félicitaions! Votre machine a été créer avec succes.')
+       ;
+       $mailer->send($message);
+
+       return new Response("email sended with success");
+    }
 
 }
 

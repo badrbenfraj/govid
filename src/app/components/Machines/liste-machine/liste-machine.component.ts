@@ -31,7 +31,7 @@ export class ListeMachineComponent implements OnInit {
   idbookedMachine: any;
   showingMyMachines: boolean = false;
   addButton;
-
+  reservationOn: boolean = false;
   @ViewChild('paginator', { static: false }) paginator: MatPaginator;
 
   constructor(private machineService: MachineService, private datePipe: DatePipe, private modalService: NgbModal, private authService: AuthenticationService) { }
@@ -62,6 +62,7 @@ export class ListeMachineComponent implements OnInit {
   }
 
   getMachines() {
+    this.showingMyMachines= false;
     this.rowsPerPage = 10;
     this.pageFirstRow = 0;
     this.pageLastRow = (this.pageFirstRow + this.rowsPerPage) - 1;
@@ -144,11 +145,24 @@ export class ListeMachineComponent implements OnInit {
      this.idbookedMachine = id;
   }
   bookMachine() {
-    console.log(this.dateFrom);
     this.showBookingDialog = false;
     this.machineService.bookMachine(this.currentUserId, this.idbookedMachine, this.dateTo).subscribe(data=>{
-      console.log("reserved with success")
-    })
+      console.log(data)
+      this.reservationOn = true;
+      let emailBody = {
+        message: "Vous avez reserver une machine d'oxygéne sur Govid.tn. vous pouvez prendre contact avec le propriétaire sur son adresse email : " + this.authService.getCurrentUser().email + ". On vous souhaite prompt rétablissement."
+            }
+      this.machineService.sendEmail(emailBody).subscribe(res=>{
+        console.log("email sended with success")
+      })
+    }),err=>{
+      this.reservationOn = true;
+      this.showBookingDialog = true;
+
+    }
+    this.reservationOn = true;
+    console.log(this.reservationOn);
+    this.getMachines();
 
   }
 
@@ -186,7 +200,12 @@ export class ListeMachineComponent implements OnInit {
   removeMachine(id){
     this.machineService.removeMachine(id).subscribe(data=>{
       console.log("Deleted with success");
-      this.getMachines();
+      if(this.showingMyMachines){
+        this.showMyMachines();
+      }else{
+        this.getMachines();
+
+      }
     })
   }
 

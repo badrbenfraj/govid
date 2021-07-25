@@ -51,6 +51,7 @@ import { LaboratoireHomeComponent } from './components/laboratoires/laboratoire-
 import { AddLaboComponent } from './components/laboratoires/add-labo/add-labo.component';
 import { CommentsLaboComponent } from './components/laboratoires/comments-labo/comments-labo.component';
 import { AddMachineComponent } from './components/Machines/add-machine/add-machine.component';
+import { MachineHistoryComponent } from './components/Machines/machine-history/machine-history.component';
 
 
 @NgModule({
@@ -81,7 +82,8 @@ import { AddMachineComponent } from './components/Machines/add-machine/add-machi
     ListeMachineComponent,
     AddLaboComponent,
     CommentsLaboComponent,
-    AddMachineComponent
+    AddMachineComponent,
+    MachineHistoryComponent
   ],
   imports: [
     //  MatFormFieldModule,
