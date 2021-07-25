@@ -32,6 +32,12 @@ export class MachineService{
           body
         )
       }
+      updateMachine(id: any, body: MachineInput) {
+        return this._http.post<any>(
+          `/api/updateMachine/`+ id,
+          body
+        )
+      }
     removeMachine(identifier: string) {
         return this._http.post<any>(
           `/api/removeMachine/` + identifier, {}

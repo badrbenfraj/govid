@@ -1,4 +1,5 @@
 export class MachineInput {
+    id?:number;
     purchaseDate:Date;
     frequency:number;
     debit: number;
