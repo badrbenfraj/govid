@@ -22,7 +22,7 @@ export class NavItemComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.loggedUser = this.authenticationService.getCurrentUser();
+    this.loggedUser = this.authenticationService.getCurrentUser;
   }
 
   closeOtherMenu(event) {

@@ -2,6 +2,8 @@ import {Component, Input, NgZone, OnInit} from '@angular/core';
 import {NavigationItem} from '../../navigation';
 import {Location} from '@angular/common';
 import {DattaConfig} from '@config';
+import {User} from '@auth/models';
+import {AuthenticationService} from '@auth/services';
 
 @Component({
   selector: 'app-nav-group',
@@ -11,9 +13,11 @@ import {DattaConfig} from '@config';
 export class NavGroupComponent implements OnInit {
   @Input() item: NavigationItem;
   public dattaConfig: any;
+  public loggedUser: User;
 
-  constructor(private zone: NgZone, private location: Location) {
+  constructor(private zone: NgZone, private location: Location, private authenticationService: AuthenticationService) {
     this.dattaConfig = DattaConfig.config;
+    this.loggedUser = this.authenticationService.getCurrentUser;
   }
 
   ngOnInit() {

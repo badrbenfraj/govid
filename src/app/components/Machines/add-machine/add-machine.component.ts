@@ -40,7 +40,7 @@ export class AddMachineComponent implements OnInit {
     if(this.editView==false){
       this.machineInput.purchaseDate=new Date (this.creationDate);
       this.machineInput.booked=false;
-      this.machineInput.owner_id=this.authService.getCurrentUser().id;
+      this.machineInput.owner_id=this.authService.getCurrentUser.id;
       console.log(this.machineInput)
       this.machineService.createMachine(this.machineInput).subscribe(data=>{
   
