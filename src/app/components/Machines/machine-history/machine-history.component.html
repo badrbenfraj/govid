@@ -11,6 +11,8 @@
               <th>User email</th>
               <th>Date début</th>
               <th>Date fin</th>
+              <th *ngIf="adminRoleOn==true"></th>
+              <th *ngIf="adminRoleOn==true"></th>
             </tr>
             </thead>
             <tbody>
@@ -21,6 +23,9 @@
               <td>{{reservation.userEmail}}</td>
               <td>{{reservation.dateFrom}}</td>
               <td>{{reservation.dateTo}}</td>
+              <th *ngIf="adminRoleOn==true"><button style="cursor: pointer; border: none; background: white;"><i class="fas fa-edit"></i></button></th>
+              <th *ngIf="adminRoleOn==true"><button style="cursor: pointer; border: none; background: white;"><i class="fas fa-trash-alt"></i></button></th>
+
 
               <!-- <td> 
                  <span class="action edit-action" routerLink="/dashboard/users/{{agent.id}}/edit/laboratoire"><i
