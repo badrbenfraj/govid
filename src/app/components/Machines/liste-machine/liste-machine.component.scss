@@ -1,6 +1,9 @@
 
 #listeMachine {
-  background: #eee !important;
+  //background: #eee !important;
+  background: url('/../../assets/images/oxygene.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .btn-primary:hover,
@@ -56,7 +59,10 @@ border: solid #007b5e;
 ::ng-deep .p-dialog-content {
   margin: 15px
 }
-
+.card-title{
+  font-weight: bold;
+    font-size: 25px;
+}
 
 
 

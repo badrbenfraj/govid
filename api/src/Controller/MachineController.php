@@ -92,11 +92,24 @@ class MachineController extends AbstractController
     */
     public function deleteMachine(int $id,SerializerInterface $serializer): Response
     {
-       $entityManager = $this->getDoctrine()->getManager();
-       $machine = $entityManager->getRepository(Machine::class)->find($id);
-       $entityManager->remove($machine);
-       $entityManager->flush();
-       return new Response();
+      $entityManager = $this->getDoctrine()->getManager();
+      $machine = $entityManager->getRepository(Machine::class)->find($id);
+      // $machine->setReservation(NULL);
+      $this->deleteReservation($id);
+      // $entityManager->remove($machine);
+      // $entityManager->flush();
+      return new Response();
+    }
+
+    public function deleteReservation(int $idMachine): Response
+    {
+      $entityManager = $this->getDoctrine()->getManager();
+      $machine = $entityManager->getRepository(Machine::class)->find($idMachine);
+      $idReservation= $machine->getReservation();
+      $reservationToRemove= $entityManager->getRepository(Reservation::class)->find($idReservation);
+      $entityManager->remove($reservationToRemove);
+      $entityManager->flush();
+      return new Response();
     }
 
     

@@ -1,9 +1,9 @@
 <div class="row">
     <div class="col-xl-12">
       <app-card cardTitle="Liste Machines" [button]="addButton" [options]="false"  blockClass="table-border-style">
-        <div style="float:right; margin-right: 15px; margin-top: 2px;">
+        <!-- <div style="float:right; margin-right: 15px; margin-top: 2px;">
             <img src="../../assets/images/concentratorF.jpg" alt="..." style="width: 180px; height: 180px">
-          </div>
+          </div> -->
         <div class="form-row">
             <div class="form-group col-md-6">
               <label for="inputDate">Date d'achat </label>
@@ -55,8 +55,8 @@
             <div class="container">
               <h5 class="section-title h4">Liste des machines</h5>
               <div class="row">
-                <div *ngIf="displayedList && displayedList.length>0 " class="col ">
-                    <div class="card" style="width: 18rem;margin-right: 0px !important;" *ngFor="let machine of displayedList">
+                <div *ngIf="displayedList && displayedList.length>0 " style="width: 100%;">
+                    <div class="col card" style="width: 20rem;margin-left: 50px !important; float:left;" *ngFor="let machine of displayedList">
                         <img src="../../assets/images/masque-oxygene.jpg" class="card-img-top" alt="...">
                         <div class="card-body">
                           <h5 class="card-title">Machine {{machine.saturation}}L</h5>
@@ -76,7 +76,9 @@
                         </div>
                       </div>
                 </div>
-               
+               <div *ngIf="noData==true ">
+                 <span style="text-align: center; font-size: 20px;margin-left: 375px; color: black;">Aucune machine trouvée pour cette demande</span>
+               </div>
               </div>
         
             </div>

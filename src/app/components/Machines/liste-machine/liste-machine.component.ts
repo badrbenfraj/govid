@@ -32,6 +32,7 @@ export class ListeMachineComponent implements OnInit {
   showingMyMachines: boolean = false;
   addButton;
   reservationOn: boolean = false;
+  noData: boolean = false;
   @ViewChild('paginator', { static: false }) paginator: MatPaginator;
 
   constructor(private machineService: MachineService, private datePipe: DatePipe, private modalService: NgbModal, private authService: AuthenticationService) { }
@@ -86,6 +87,9 @@ export class ListeMachineComponent implements OnInit {
       })
       this.filteredList = this.listeMachine;
       this.displayedList = this.filteredList.slice(0, this.pageSize);
+      if(this.displayedList.length==0){
+        this.noData = true;
+      }
       let pageIndex = 0;
 
     });
@@ -191,6 +195,9 @@ export class ListeMachineComponent implements OnInit {
         })
         this.filteredList = this.listeMachine;
         this.displayedList = this.filteredList.slice(0, this.pageSize);
+        if(this.displayedList.length==0){
+          this.noData = true;
+        }
         let pageIndex = 0;
   
   

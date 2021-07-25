@@ -28,7 +28,7 @@ class Reservation
     private $dateTo;
 
      /**
-     * @ORM\OneToOne(targetEntity=Machine::class, inversedBy="reservation", cascade={"persist", "remove"})
+     * @ORM\OneToOne(targetEntity=Machine::class, inversedBy="reservation", cascade={"persist"})
      * @ORM\JoinColumn(nullable=false)
      */
     private $machine;
