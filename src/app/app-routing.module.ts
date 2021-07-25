@@ -45,7 +45,7 @@ const routes: Routes = [
     path: 'laboratoireDashboard',
     component: LaboratoireDashboardComponent,
     canActivate: [AuthGuard],
-    data: {roles: [Role.Admin]},
+  
   },
   {
     path: 'laboratoireHome',

@@ -110,4 +110,5 @@ laboratoireForm:FormGroup;
     this.laboratoireForm.controls["email"].reset();
     this.laboratoireForm.controls["gouvernorat"].reset();
   }
+  
 }
