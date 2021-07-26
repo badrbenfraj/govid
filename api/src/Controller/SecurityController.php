@@ -98,6 +98,55 @@ class SecurityController extends AbstractFOSRestController
   }
 
   /**
+   * @Route("/user/profile/{email}", name="user_profile", methods={"POST"})
+   * @param Request $request
+   * @return \FOS\RestBundle\View\View
+   */
+  public function user_profile(Request $request): \FOS\RestBundle\View\View
+  {
+    $userEmail = $request->get('email');
+
+    $data = json_decode($request->getContent(), true);
+    $email = $data['email'];
+    $firstName = $data['firstName'];
+    $lastName = $data['lastName'];
+    $password = $data['password'];
+    $address = $data['address'];
+    $country = $data['country'];
+    $postal_code = $data['postal_code'];
+    $city = $data['city'];
+
+    $user = $this->userRepository->findOneBy(['email' => $userEmail]);
+    if (is_null($user)) {
+      return $this->view([
+        'message' => 'User Not Found.',
+        'code' => Response::HTTP_NOT_FOUND
+      ], Response::HTTP_NOT_FOUND);
+    }
+
+    $user->setEmail($email);
+    $user->setFirstName($firstName);
+    $user->setLastName($lastName);
+    $user->setPassword(
+      $this->passwordEncoder->encodePassword($user, $password)
+    );
+    $user->setAddress($address);
+    $user->setCountry($country);
+    $user->setPostalCode($postal_code);
+    $user->setCity($city);
+
+
+
+    $this->entityManager->persist($user);
+    $this->entityManager->flush();
+
+    return $this->view([
+      'message' => 'User Updated Successfully',
+      'code' => Response::HTTP_OK
+    ], Response::HTTP_OK)->setContext((new Context())->setGroups(['public']));
+  }
+
+  /**
    * @Route("/agent/{id}", name="userId", methods={"GET"})
    * @param Request $request
    * @return \FOS\RestBundle\View\View
