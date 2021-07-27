@@ -31,7 +31,7 @@ export class AuthenticationService {
     return this.userSubject.value;
   }
 
-  getCurrentUser(): User {
+  public get getCurrentUser(): User {
     return this.currentUserSubject.value;
   }
 

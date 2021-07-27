@@ -29,11 +29,21 @@ export class ListeMachineComponent implements OnInit {
   dateTo: any;
   dateFrom: any;
   idbookedMachine: any;
+  showingMyMachines: boolean = false;
+  addButton;
+  reservationOn: boolean = false;
+  noData: boolean = false;
   @ViewChild('paginator', { static: false }) paginator: MatPaginator;
 
   constructor(private machineService: MachineService, private datePipe: DatePipe, private modalService: NgbModal, private authService: AuthenticationService) { }
 
   ngOnInit(): void {
+    this.addButton = {
+      label: 'Ajouter machine',
+      path: '/addMachine',
+      icon: 'fas fa-user-plus',
+    };
+
     this.filter = {
       date: '',
       frequence: '',
@@ -42,7 +52,7 @@ export class ListeMachineComponent implements OnInit {
       saturation: ''
     }
     this.getMachines();
-    this.currentUserId = this.authService.getCurrentUser().id;
+    this.currentUserId = this.authService.getCurrentUser.id;
     console.log(this.currentUserId);
 
   }
@@ -53,6 +63,7 @@ export class ListeMachineComponent implements OnInit {
   }
 
   getMachines() {
+    this.showingMyMachines= false;
     this.rowsPerPage = 10;
     this.pageFirstRow = 0;
     this.pageLastRow = (this.pageFirstRow + this.rowsPerPage) - 1;
@@ -64,19 +75,22 @@ export class ListeMachineComponent implements OnInit {
         this.listeMachine.push({
 
           id: machine.id,
-          date: machine.purchaseDate,
-          frequence: machine.frequency,
+          purchaseDate: machine.purchaseDate,
+          frequency: machine.frequency,
           debit: machine.debit,
           alimentation: machine.alimentation,
           saturation: machine.saturation,
           ownerId: machine.ownerId,
           booked: machine.booked,
+          weight: machine.weight,
         });
       })
       this.filteredList = this.listeMachine;
       this.displayedList = this.filteredList.slice(0, this.pageSize);
+      if(this.displayedList.length==0){
+        this.noData = true;
+      }
       let pageIndex = 0;
-
 
     });
   }
@@ -94,7 +108,7 @@ export class ListeMachineComponent implements OnInit {
     let alimentationEvaluation = true;
     let saturationEvaluation = true;
     if (this.filter.frequence != null) {
-      frequencyEvaluation = element.frequence && element.frequence.toString().includes(this.filter.frequence);
+      frequencyEvaluation = element.frequency && element.frequency.toString().includes(this.filter.frequence);
     }
     if (this.filter.debit != null) {
       debitEvaluation = element.debit && element.debit.toString().includes(this.filter.debit);
@@ -107,7 +121,7 @@ export class ListeMachineComponent implements OnInit {
     }
     if (this.filter.date) {
       // element.date.setHours(0, 0, 0, 0);
-      dateEvaluation = this.datePipe.transform(element.date, "yyyy-MM-dd").toString() === this.filter.date;
+      dateEvaluation = this.datePipe.transform(element.purchaseDate, "yyyy-MM-dd").toString() === this.filter.date;
     }
     return frequencyEvaluation && debitEvaluation && alimentationEvaluation && saturationEvaluation && dateEvaluation;
   }
@@ -135,15 +149,29 @@ export class ListeMachineComponent implements OnInit {
      this.idbookedMachine = id;
   }
   bookMachine() {
-    console.log(this.dateFrom);
     this.showBookingDialog = false;
     this.machineService.bookMachine(this.currentUserId, this.idbookedMachine, this.dateTo).subscribe(data=>{
-      console.log("reserved with success")
-    })
+      console.log(data)
+      this.reservationOn = true;
+      let emailBody = {
+        message: "Vous avez reserver une machine d'oxygéne sur Govid.tn. vous pouvez prendre contact avec le propriétaire sur son adresse email : " + this.authService.getCurrentUser.email + ". On vous souhaite prompt rétablissement."
+            }
+      this.machineService.sendEmail(emailBody).subscribe(res=>{
+        console.log("email sended with success")
+      })
+    }),err=>{
+      this.reservationOn = true;
+      this.showBookingDialog = true;
+
+    }
+    this.reservationOn = true;
+    console.log(this.reservationOn);
+    this.getMachines();
 
   }
 
   showMyMachines(){
+    this.showingMyMachines= true;
       this.rowsPerPage = 10;
       this.pageFirstRow = 0;
       this.pageLastRow = (this.pageFirstRow + this.rowsPerPage) - 1;
@@ -155,22 +183,37 @@ export class ListeMachineComponent implements OnInit {
           this.listeMachine.push({
   
             id: machine.id,
-            date: machine.purchaseDate,
-            frequence: machine.frequency,
+            purchaseDate: machine.purchaseDate,
+            frequency: machine.frequency,
             debit: machine.debit,
             alimentation: machine.alimentation,
             saturation: machine.saturation,
             ownerId: machine.ownerId,
             booked: machine.booked,
+            weight: machine.weight
           });
         })
         this.filteredList = this.listeMachine;
         this.displayedList = this.filteredList.slice(0, this.pageSize);
+        if(this.displayedList.length==0){
+          this.noData = true;
+        }
         let pageIndex = 0;
   
   
       });
     
+  }
+  removeMachine(id){
+    this.machineService.removeMachine(id).subscribe(data=>{
+      console.log("Deleted with success");
+      if(this.showingMyMachines){
+        this.showMyMachines();
+      }else{
+        this.getMachines();
+
+      }
+    })
   }
 
 }

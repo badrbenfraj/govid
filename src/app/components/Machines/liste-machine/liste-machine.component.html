@@ -1,9 +1,9 @@
 <div class="row">
     <div class="col-xl-12">
-      <app-card cardTitle="Liste Machines"  blockClass="table-border-style">
-        <div style="float:right; margin-right: 15px; margin-top: 2px;">
+      <app-card cardTitle="Liste Machines" [button]="addButton" [options]="false"  blockClass="table-border-style">
+        <!-- <div style="float:right; margin-right: 15px; margin-top: 2px;">
             <img src="../../assets/images/concentratorF.jpg" alt="..." style="width: 180px; height: 180px">
-          </div>
+          </div> -->
         <div class="form-row">
             <div class="form-group col-md-6">
               <label for="inputDate">Date d'achat </label>
@@ -34,11 +34,14 @@
                        pattern="[0-9]{8}" >
             </div>
             <div class="form-group col-md-6">
-                <button routerLink="" class="btn btn-primary" routerLink="/addMachine"
+                <!-- <button routerLink="" class="btn btn-primary" routerLink="/addMachine"
                 style="margin-left: 16px; margin-top: 27px; float: right; width: 250px;"> <i class="fas fa-user-plus"></i>Ajouter Machine
-        </button>
-        <button class="btn btn-primary" (click)="showMyMachines()"
+        </button> -->
+        <button *ngIf="!showingMyMachines" class="btn btn-primary" (click)="showMyMachines()"
         style="margin-left: 16px; margin-top: 27px; float: right; width: 250px;"> <i class="fas fa-star"></i>Mes Machines
+</button>
+<button *ngIf="showingMyMachines" class="btn btn-primary" (click)="getMachines()"
+        style="margin-left: 16px; margin-top: 27px; float: right; width: 250px;"> <i class="fas fa-star"></i>Toutes Machines
 </button>
             </div>
           </div>
@@ -52,24 +55,30 @@
             <div class="container">
               <h5 class="section-title h4">Liste des machines</h5>
               <div class="row">
-                <div *ngIf="displayedList && displayedList.length>0 " class="col ">
-                    <div class="card" style="width: 18rem;margin-right: 0px !important;" *ngFor="let machine of displayedList">
+                <div *ngIf="displayedList && displayedList.length>0 " style="width: 100%;">
+                    <div class="col card" style="width: 20rem;margin-left: 50px !important; float:left;" *ngFor="let machine of displayedList">
                         <img src="../../assets/images/masque-oxygene.jpg" class="card-img-top" alt="...">
                         <div class="card-body">
                           <h5 class="card-title">Machine {{machine.saturation}}L</h5>
                           <p class="card-text">
                             <span>débit: {{machine.debit}}</span><br>
                             <span>Alimentaion: {{machine.alimentation}}</span><br>
+                            <span>Fréquence: {{machine.frequency}}</span><br>
                             <span>Saturation: {{machine.saturation}}</span><br>
-                            <span>Date d'achat: {{machine.date | date: 'dd/MM/yyyy'}}  </span><br>
-
+                            <span>Date d'achat: {{machine.purchaseDate | date: 'dd/MM/yyyy'}}  </span><br>
+                            <span>Poids: {{machine.weight}}</span><br>
                         </p>
-                          <button *ngIf="machine.ownerId != currentUserId" [disabled]="machine.booked" (click)="showModalBook(machine.id)" class="btn btn-primary">Réserver</button>
-                          <button  href="#" class="btn btn-primary">Voir historique</button>
+                          <button *ngIf="machine.ownerId != currentUserId" [disabled]="machine.booked" (click)="showModalBook(machine.id)" class="btn btn-primary"><i class="fas fa-calendar-alt"></i>Réserver</button>
+                          <button *ngIf="machine.ownerId == currentUserId"  class="btn btn-primary" routerLink="/addMachine"  [queryParams]="{editView: true, data: machine | json }"><i class="fas fa-edit"></i>Modifier details</button>
+                          <button *ngIf="machine.ownerId == currentUserId"  class="btn btn-primary" style="width: 15px;" (click)="removeMachine(machine.id)"><i class="fas fa-trash-alt"></i></button>
+
+                          <button   class="btn btn-primary" routerLink= "/reservationHistory" [queryParams]="{idMachine: machine.id | json }"><i class="fas fa-history"></i>Voir historique</button>
                         </div>
                       </div>
                 </div>
-               
+               <div *ngIf="noData==true ">
+                 <span style="text-align: center; font-size: 20px;margin-left: 375px; color: black;">Aucune machine trouvée pour cette demande</span>
+               </div>
               </div>
         
             </div>
@@ -79,7 +88,7 @@
     </div>
     
       <p-dialog header="Voulez vous vraiment réserver cette machine ?" [(visible)]="showBookingDialog">
-        <form #bookForm="ngForm">
+        <form #bookForm="ngForm"  *ngIf="!reservationOn">
             <!-- <div class="form-group">
               <label f>A partir de</label>
                 <input [(ngModel)]="dateFrom" type="date" id="inputdateFrom" class="form-control" placeholder="yyyy-mm-dd" name="dateFrom" >
@@ -93,4 +102,5 @@
                 <a  (click)="bookMachine()" class="btn btn-primary">Confirmer</a>
 
           </form>
+          <span *ngIf="reservationOn"> Oops! désolé vous ne pouvez pas réserver plus qu'une machine à la fois :( </span>
     </p-dialog>

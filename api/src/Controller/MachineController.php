@@ -92,11 +92,24 @@ class MachineController extends AbstractController
     */
     public function deleteMachine(int $id,SerializerInterface $serializer): Response
     {
-       $entityManager = $this->getDoctrine()->getManager();
-       $machine = $entityManager->getRepository(Machine::class)->find($id);
-       $entityManager->remove($machine);
-       $entityManager->flush();
-       return new Response();
+      $entityManager = $this->getDoctrine()->getManager();
+      $machine = $entityManager->getRepository(Machine::class)->find($id);
+      // $machine->setReservation(NULL);
+      $this->deleteReservation($id);
+      // $entityManager->remove($machine);
+      // $entityManager->flush();
+      return new Response();
+    }
+
+    public function deleteReservation(int $idMachine): Response
+    {
+      $entityManager = $this->getDoctrine()->getManager();
+      $machine = $entityManager->getRepository(Machine::class)->find($idMachine);
+      $idReservation= $machine->getReservation();
+      $reservationToRemove= $entityManager->getRepository(Reservation::class)->find($idReservation);
+      $entityManager->remove($reservationToRemove);
+      $entityManager->flush();
+      return new Response();
     }
 
     
@@ -211,6 +224,73 @@ class MachineController extends AbstractController
          }
      ]);
        return new Response($jsonContent);
+    }
+
+    /**
+    * @Route("/updateMachine/{id}", name="updateMachine")
+    */
+    public function updateMachine(Request $request, SerializerInterface $serializer)
+    {
+       $id = $request->get('id');
+
+       $data = json_decode($request->getContent(), true);
+       $purchaseDate = $data['purchaseDate'];
+       $frequency = $data['frequency'];
+       $debit = $data['debit'];
+       $alimentation = $data['alimentation'];
+       $saturation = $data['saturation'];
+       $weight = $data['weight'];
+
+       $machine=$this->getDoctrine()->getRepository(Machine::class)->find($id);
+
+       $machine->setPurchaseDate(new \DateTime($purchaseDate));
+       $machine->setFrequency($frequency);
+       $machine->setDebit($debit);
+       $machine->setAlimentation($alimentation);
+       $machine->setSaturation($saturation);
+       $machine->setWeight($weight);
+
+       $entityManager = $this->getDoctrine()->getManager();
+       $entityManager->persist($machine);
+
+    
+       $entityManager->flush();
+       $jsonContent = $serializer->serialize($machine,"json", [
+        'circular_reference_handler' => function ($object) {
+            return $object->getId();
+        }
+    ]);
+       return new Response($jsonContent);
+  }
+    /**
+     * @Route("/email", name="sendEmail")
+     */
+     public function sendEmail(Request $request, \Swift_Mailer $mailer)
+    {
+      $data = json_decode($request->getContent(), true);
+       $textToSend = $data['message'];
+       $message = (new \Swift_Message('Hello Email'))
+       ->setFrom('hps31389@gmail.com')
+       ->setTo('nouhamejri97@gmail.com')
+       ->setBody( $textToSend)
+       ;
+       $mailer->send($message);
+
+       return new Response("email sended with success");
+    }
+    /**
+     * @Route("/confirmationEmail", name="sendEmailConfirmation")
+     */
+    public function sendConfirmationEmail(\Swift_Mailer $mailer)
+    {
+       $message = (new \Swift_Message('Hello Email'))
+       ->setFrom('hps31389@gmail.com')
+       ->setTo('nouhamejri97@gmail.com')
+       ->setBody('Félicitaions! Votre machine a été créer avec succes.')
+       ;
+       $mailer->send($message);
+
+       return new Response("email sended with success");
     }
 
 }

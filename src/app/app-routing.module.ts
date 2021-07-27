@@ -1,3 +1,4 @@
+import { MachineHistoryComponent } from './components/Machines/machine-history/machine-history.component';
 import { AddMachineComponent } from './components/Machines/add-machine/add-machine.component';
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
@@ -87,6 +88,11 @@ const routes: Routes = [
   {
     path: 'addMachine',
     component: AddMachineComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'reservationHistory',
+    component: MachineHistoryComponent,
     canActivate: [AuthGuard]
   },
   {path: '404', component: NotFoundComponent},

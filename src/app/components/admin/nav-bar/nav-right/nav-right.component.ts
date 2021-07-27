@@ -44,6 +44,7 @@ export class NavRightComponent implements OnInit, DoCheck {
     private authenticationService: AuthenticationService,
     private route: Router
   ) {
+    this.loggedUser = this.authenticationService.getCurrentUser;
     config.placement = 'bottom-right';
     this.visibleUserList = false;
     this.chatMessage = false;
@@ -51,19 +52,18 @@ export class NavRightComponent implements OnInit, DoCheck {
   }
 
   ngOnInit(): void {
-    this.loggedUser = this.authenticationService.getCurrentUser();
   }
 
   logout(): void {
     this.authenticationService.logout();
   }
 
-  onChatToggle(friend_id): void {
-    this.friendId = friend_id;
+  onChatToggle(friendId): void {
+    this.friendId = friendId;
     this.chatMessage = !this.chatMessage;
   }
 
-  ngDoCheck() {
+  ngDoCheck(): void {
     if (document.querySelector('body').classList.contains('datta-rtl')) {
       this.dattaConfig['rtl-layout'] = true;
     } else {
