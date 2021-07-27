@@ -52,6 +52,16 @@ class Medecin
      */
     private $cnamConvention;
 
+    /**
+     * @ORM\Column(type="integer",nullable=true)
+     */
+    private $likes;
+
+    /**
+     * @ORM\Column(type="integer",nullable=true)
+     */
+    private $disLike;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -137,6 +147,30 @@ class Medecin
     public function setCnamConvention(bool $cnamConvention): self
     {
         $this->cnamConvention = $cnamConvention;
+
+        return $this;
+    }
+
+    public function getLikes(): ?int
+    {
+        return $this->likes;
+    }
+
+    public function setLikes(int $likes): self
+    {
+        $this->likes = $likes;
+
+        return $this;
+    }
+
+    public function getDisLike(): ?int
+    {
+        return $this->disLike;
+    }
+
+    public function setDisLike(int $disLike): self
+    {
+        $this->disLike = $disLike;
 
         return $this;
     }

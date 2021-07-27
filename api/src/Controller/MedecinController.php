@@ -175,4 +175,62 @@ class MedecinController extends AbstractFOSRestController
       'code' => Response::HTTP_OK
     ], Response::HTTP_OK)->setContext((new Context())->setGroups(['public']));
   }
+
+   /**
+   * @Route("/medecin/updateLikes/{id}", name="update_medecin_likes", methods={"POST"})
+   * @param Request $request
+   * @return \FOS\RestBundle\View\View
+   */
+  public function update_medecin_likes(Request $request)
+  {
+    $id = $request->get('id');
+
+    $data = json_decode($request->getContent(), true);
+    $likes = $data['likes'];
+  
+    $medecin = $this->medecinRepository->findOneBy([
+      'id' => $id,
+    ]);
+
+    $medecin->setLikes($likes);
+  
+
+    $this->entityManager->persist($medecin);
+    $this->entityManager->flush();
+
+    return $this->view([
+      'message' => 'Likes value Updated Successfully',
+      'code' => Response::HTTP_OK
+    ], Response::HTTP_OK)->setContext((new Context())->setGroups(['public']));
+  }
+  
+
+  /**
+   * @Route("/medecin/updateDislike/{id}", name="update_medecin_dislikes", methods={"POST"})
+   * @param Request $request
+   * @return \FOS\RestBundle\View\View
+   */
+  public function update_medecin_dislike(Request $request)
+  {
+    $id = $request->get('id');
+
+    $data = json_decode($request->getContent(), true);
+    $disLike = $data['disLike'];
+  
+    $medecin = $this->medecinRepository->findOneBy([
+      'id' => $id,
+    ]);
+
+    $medecin->setDisLike($disLike);
+  
+
+    $this->entityManager->persist($medecin);
+    $this->entityManager->flush();
+
+    return $this->view([
+      'message' => 'DisLike value Updated Successfully',
+      'code' => Response::HTTP_OK
+    ], Response::HTTP_OK)->setContext((new Context())->setGroups(['public']));
+  }
+  
 }

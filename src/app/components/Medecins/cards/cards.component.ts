@@ -14,6 +14,8 @@ export class CardsComponent implements OnInit {
   @Input() medecin: any;
   closeModal: string;
   medecinToUpdate: MedecinInput;
+  likes: 0;
+  disLike:0
 
   constructor(private medecinService: MedecinService, private modalService: NgbModal, private router: Router) {
   }
@@ -54,6 +56,16 @@ export class CardsComponent implements OnInit {
   updateMedecin(): void {
     this.medecinService.updateMedecin(this.medecinToUpdate.id, this.medecinToUpdate).subscribe();
     window.location.reload();
+  }
+
+  public LikesCounter(medecin)
+  {
+    medecin.likes++;
+  }
+
+  public DisLikesCounter(medecin)
+  {
+    medecin.disLike++;
   }
 
 }
