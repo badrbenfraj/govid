@@ -20,7 +20,7 @@ export class SignupComponent implements OnInit {
     private router: Router,
     private authenticationService: AuthenticationService
   ) {
-    if (this.authenticationService.userValue) {
+    if (this.authenticationService.getCurrentUser) {
       this.router.navigate(['/dashboard']);
     }
   }

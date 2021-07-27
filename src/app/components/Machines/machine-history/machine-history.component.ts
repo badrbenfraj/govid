@@ -28,18 +28,13 @@ export class MachineHistoryComponent implements OnInit {
     this.currentUserRole = this.authService.getCurrentUser.roles;
     if(this.currentUserRole.includes("ADMIN_ROLE")){
       this.adminRoleOn = true;
-      console.log(this.adminRoleOn)
     }
-    console.log(this.currentUserRole)
 
     this._activatedRoute.queryParams.subscribe(params => {
       this.idMachine = JSON.parse(params.idMachine) ;
-      console.log(this.idMachine)
-
 });
       this.machineService.getReservationsByMachine(this.idMachine).subscribe(data => {
         this.listeReservations = [];
-        console.log(data.length);
         if(data.length!=0){
           data.forEach((reservation, index) => {
             this.listeReservations.push({
@@ -57,7 +52,6 @@ export class MachineHistoryComponent implements OnInit {
         this.noData= true;
       }
       });
-      console.log(this.noData)    
   }
 
 }

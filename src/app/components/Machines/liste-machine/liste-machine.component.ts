@@ -53,8 +53,6 @@ export class ListeMachineComponent implements OnInit {
     }
     this.getMachines();
     this.currentUserId = this.authService.getCurrentUser.id;
-    console.log(this.currentUserId);
-
   }
 
   open(content) {
@@ -69,8 +67,6 @@ export class ListeMachineComponent implements OnInit {
     this.pageLastRow = (this.pageFirstRow + this.rowsPerPage) - 1;
     this.machineService.getAllMachines().subscribe(data => {
       this.listeMachine = [];
-      //this.listeMachine=data;
-      console.log(data);
       data.forEach((machine, index) => {
         this.listeMachine.push({
 
@@ -151,13 +147,11 @@ export class ListeMachineComponent implements OnInit {
   bookMachine() {
     this.showBookingDialog = false;
     this.machineService.bookMachine(this.currentUserId, this.idbookedMachine, this.dateTo).subscribe(data=>{
-      console.log(data)
       this.reservationOn = true;
       let emailBody = {
         message: "Vous avez reserver une machine d'oxygéne sur Govid.tn. vous pouvez prendre contact avec le propriétaire sur son adresse email : " + this.authService.getCurrentUser.email + ". On vous souhaite prompt rétablissement."
             }
       this.machineService.sendEmail(emailBody).subscribe(res=>{
-        console.log("email sended with success")
       })
     }),err=>{
       this.reservationOn = true;
@@ -165,7 +159,6 @@ export class ListeMachineComponent implements OnInit {
 
     }
     this.reservationOn = true;
-    console.log(this.reservationOn);
     this.getMachines();
 
   }
@@ -177,8 +170,6 @@ export class ListeMachineComponent implements OnInit {
       this.pageLastRow = (this.pageFirstRow + this.rowsPerPage) - 1;
       this.machineService.getMachinesByOwner(this.currentUserId).subscribe(data => {
         this.listeMachine = [];
-        //this.listeMachine=data;
-        console.log(data);
         data.forEach((machine, index) => {
           this.listeMachine.push({
   
@@ -206,7 +197,6 @@ export class ListeMachineComponent implements OnInit {
   }
   removeMachine(id){
     this.machineService.removeMachine(id).subscribe(data=>{
-      console.log("Deleted with success");
       if(this.showingMyMachines){
         this.showMyMachines();
       }else{

@@ -84,6 +84,24 @@ const NavigationItems = [
     classes: 'nav-item',
     role: 'ROLE_ADMIN',
   },
+  {
+    id: 'machines',
+    title: 'Machines',
+    type: 'item',
+    url: '/dashboard/machines',
+    icon: 'feather icon-activity',
+    classes: 'nav-item',
+    role: 'ROLE_ADMIN',
+  },
+  {
+    id: 'Laboratoires',
+    title: 'Laboratoires',
+    type: 'item',
+    url: '/dashboard/laboratoire',
+    icon: 'feather icon-activity',
+    classes: 'nav-item',
+    role: 'ROLE_ADMIN',
+  },
 ];
 
 @Injectable()

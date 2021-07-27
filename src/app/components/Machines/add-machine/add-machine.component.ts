@@ -29,22 +29,17 @@ export class AddMachineComponent implements OnInit {
     this._activatedRoute.queryParams.subscribe(params => {
         this.editView = JSON.parse(params.editView) ;
         this.machineInput = JSON.parse(params.data);
-        console.log(this.machineInput);
         this.creationDate= this.datePipe.transform(this.machineInput.purchaseDate, "yyyy-MM-dd").toString();
 
   });
   
   }
   save() {
-    console.log(this.machineInput);
     if(this.editView==false){
       this.machineInput.purchaseDate=new Date (this.creationDate);
       this.machineInput.booked=false;
       this.machineInput.owner_id=this.authService.getCurrentUser.id;
-      console.log(this.machineInput)
       this.machineService.createMachine(this.machineInput).subscribe(data=>{
-  
-        console.log("Machine Créer avec succes");
         this.machineService.sendConfirmation().subscribe(res=>{
         })
         this.router.navigate(["/ListMachines"]);
@@ -68,11 +63,8 @@ export class AddMachineComponent implements OnInit {
     updateInput.alimentation=data.alimentation;
     updateInput.saturation=data.saturation;
     updateInput.weight=data.weight;
-    console.log(updateInput)
     this.machineService.updateMachine(id, updateInput).subscribe(data=>{
-      console.log("Machine modifiée avec succes");
       this.router.navigate(["/ListMachines"]);
-
     })
   }
 }

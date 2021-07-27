@@ -30,8 +30,6 @@ laboratoireForm:FormGroup;
 
       this.showSpinner=false;
      })
-  console.log("nouha",this.laboratoiresList)
-
   }
   openAdvanced(){
     this.advancedOpened=true;
@@ -55,18 +53,15 @@ laboratoireForm:FormGroup;
 
       || labo["workingTime"] == this.laboratoireForm.controls["workingTime"].value )
     })
-    console.log("name",this.laboratoireForm.controls["workingTime"].value)
     this.laboratoiresList=this.listLaboFiltred
   }
   ngOnChanges(changes: SimpleChanges) {
-        console.log("sort",changes,changes.sortField)
     this.sortList(changes.sortField.currentValue);
     // You can also use categoryId.previousValue and 
     // categoryId.firstChange for comparing old and new values
     
 }
   sortList(param: any) {
-    console.log("sortparam",param)
     if(param.toString().toLowerCase()=="nom"){
    let sorted=   this.laboratoiresList.sort((t1, t2) => {
         const name1 = t1.name.toLowerCase();
@@ -75,7 +70,6 @@ laboratoireForm:FormGroup;
         if (name1 < name2) { return -1; }
         return 0;
       });
-      console.log("sorted",sorted)
     }
     else if(param.toString().toLowerCase()=="date de modification"){
       let sorted=   this.laboratoiresList.sort((t1, t2) => {
@@ -85,7 +79,6 @@ laboratoireForm:FormGroup;
            if (name1 < name2) { return -1; }
            return 0;
          });
-         console.log("sorted",sorted)
        }
        else{
      
@@ -96,8 +89,6 @@ laboratoireForm:FormGroup;
                if (name1 < name2) { return -1; }
                return 0;
              });
-             console.log("sorted",sorted)
-           
        }
     
   }
