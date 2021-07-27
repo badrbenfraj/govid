@@ -7,4 +7,6 @@ export class MedecinInput {
     speciality: string;
     gender: string;
     cnamConvention: boolean;
+    likes: number;
+    disLike: number;
 }
