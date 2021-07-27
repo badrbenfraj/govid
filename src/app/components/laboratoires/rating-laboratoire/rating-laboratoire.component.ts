@@ -20,11 +20,9 @@ export class RatingLaboratoireComponent implements OnInit {
   rateChange(){
     this.currentLabo.totalReviews=this.currentLabo.totalReviews+1;
 
-    console.log("change",((this.currentLabo.rating*this.currentLabo.totalReviews)+this.currentRate)/(this.currentLabo.totalReviews+1));
     //((Overall Rating * Total Rating) + new Rating) / (Total Rating + 1)
    this.newRating= ((this.currentLabo.rating*this.currentLabo.totalReviews)+this.currentRate)/(this.currentLabo.totalReviews+1);
  this.currentLabo.rating=Math.round(this.newRating)
- console.log("change",this.newRating);
 
    this.laboratoireService.updateLaboratoire(this.currentLabo.id,this.currentLabo).subscribe();
    //TODO set totalreviews to totalReviews+1

@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import {NgModule} from '@angular/core';
+import {Routes, RouterModule} from '@angular/router';
 
 const routes: Routes = [
   {
@@ -38,12 +38,21 @@ const routes: Routes = [
       }
     ]
   },
-    {
+  {
     path: '',
     children: [
       {
         path: 'laboratoire',
         loadChildren: () => import('../../laboratoires/laboratoires.module').then(m => m.LaboratoiresModule)
+      }
+    ]
+  },
+  {
+    path: '',
+    children: [
+      {
+        path: 'machines',
+        loadChildren: () => import('../../Machines/machines.module').then(m => m.MachinesModule)
       }
     ]
   }
@@ -53,4 +62,5 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class DashboardRoutingModule { }
+export class DashboardRoutingModule {
+}

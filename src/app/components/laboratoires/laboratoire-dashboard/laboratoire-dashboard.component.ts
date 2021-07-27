@@ -62,7 +62,6 @@ export class LaboratoireDashboardComponent implements OnInit {
 this.laboratoireService.getLaboratoireByIdentifier(this.currentId).subscribe(res=>{
   this.currentLabo=res;
   this.formData=res
-  console.log("reeeees",res);
   this.fillForm();
 })
 
@@ -70,7 +69,6 @@ if(localStorage.getItem('laboratoireUpdateMode')=="true"){
   this.showModifyButton=true;
   this.disabled=false;
 }else{
-  console.log("laboratoireUpdateMode false");
   this.showModifyButton=false;
   this.disabled=true;
 
@@ -121,7 +119,6 @@ if(localStorage.getItem('laboratoireUpdateMode')=="true"){
   },err=>{
     this.bodyText="une erreur est apparue , le laboratoire ne peut pas etres supprimer"
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
-    console.log("result",result)
   
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
@@ -133,7 +130,6 @@ open(content) {
   this.showPopupButton=true;
   this.bodyText="Êtes-vous sûr de vouloir continuer?"
   this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
-  console.log("result",result)
   if(result=="Supprimer"){
     this.removeLabo(content,this.currentId);
   }
@@ -171,7 +167,6 @@ private getDismissReason(reason: any): string {
 }
 modifierLabo(){
   this.formData.id=this.currentLabo.id;
-  console.log("modif", this.laboratoireForm.controls["name"].value,this.formData.name,this.formData.gouvernorat)
   this.formData.updateDate=new Date();
   this.formData.rating=0;
   this.formData.totalReviews=0;

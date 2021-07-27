@@ -1,26 +1,10 @@
-<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 <div class="container-xxl">
     <div class="view-account">
         <section class="module">
             <div class="module-inner">
-                <div class="side-bar">
-                    <div class="user-info">
-                        <img class="img-profile img-circle img-responsive center-block"
-                            src="../../assets/imgs/person-icon.png" alt="">
-                        <ul class="meta list list-unstyled">
-                            <li class="name">Rebecca Sanders
-                                <label class="label label-info">UX Designer</label>
-                            </li>
-                            <li class="email"><a href="#">Rebecca.S@website.com</a></li>
-                            <li class="activity">Last logged in: Today at 2:18pm</li>
-                        </ul>
-                    </div>
-
-                </div>
-
                 <div class="content-panel">
                     <div class="content-header-wrapper">
-                        <h1 style="       
+                        <h1 style="
                         color: #3c6e71;
                         font-weight: 600;
                         font-family: fangsong;"> Espace Laboratoires</h1>
@@ -50,7 +34,8 @@
 
                     <hr>
 
-
+                  <app-card cardTitle="Recherche Laboratoire" [options]="false"
+                            blockClass="table-border-style">
                     <div class="content-utilities">
                         <div class="page-nav">
                             <span class="indicator">Affichage:</span>
@@ -176,14 +161,14 @@
                                 <div class="modal-body" *ngIf="afterAddCalled==false">
                                     <app-add-labo (closeDialog)="closeDialog()"></app-add-labo>
                                 </div>
-     
+
                                 <div class="modal-body" *ngIf="afterAddCalled==true">
                                     {{addMessage}}
                                 </div>
                             </ng-template>
                         </div>
                     </div>
-
+                  </app-card>
 
                 </div>
             </div>

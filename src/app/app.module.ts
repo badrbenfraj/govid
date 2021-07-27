@@ -14,17 +14,10 @@ import {JwtInterceptor, ErrorInterceptor} from '@auth/helpers';
 
 import {MatIconModule} from '@angular/material/icon';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {LaboratoireListComponent} from '@components/laboratoires/laboratoire-list/laboratoire-list.component';
-import {LaboratoireCardComponent} from '@components/laboratoires/laboratoire-card/laboratoire-card.component';
-import {LaboratoireDashboardComponent} from '@components/laboratoires/laboratoire-dashboard/laboratoire-dashboard.component';
 import {ToastModule} from 'primeng/toast';
 import {ButtonModule} from 'primeng/button';
 import {ConfirmDialogModule} from 'primeng/confirmdialog';
 import {DialogModule, Dialog} from 'primeng/dialog';
-import {LaboratoireMapComponent} from '@components/laboratoires/laboratoire-map/laboratoire-map.component';
-import {RatingLaboratoireComponent} from '@components/laboratoires/rating-laboratoire/rating-laboratoire.component';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import {SearchBarComponent} from '@components/laboratoires/search-bar/search-bar.component';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {NavigationItem} from '@components/admin/navigation/navigation';
@@ -42,17 +35,9 @@ import {NavLeftComponent} from './components/admin/nav-bar/nav-left/nav-left.com
 import {NavSearchComponent} from './components/admin/nav-bar/nav-left/nav-search/nav-search.component';
 import {NavRightComponent} from './components/admin/nav-bar/nav-right/nav-right.component';
 import {CookieService} from 'ngx-cookie-service';
-import {ChooseActionComponent} from './components/Machines/choose-action/choose-action.component';
-import {ListeMachineComponent} from './components/Machines/liste-machine/liste-machine.component';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material/core';
 import {MatPaginatorModule} from '@angular/material/paginator';
-import { LaboratoireHomeComponent } from './components/laboratoires/laboratoire-home/laboratoire-home.component';
-import { AddLaboComponent } from './components/laboratoires/add-labo/add-labo.component';
-import { CommentsLaboComponent } from './components/laboratoires/comments-labo/comments-labo.component';
-import { AddMachineComponent } from './components/Machines/add-machine/add-machine.component';
-import { MachineHistoryComponent } from './components/Machines/machine-history/machine-history.component';
-
 
 @NgModule({
   declarations: [
@@ -60,13 +45,6 @@ import { MachineHistoryComponent } from './components/Machines/machine-history/m
     NotFoundComponent,
     HomeComponent,
     ForgotPasswordComponent,
-    LaboratoireListComponent,
-    LaboratoireHomeComponent,
-    LaboratoireCardComponent,
-    LaboratoireDashboardComponent,
-    LaboratoireMapComponent,
-    RatingLaboratoireComponent,
-    SearchBarComponent,
     AdminComponent,
     NavigationComponent,
     NavLogoComponent,
@@ -78,21 +56,10 @@ import { MachineHistoryComponent } from './components/Machines/machine-history/m
     NavLeftComponent,
     NavSearchComponent,
     NavRightComponent,
-    ChooseActionComponent,
-    ListeMachineComponent,
-    AddLaboComponent,
-    CommentsLaboComponent,
-    AddMachineComponent,
-    MachineHistoryComponent
   ],
   imports: [
-    //  MatFormFieldModule,
     BrowserModule,
     AppRoutingModule,
-    AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyA8izfeQvQZt3XnZlrO6XB9U9WQgQX1OXQ',
-      libraries: ['places'],
-    }),
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
@@ -103,14 +70,12 @@ import { MachineHistoryComponent } from './components/Machines/machine-history/m
     ToastModule,
     ButtonModule,
     DialogModule,
-    NgbModule,
     MatFormFieldModule,
     MatInputModule,
     SharedModule,
     MatDatepickerModule,
     MatNativeDateModule,
     MatPaginatorModule,
-    
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},

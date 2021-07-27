@@ -12,7 +12,6 @@ export class TestComponent implements OnInit {
 
   ngOnInit(): void {
     this.laboratoireService.getAllLaboratoires().subscribe(res=>{
-      console.log("res",res)
     })
   }
 

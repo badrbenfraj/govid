@@ -44,6 +44,9 @@ export class NavRightComponent implements OnInit, DoCheck {
     private authenticationService: AuthenticationService,
     private route: Router
   ) {
+    if (!this.authenticationService.getCurrentUser) {
+      window.location.reload();
+    }
     this.loggedUser = this.authenticationService.getCurrentUser;
     config.placement = 'bottom-right';
     this.visibleUserList = false;

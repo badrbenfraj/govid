@@ -13,7 +13,7 @@ export class HomeComponent implements OnInit {
     private router: Router,
     private authenticationService: AuthenticationService
   ) {
-    if (this.authenticationService.userValue) {
+    if (this.authenticationService.getCurrentUser) {
       this.loggedIn = true;
       this.router.navigate(['/dashboard'])
     }

@@ -62,7 +62,6 @@ bodyText:string=""
       this.bodyText="le laboratoire a été ajouté avec succees"
      
       this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
-      console.log("result",result)
       }, (reason) => {
         this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
       });
@@ -71,7 +70,6 @@ bodyText:string=""
       this.showPopupButton=false;
       this.bodyText="une erreur est apparue , le laboratoire ne peut pas etres ajouté"
       this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
-      console.log("result",result)
     
       }, (reason) => {
 
