@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PrimeNGConfig,Message } from 'primeng/api';
 import {ConfirmationService} from 'primeng/api';
@@ -15,7 +15,8 @@ import { NgbModal,ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
   providers: [ConfirmationService]
 })
 export class LaboratoireDashboardComponent implements OnInit {
-  workingTimes = [
+ 
+  @ViewChild('modalData') modalData: ElementRef; workingTimes = [
     {name: 'plein temps'},
     {name: 'temps partiel'},
     
@@ -26,12 +27,31 @@ export class LaboratoireDashboardComponent implements OnInit {
   disabled:boolean=true;
   currentLabo:laboratoire;
   msgs: Message[] = [];
+  updatePopUp:boolean=false;
   closeResult = '';
   display: boolean = false;
+  updateOK:boolean=false;
   laboratoireForm:FormGroup;
-  formData:any;
   bodyText:string="";
   showPopupButton:boolean=false;
+  closeModal: string;
+  formData: laboratoire = {
+    id:null,
+    name: null,
+    phoneNumber: null,
+    adresse: null,
+    updateDate: null,
+    email: null,
+    gouvernorat:null,
+    fax:null,
+    workingTime:null,
+    rating:null,
+    latitude:null,
+    longitude:null,
+    totalReviews:null
+
+  }
+
   constructor(private router:Router,private modalService: NgbModal,private primengConfig: PrimeNGConfig,private confirmationService: ConfirmationService,private route:ActivatedRoute,private laboratoireService:LaboratoireService) { }
 
   ngOnInit(): void {
@@ -65,6 +85,7 @@ if(localStorage.getItem('laboratoireUpdateMode')=="true"){
     this.laboratoireForm.controls["address"].setValue(this.currentLabo.adresse);
     this.laboratoireForm.controls["workingTime"].setValue(this.currentLabo.workingTime);
     this.laboratoireForm.controls["updateDate"].setValue(this.currentLabo.updateDate);
+    this.laboratoireForm.controls["gouvernorat"].setValue(this.currentLabo.gouvernorat);
 
   }
   showDialog() {
@@ -77,6 +98,7 @@ if(localStorage.getItem('laboratoireUpdateMode')=="true"){
      tel : new FormControl("",Validators.pattern("[0-9 ]{12}")),
      fax : new FormControl("",Validators.required),
      address : new FormControl("",Validators.required),
+     gouvernorat : new FormControl("",Validators.required),
      workingTime:new FormControl(""),
      updateDate:new FormControl("",Validators.required),
 
@@ -120,13 +142,47 @@ open(content) {
   });
 }
 
+
+triggerModal(content) {
+  this.updatePopUp=false;
+  this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((res) => {
+    this.closeModal = `Closed with: ${res}`;
+  }, (res) => {
+    this.closeModal = `Dismissed ${this.getDismissReason(res)}`;
+  });
+}
+
+triggerModalUpdate(content) {
+  this.updatePopUp=true;
+  this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((res) => {
+    this.closeModal = `Closed with: ${res}`;
+  }, (res) => {
+    this.closeModal = `Dismissed ${this.getDismissReason(res)}`;
+  });
+}
 private getDismissReason(reason: any): string {
   if (reason === ModalDismissReasons.ESC) {
     return 'by pressing ESC';
   } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
     return 'by clicking on a backdrop';
   } else {
-    return `with: ${reason}`;
+    return  `with: ${reason}`;
   }
+}
+modifierLabo(){
+  this.formData.id=this.currentLabo.id;
+  console.log("modif", this.laboratoireForm.controls["name"].value,this.formData.name,this.formData.gouvernorat)
+  this.formData.updateDate=new Date();
+  this.formData.rating=0;
+  this.formData.totalReviews=0;
+  this.laboratoireService.updateLaboratoire(this.currentId,this.formData).subscribe(res=>{
+  this.updatePopUp=true;
+  this.updateOK=true;
+    this.triggerModalUpdate(this.modalData)
+  },err=>{
+    this.updatePopUp=true;
+    this.updateOK=false;
+      this.triggerModalUpdate(this.modalData)
+  })
 }
 }

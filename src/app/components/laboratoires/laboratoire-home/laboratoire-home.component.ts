@@ -18,18 +18,21 @@ export class LaboratoireHomeComponent implements OnInit {
   sortField:any;
   laboratoiresList:any[]=[];
   workingTimes = [
-    {name: 'plein temps'},
-    {name: 'temps partiel'},
+    {name: 'Plein temps'},
+    {name: 'Temps partiel'},
     
   ];
+  afterAddCalled:boolean=false;
   listLaboFiltred:any[]=[];
   showSpinner:boolean=true;
   listLaboAux:any[]=[];
   advancedOpened:boolean=false;
   laboratoireForm:FormGroup;
   closeResult = '';
+  closeModal: string;
   laboToDel: any;
   bodyText:string="";
+  addMessage:string="";
   showPopupButton:boolean=false;
     constructor(private modalService: NgbModal,private router:Router,private laboratoireService:LaboratoireService) { }
      ngOnInit() {
@@ -127,7 +130,7 @@ export class LaboratoireHomeComponent implements OnInit {
   
         || labo["workingTime"] == this.laboratoireForm.controls["workingTime"].value )
       })
-      console.log("name",this.listLaboFiltred,this.laboratoireForm.controls["name"].value)
+      console.log("name",this.laboratoireForm.controls["workingTime"].value)
       this.laboratoiresList=this.listLaboFiltred
     }
     deleteFilter(){
@@ -202,4 +205,20 @@ export class LaboratoireHomeComponent implements OnInit {
         return `with: ${reason}`;
       }
     }
+    
+triggerModal(content) {
+  this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((res) => {
+    this.closeModal = `Closed with: ${res}`;
+  }, (res) => {
+    this.closeModal = `Dismissed ${this.getDismissReason(res)}`;
+  });
+}
+closeDialog(){
+  this.modalService.dismissAll() ;
+  this.laboratoireService.getAllLaboratoires().subscribe(res=>{
+    this.laboratoiresList=res;
+  })
+  this.afterAddCalled=true;
+  this.addMessage="le laboratoire a été ajouter avec succees"
+}
 }

@@ -72,6 +72,11 @@ class Laboratoire
      */
     private $latitude;
 
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $totalReviews;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -205,6 +210,18 @@ class Laboratoire
     public function setLatitude(?float $latitude): self
     {
         $this->latitude = $latitude;
+
+        return $this;
+    }
+
+    public function getTotalReviews(): ?int
+    {
+        return $this->totalReviews;
+    }
+
+    public function setTotalReviews(int $totalReviews): self
+    {
+        $this->totalReviews = $totalReviews;
 
         return $this;
     }

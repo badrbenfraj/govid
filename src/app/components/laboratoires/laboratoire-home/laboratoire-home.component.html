@@ -15,7 +15,7 @@
                             <li class="activity">Last logged in: Today at 2:18pm</li>
                         </ul>
                     </div>
-            
+
                 </div>
 
                 <div class="content-panel">
@@ -25,29 +25,32 @@
                         font-weight: 600;
                         font-family: fangsong;"> Espace Laboratoires</h1>
                         <div class="actions">
-                            <button class="btn btn-success" (click)="showAdd()"><i class="fa fa-plus"></i> Ajouter un
+                            <button class="btn btn-success" (click)="afterAddCalled=false;triggerModal(modalData)"><i
+                                    class="fa fa-plus"></i> Ajouter un
                                 laboratoire</button>
                         </div>
                     </div>
                     <ng-template #content let-modal>
                         <div class="modal-header">
-                          <h4 class="modal-title" id="modal-basic-title">Suppression d'un laboratoire</h4>
-                          <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-                            <span aria-hidden="true">&times;</span>
-                          </button>
+                            <h4 class="modal-title" id="modal-basic-title">Suppression d'un laboratoire</h4>
+                            <button type="button" class="close" aria-label="Close"
+                                (click)="modal.dismiss('Cross click')">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
                         </div>
                         <div class="modal-body">
                             {{bodyText}}
                         </div>
                         <div class="modal-footer">
-                          <button *ngIf="showPopupButton" type="button" class="btn btn-outline-dark" (click)="modal.close('Supprimer')">Supprimer</button>
+                            <button *ngIf="showPopupButton" type="button" class="btn btn-outline-dark"
+                                (click)="modal.close('Supprimer')">Supprimer</button>
                         </div>
-                      </ng-template>
-                      
-                      
-                      <hr>
-                      
-                     
+                    </ng-template>
+
+
+                    <hr>
+
+
                     <div class="content-utilities">
                         <div class="page-nav">
                             <span class="indicator">Affichage:</span>
@@ -94,35 +97,60 @@
                                     <tr *ngFor="let laboratoire of laboratoiresList ">
                                         <th scope="row">{{laboratoire?.name}}</th>
                                         <td>{{laboratoire?.gouvernorat}}</td>
-                                        <td>	<div class="stars" >
-                                            <div *ngIf="laboratoire.rating==0">
-                                                <i class="fa fa-star-o" aria-hidden="true"></i>   <i class="fa fa-star-o" aria-hidden="true"></i>    <i class="fa fa-star-o" aria-hidden="true"></i><i class="fa fa-star-o" aria-hidden="true"></i><i class="fa fa-star-o" aria-hidden="true"></i><i class="fa fa-star-o" aria-hidden="true"></i>
+                                        <td>
+                                            <div class="stars">
+                                                <div *ngIf="laboratoire.rating==0">
+                                                    <i class="fa fa-star-o" aria-hidden="true"></i> <i
+                                                        class="fa fa-star-o" aria-hidden="true"></i> <i
+                                                        class="fa fa-star-o" aria-hidden="true"></i><i
+                                                        class="fa fa-star-o" aria-hidden="true"></i><i
+                                                        class="fa fa-star-o" aria-hidden="true"></i><i
+                                                        class="fa fa-star-o" aria-hidden="true"></i>
+                                                </div>
+                                                <div *ngIf="laboratoire.rating==1">
+                                                    <i class="fa fa-star"></i> <i class="fa fa-star-o"
+                                                        aria-hidden="true"></i><i class="fa fa-star-o"
+                                                        aria-hidden="true"></i><i class="fa fa-star-o"
+                                                        aria-hidden="true"></i><i class="fa fa-star-o"
+                                                        aria-hidden="true"></i>
+                                                </div>
+                                                <div *ngIf="laboratoire.rating==2">
+                                                    <i class="fa fa-star"></i> <i class="fa fa-star"></i><i
+                                                        class="fa fa-star-o" aria-hidden="true"></i><i
+                                                        class="fa fa-star-o" aria-hidden="true"></i><i
+                                                        class="fa fa-star-o" aria-hidden="true"></i>
+                                                </div>
+                                                <div *ngIf="laboratoire.rating==3">
+                                                    <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
+                                                        class="fa fa-star"></i><i class="fa fa-star-o"
+                                                        aria-hidden="true"></i><i class="fa fa-star-o"
+                                                        aria-hidden="true"></i>
+                                                </div>
+                                                <div *ngIf="laboratoire.rating==4">
+                                                    <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
+                                                        class="fa fa-star"></i> <i class="fa fa-star"></i><i
+                                                        class="fa fa-star-o" aria-hidden="true"></i>
+                                                </div>
+                                                <div *ngIf="laboratoire.rating==5">
+                                                    <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
+                                                        class="fa fa-star"></i> <i class="fa fa-star"></i> <i
+                                                        class="fa fa-star"></i>
+                                                </div>
+
+
+
                                             </div>
-                                            <div *ngIf="laboratoire.rating==1">
-                                                <i class="fa fa-star"></i> <i class="fa fa-star-o" aria-hidden="true"></i><i class="fa fa-star-o" aria-hidden="true"></i><i class="fa fa-star-o" aria-hidden="true"></i><i class="fa fa-star-o" aria-hidden="true"></i>
-                                            </div>
-                                            <div *ngIf="laboratoire.rating==2">
-                                          <i class="fa fa-star"></i> <i class="fa fa-star"></i><i class="fa fa-star-o" aria-hidden="true"></i><i class="fa fa-star-o" aria-hidden="true"></i><i class="fa fa-star-o" aria-hidden="true"></i>
-                                            </div>
-                                            <div *ngIf="laboratoire.rating==3">
-                                                 <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i><i class="fa fa-star-o" aria-hidden="true"></i><i class="fa fa-star-o" aria-hidden="true"></i>
-                                            </div>
-                                            <div *ngIf="laboratoire.rating==4">
-                                                <i class="fa fa-star"></i>  <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i><i class="fa fa-star-o" aria-hidden="true"></i>
-                                            </div>
-                                            <div *ngIf="laboratoire.rating==5">
-                                                <i class="fa fa-star"></i>  <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i>
-                                            </div>
-                                           
-                                           
-                                            
-                                            </div></td> 
+                                        </td>
                                         <td>{{laboratoire?.phoneNumber}}</td>
                                         <td>
-                                          <button (click)="open(content,laboratoire);"><i class="fa fa-trash" aria-hidden="true"></i></button>
-											<button (click)="previewLabo(laboratoire)"><i class="fa fa-expand" aria-hidden="true"></i></button>
-											<button (click)="updateLabo(laboratoire)"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
-										<button (click)="openLocation(laboratoire)"><i class="fa fa-map-marker" aria-hidden="true"></i></button>
+                                            <button (click)="open(content,laboratoire);"><i class="fa fa-trash"
+                                                    aria-hidden="true"></i></button>
+                                            <button (click)="previewLabo(laboratoire)"><i class="fa fa-expand"
+                                                    aria-hidden="true"></i></button>
+                                            <button (click)="updateLabo(laboratoire)"><i class="fa fa-pencil-square-o"
+                                                    aria-hidden="true"></i></button>
+                                            <button (click)="openLocation(laboratoire)"><i class="fa fa-map-marker"
+                                                    aria-hidden="true"></i></button>
                                         </td>
                                     </tr>
 
@@ -130,13 +158,29 @@
                                 </tbody>
                             </table>
                             <div *ngIf="cardView">
-                                <app-laboratoire-list [sortField]="sortField" (currentIdPreview)="setCurrentIdPreview($event)" (currentIdUpdate)="currentIdUpdate($event)"></app-laboratoire-list>
+                                <app-laboratoire-list [sortField]="sortField"
+                                    (currentIdPreview)="setCurrentIdPreview($event)"
+                                    (currentIdUpdate)="currentIdUpdate($event)"></app-laboratoire-list>
                             </div>
 
-                            <div *ngIf="showAddLabo">
-                                <app-add-labo></app-add-labo>
-                            </div>
-                           
+
+                            <ng-template #modalData let-modal>
+                                <div class="modal-header">
+                                    <h4 class="modal-title" id="modal-basic-title">Ajout d'un laboratoire
+                                    </h4>
+                                    <button type="button" class="close" aria-label="Close"
+                                        (click)="modal.dismiss('Cross click')">
+                                        <span aria-hidden="true">×</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body" *ngIf="afterAddCalled==false">
+                                    <app-add-labo (closeDialog)="closeDialog()"></app-add-labo>
+                                </div>
+     
+                                <div class="modal-body" *ngIf="afterAddCalled==true">
+                                    {{addMessage}}
+                                </div>
+                            </ng-template>
                         </div>
                     </div>
 
@@ -144,6 +188,6 @@
                 </div>
             </div>
         </section>
-  
+
     </div>
 </div>

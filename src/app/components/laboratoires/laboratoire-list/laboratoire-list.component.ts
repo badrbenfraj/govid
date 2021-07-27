@@ -10,8 +10,8 @@ import { LaboratoireService } from '@app/core/services/laboratoire.service';
 export class LaboratoireListComponent implements OnInit {
 laboratoiresList:any[]=[];
 workingTimes = [
-  {name: 'plein temps'},
-  {name: 'temps partiel'},
+  {name: 'Plein temps'},
+  {name: 'Temps partiel'},
   
 ];
 listLaboFiltred:any[]=[];
@@ -55,7 +55,7 @@ laboratoireForm:FormGroup;
 
       || labo["workingTime"] == this.laboratoireForm.controls["workingTime"].value )
     })
-    console.log("name",this.listLaboFiltred,this.laboratoireForm.controls["name"].value)
+    console.log("name",this.laboratoireForm.controls["workingTime"].value)
     this.laboratoiresList=this.listLaboFiltred
   }
   ngOnChanges(changes: SimpleChanges) {

@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { laboratoire } from '@models/laboratoire';
+import { Observable } from 'rxjs';
 
 
 @Injectable({
@@ -36,6 +37,12 @@ export class LaboratoireService{
         return this._http.post<any>(
           `/api/removeLaboratoire/` + identifier, {}
         );
+      }
+      updateLaboratoire(identifier: number, body: laboratoire): Observable<any> {
+        const token = localStorage.getItem('user');
+        return this._http.post<any>(
+          `/api/laboratoire/update/${identifier}`, body
+          );
       }
 
 }
