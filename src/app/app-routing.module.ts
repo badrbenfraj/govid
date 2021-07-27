@@ -15,6 +15,7 @@ import {AdminComponent} from './components/admin/admin.component';
 import {ChooseActionComponent} from './components/Machines/choose-action/choose-action.component';
 import {ListeMachineComponent} from './components/Machines/liste-machine/liste-machine.component';
 import { LaboratoireHomeComponent } from './components/laboratoires/laboratoire-home/laboratoire-home.component';
+import { LaboratoireMapComponent } from './components/laboratoires/laboratoire-map/laboratoire-map.component';
 
 const routes: Routes = [
   {
@@ -45,6 +46,12 @@ const routes: Routes = [
   {
     path: 'laboratoireDashboard',
     component: LaboratoireDashboardComponent,
+    canActivate: [AuthGuard],
+  
+  },
+  {
+    path: 'laboratoireMap',
+    component: LaboratoireMapComponent,
     canActivate: [AuthGuard],
   
   },

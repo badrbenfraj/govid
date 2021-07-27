@@ -44,7 +44,7 @@
             <div class="form-group" style="width: 197px;float:left;margin-right:40px;">
                 <label for="workingTime">Working time</label>
                 <select d="workingTime" class="form-control" [formControlName]="'workingTime'" >
-                    <option *ngFor="let option of workingTimes" [ngValue]="state">
+                    <option *ngFor="let option of workingTimes" [ngValue]="option.name">
                       {{ option.name }}
                     </option>
                   </select>              </div>

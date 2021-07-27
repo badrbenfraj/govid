@@ -50,3 +50,9 @@ body{
     left: 0; 
  }
 
+ :host ::ng-deep {
+    .pDialog{
+        width:700px;
+        overflow: visible;
+    }
+}
