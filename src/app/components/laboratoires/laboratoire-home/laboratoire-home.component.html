@@ -3,7 +3,7 @@
         <section class="module">
             <div class="module-inner">
                 <div class="content-panel">
-                    <div class="content-header-wrapper">
+                    <!--div class="content-header-wrapper">
                         <h1 style="
                         color: #3c6e71;
                         font-weight: 600;
@@ -13,7 +13,7 @@
                                     class="fa fa-plus"></i> Ajouter un
                                 laboratoire</button>
                         </div>
-                    </div>
+                    </div-->
                     <ng-template #content let-modal>
                         <div class="modal-header">
                             <h4 class="modal-title" id="modal-basic-title">Suppression d'un laboratoire</h4>
@@ -32,10 +32,10 @@
                     </ng-template>
 
 
-                    <hr>
+                
 
-                  <app-card cardTitle="Recherche Laboratoire" [options]="false"
-                            blockClass="table-border-style">
+                  <app-card cardTitle="Recherche Laboratoire" [button]="addButton" [options]="false" 
+                            blockClass="table-border-style" (buttonClicked)="AdduttonClicked()" [disableButton]="disableAddButton">
                     <div class="content-utilities">
                         <div class="page-nav">
                             <span class="indicator">Affichage:</span>
@@ -85,41 +85,46 @@
                                         <td>
                                             <div class="stars">
                                                 <div *ngIf="laboratoire.rating==0">
-                                                    <i class="fa fa-star-o" aria-hidden="true"></i> <i
-                                                        class="fa fa-star-o" aria-hidden="true"></i> <i
-                                                        class="fa fa-star-o" aria-hidden="true"></i><i
-                                                        class="fa fa-star-o" aria-hidden="true"></i><i
-                                                        class="fa fa-star-o" aria-hidden="true"></i><i
-                                                        class="fa fa-star-o" aria-hidden="true"></i>
+                                                    <i style="color:'#ffdf00'"class="far fa-star"></i>
+                                                     <i style="color:'#ffdf00'"class="far fa-star"></i>
+                                                     <i style="color:'#ffdf00'" class="far fa-star"></i>
+                                                     <i style="color:'#ffdf00'" class="far fa-star"></i>
+                                                     <i style="color:'#ffdf00'" class="far fa-star"></i>
                                                 </div>
                                                 <div *ngIf="laboratoire.rating==1">
-                                                    <i class="fa fa-star"></i> <i class="fa fa-star-o"
-                                                        aria-hidden="true"></i><i class="fa fa-star-o"
-                                                        aria-hidden="true"></i><i class="fa fa-star-o"
-                                                        aria-hidden="true"></i><i class="fa fa-star-o"
-                                                        aria-hidden="true"></i>
+                                                    <i style="color:'#ffdf00'" class="fas fa-star"></i>
+                                                    <i style="color:'#ffdf00'" class="far fa-star"></i>
+                                                    <i style="color:'#ffdf00'" class="far fa-star"></i>
+                                                    <i style="color:'#ffdf00'" class="far fa-star"></i>
+                                                    <i style="color:'#ffdf00'" class="far fa-star"></i>
                                                 </div>
                                                 <div *ngIf="laboratoire.rating==2">
-                                                    <i class="fa fa-star"></i> <i class="fa fa-star"></i><i
-                                                        class="fa fa-star-o" aria-hidden="true"></i><i
-                                                        class="fa fa-star-o" aria-hidden="true"></i><i
-                                                        class="fa fa-star-o" aria-hidden="true"></i>
+                                                    <i  style="color:'#ffdf00'"class="fas fa-star"></i>
+                                                    <i style="color:'#ffdf00'"class="fas fa-star"></i>
+                                                    <i style="color:'#ffdf00'" class="far fa-star"></i>
+                                                    <i style="color:'#ffdf00'"class="far fa-star"></i>
+                                                    <i style="color:'#ffdf00'"class="far fa-star"></i>
                                                 </div>
                                                 <div *ngIf="laboratoire.rating==3">
-                                                    <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-                                                        class="fa fa-star"></i><i class="fa fa-star-o"
-                                                        aria-hidden="true"></i><i class="fa fa-star-o"
-                                                        aria-hidden="true"></i>
+                                                    <i style="color:'#ffdf00'" class="fas fa-star"></i>
+                                                    <i style="color:'#ffdf00'" class="fas fa-star"></i>
+                                                    <i style="color:'#ffdf00'"class="fas fa-star"></i>
+                                                    <i style="color:'#ffdf00'" class="far fa-star"></i>
+                                                    <i style="color:'#ffdf00'"class="far fa-star"></i>
                                                 </div>
                                                 <div *ngIf="laboratoire.rating==4">
-                                                    <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-                                                        class="fa fa-star"></i> <i class="fa fa-star"></i><i
-                                                        class="fa fa-star-o" aria-hidden="true"></i>
+                                                    <i style="color:'#ffdf00'"class="fas fa-star"></i>
+                                                    <i style="color:'#ffdf00'"class="fas fa-star"></i>
+                                                    <i style="color:'#ffdf00'"class="fas fa-star"></i>
+                                                    <i style="color:'#ffdf00'"class="fas fa-star"></i>
+                                                    <i style="color:'#ffdf00'" class="far fa-star"></i>
                                                 </div>
                                                 <div *ngIf="laboratoire.rating==5">
-                                                    <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-                                                        class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-                                                        class="fa fa-star"></i>
+                                                    <i style="color:'#ffdf00'"class="fas fa-star"></i>
+                                                    <i style="color:'#ffdf00'" class="fas fa-star"></i>
+                                                    <i style="color:'#ffdf00'" class="fas fa-star"></i>
+                                                    <i style="color:'#ffdf00'" class="fas fa-star"></i>
+                                                    <i style="color:'#ffdf00'" class="fas fa-star"></i>
                                                 </div>
 
 
@@ -128,13 +133,13 @@
                                         </td>
                                         <td>{{laboratoire?.phoneNumber}}</td>
                                         <td>
-                                            <button (click)="open(content,laboratoire);"><i class="fa fa-trash"
-                                                    aria-hidden="true"></i></button>
-                                            <button (click)="previewLabo(laboratoire)"><i class="fa fa-expand"
-                                                    aria-hidden="true"></i></button>
-                                            <button (click)="updateLabo(laboratoire)"><i class="fa fa-pencil-square-o"
-                                                    aria-hidden="true"></i></button>
-                                            <button (click)="openLocation(laboratoire)"><i class="fa fa-map-marker"
+                                            <button style="border: none;" (click)="open(content,laboratoire);"><i style="color: green;" class="fa fa-trash"
+                                                    aria-hidden="true"></i></button>&nbsp;
+                                            <button style="border: none;"  (click)="previewLabo(laboratoire)"><i  style="color: orange;"class="fa fa-expand"
+                                                    aria-hidden="true"></i></button>&nbsp;
+                                            <button style="border: none;"  disabled="false" (click)="updateLabo(laboratoire)"><i style="color: rgb(58, 28, 228);" class="fa fa-pencil-square-o"
+                                                    aria-hidden="true"></i></button>&nbsp;
+                                            <button style="border: none;"  (click)="openLocation(laboratoire)"><i style="color: rgb(228, 28, 28);" class="fa fa-map-marker"
                                                     aria-hidden="true"></i></button>
                                         </td>
                                     </tr>
@@ -143,6 +148,7 @@
                                 </tbody>
                             </table>
                             <div *ngIf="cardView">
+                                <!--app-comments></app-comments-->
                                 <app-laboratoire-list [sortField]="sortField"
                                     (currentIdPreview)="setCurrentIdPreview($event)"
                                     (currentIdUpdate)="currentIdUpdate($event)"></app-laboratoire-list>

@@ -62,7 +62,7 @@ laboratoireForm:FormGroup;
     
 }
   sortList(param: any) {
-    if(param.toString().toLowerCase()=="nom"){
+    if(param && param.toString().toLowerCase()=="nom"){
    let sorted=   this.laboratoiresList.sort((t1, t2) => {
         const name1 = t1.name.toLowerCase();
         const name2 = t2.name.toLowerCase();
@@ -71,7 +71,7 @@ laboratoireForm:FormGroup;
         return 0;
       });
     }
-    else if(param.toString().toLowerCase()=="date de modification"){
+    else if(param && param.toString().toLowerCase()=="date de modification"){
       let sorted=   this.laboratoiresList.sort((t1, t2) => {
            const name1 = t1.updateDate.toLowerCase();
            const name2 = t2.updateDate.toLowerCase();

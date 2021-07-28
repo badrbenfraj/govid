@@ -1,9 +1,10 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {FormControl, FormGroup, Validators,} from '@angular/forms';
 import {Router} from '@angular/router';
 import {LaboratoireService} from '@app/core/services/laboratoire.service';
 import {of} from 'rxjs';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+import { AuthenticationService } from '@app/core/auth/services';
 
 
 @Component({
@@ -12,10 +13,13 @@ import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./laboratoire-home.component.scss']
 })
 export class LaboratoireHomeComponent implements OnInit {
+  @ViewChild('modalData') modalData: ElementRef;
   listView: boolean = false;
   cardView: boolean = true;
   showAddLabo: boolean = false;
+  addButton;
   sortField: any;
+  disableAddButton:boolean=false;
   laboratoiresList: any[] = [];
   workingTimes = [
     {name: 'Plein temps'},
@@ -34,8 +38,9 @@ export class LaboratoireHomeComponent implements OnInit {
   bodyText: string = '';
   addMessage: string = '';
   showPopupButton: boolean = false;
-
-  constructor(private modalService: NgbModal, private router: Router, private laboratoireService: LaboratoireService) {
+  currentUserRole: any;
+  adminRole:boolean=true
+  constructor(private authService: AuthenticationService,private modalService: NgbModal, private router: Router, private laboratoireService: LaboratoireService) {
   }
 
   ngOnInit() {
@@ -47,9 +52,24 @@ export class LaboratoireHomeComponent implements OnInit {
 
       this.showSpinner = false;
     });
+    this.addButton = {
+      label: 'Ajouter laboratoire',
+      icon: 'fas fa-flask',
+    };
+   /*
+    this.currentUserRole = this.authService.getCurrentUser.roles;
+    if(this.currentUserRole.includes("ADMIN_ROLE")){
+    this.disableAddButton=false;
+    this.adminRole=true;
+    }else{
+      this.adminRole=false;
+      this.disableAddButton=true;
+    }*/
 
   }
-
+  AdduttonClicked(){
+    this.afterAddCalled=false;this.triggerModal(this.modalData)
+  }
   sortList(param: any) {
     if (param.toString().toLowerCase() == 'nom') {
       let sorted = this.laboratoiresList.sort((t1, t2) => {
@@ -241,5 +261,6 @@ export class LaboratoireHomeComponent implements OnInit {
     });
     this.afterAddCalled = true;
     this.addMessage = 'le laboratoire a été ajouter avec succees';
+
   }
 }

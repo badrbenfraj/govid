@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {animate, AUTO_STYLE, state, style, transition, trigger} from '@angular/animations';
 
 @Component({
@@ -44,8 +44,9 @@ export class CardComponent implements OnInit {
   @Input() options: boolean;
   @Input() hidHeader: boolean;
   @Input() customHeader: boolean;
+  @Input() disableButton:boolean=false;
   @Input() button;
-
+  @Output() buttonClicked = new EventEmitter<any>();
   public animation: string;
   public fullIcon: string;
   public isAnimating: boolean;
@@ -81,7 +82,9 @@ export class CardComponent implements OnInit {
       this.collapsedCard = 'false';
     }
   }
-
+  onButtonClicked(){
+  this.buttonClicked.emit(true)
+  }
   public fullCardToggle(element: HTMLElement, animation: string, status: boolean) {
     animation = this.cardClass === 'full-card' ? 'zoomOut' : 'zoomIn';
     this.fullIcon = this.cardClass === 'full-card' ? 'icon-maximize' : 'icon-minimize';
