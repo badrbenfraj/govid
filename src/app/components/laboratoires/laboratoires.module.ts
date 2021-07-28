@@ -14,6 +14,7 @@ import {RatingLaboratoireComponent} from '@components/laboratoires/rating-labora
 import {AgmCoreModule} from '@agm/core';
 import {AddLaboComponent} from '@components/laboratoires/add-labo/add-labo.component';
 import {SharedModule} from '@shared/shared.module';
+import { CommentsComponent } from './comments/comments.component';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import {SharedModule} from '@shared/shared.module';
     LaboratoireMapComponent,
     LaboratoireDashboardComponent,
     RatingLaboratoireComponent,
-    AddLaboComponent
+    AddLaboComponent,
+    CommentsComponent
   ],
   imports: [
     CommonModule,

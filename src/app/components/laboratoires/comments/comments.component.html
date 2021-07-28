@@ -1,0 +1,92 @@
+<div class="container">
+    <div class="be-comment-block" style="background-color: #dfe7fd;">
+        <h1 class="comments-title">Commentaires ({{laboCommentsList.length}})</h1>
+        <div *ngIf="showSpinner"  class="spinner-border text-primary "style="width: 5rem; height: 5rem;    margin-left: 44%;
+margin-top: 10%;margin-bottom: 54px;" role="status">
+  <span class="sr-only">Loading...</span>
+</div>
+
+        <div *ngFor="let comment of laboCommentsList" class="be-comment">
+            <div class="be-img-comment">	
+                <a href="blog-detail-2.html">
+                    <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="" class="be-ava-comment">
+                </a>
+            </div>
+            <div class="be-comment-content" >
+                
+                    <span class="be-comment-name">
+                        <a href="blog-detail-2.html"> {{comment.creatorName}}</a>
+                        </span>
+                    <span class="be-comment-time">
+                        <i class="fa fa-clock-o"></i>
+                        {{comment.updateDate |date:'long'}}
+                    </span>
+    
+                <p class="be-comment-text">
+     {{comment.text}}
+                </p>
+                <button style="border: none;margin-top: -54px;float: right;background-color: transparent;" (click)="removeComment(comment)">
+                    <i style="color: green;" class="fa fa-trash fa-lg" aria-hidden="true"></i>
+                </button>
+            </div>
+        </div>
+       
+        <form #form="ngForm" class="form-block">
+            <div class="row">
+                <div class="col-xs-12 col-sm-6">
+                    <div class="form-group fl_icon">
+                        <div class="icon"><i class="fa fa-user"></i></div>
+                        <input class="form-input" name="name" #name="ngModel" minlength="4" [(ngModel)]="formData.creatorName" 
+                        required placeholder="Votre nom">
+                    </div>
+                    <div *ngIf="name.invalid && (name.dirty || name.touched)"
+          class="alert">
+      
+        <div *ngIf="name.errors?.required">
+            <small class="text-danger">Le nom est requis
+            </small>
+        </div>
+        <div *ngIf="name.errors?.minlength">
+            <small class="text-danger" >  Le nom doit comporter au moins 4 caractères.</small>
+
+        
+        </div>
+ 
+      
+      </div>
+                </div>
+                <div class="col-xs-12 col-sm-6 fl_icon">
+                    <div class="form-group fl_icon">
+                        <div class="icon"><i class="fa fa-envelope-o"></i></div>
+                        <input class="form-input" email="true"  type="email" name="email" #email="ngModel"  aria-describedby="emailHelp"[(ngModel)]="formData.creatorMail" 
+                        required  pattern="[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" placeholder="Votre adresse mail">
+                    </div>
+                    <div *ngIf="email.invalid && (email.dirty || email.touched)"
+                    class="alert">
+                    <small class="text-danger" *ngIf="email.errors?.required">Adresse e-mail est nécessaire</small>
+          <small class="text-danger" *ngIf="email.errors?.pattern">Adresse email invalide</small>
+                   </div>
+                </div>
+                <div class="col-xl-12">									
+                    <div class="form-group">
+                        <textarea class="form-input" required="" name="text" #text="ngModel"  placeholder="Tappez vos remarques à propos un laboratoire : service , ponctualité ... " [(ngModel)]="formData.text" ></textarea>
+                    </div>
+                    <div *ngIf="text.invalid && (text.dirty || text.touched)"
+                    class="alert">
+                
+                  <div *ngIf="text.errors?.required">
+                      <small class="text-danger">Veuillez tapez votre remarques ...
+                      </small>
+                  </div>
+             
+           
+                
+                </div>
+                </div>
+                <button class="btn btn-primary" type="submit" [disabled]="form.invalid" (click)="addComment()"> Envoyer</button>
+            </div>
+        </form>
+    </div>
+    </div>
+  
+    

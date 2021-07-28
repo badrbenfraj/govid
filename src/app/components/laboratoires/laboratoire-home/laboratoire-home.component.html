@@ -137,7 +137,7 @@
                                                     aria-hidden="true"></i></button>&nbsp;
                                             <button style="border: none;"  (click)="previewLabo(laboratoire)"><i  style="color: orange;"class="fa fa-expand"
                                                     aria-hidden="true"></i></button>&nbsp;
-                                            <button style="border: none;"  disabled="true" (click)="updateLabo(laboratoire)"><i style="color: rgb(58, 28, 228);" class="fa fa-pencil-square-o"
+                                            <button style="border: none;"  disabled="false" (click)="updateLabo(laboratoire)"><i style="color: rgb(58, 28, 228);" class="fa fa-pencil-square-o"
                                                     aria-hidden="true"></i></button>&nbsp;
                                             <button style="border: none;"  (click)="openLocation(laboratoire)"><i style="color: rgb(228, 28, 28);" class="fa fa-map-marker"
                                                     aria-hidden="true"></i></button>
@@ -148,6 +148,7 @@
                                 </tbody>
                             </table>
                             <div *ngIf="cardView">
+                                <!--app-comments></app-comments-->
                                 <app-laboratoire-list [sortField]="sortField"
                                     (currentIdPreview)="setCurrentIdPreview($event)"
                                     (currentIdUpdate)="currentIdUpdate($event)"></app-laboratoire-list>
