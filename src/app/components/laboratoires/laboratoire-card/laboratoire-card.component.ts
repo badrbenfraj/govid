@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AuthenticationService } from '@app/core/auth/services';
 import { laboratoire } from '@app/core/models/laboratoire';
 import { LaboratoireService } from '@app/core/services/laboratoire.service';
 
@@ -10,9 +11,18 @@ import { LaboratoireService } from '@app/core/services/laboratoire.service';
 })
 export class LaboratoireCardComponent implements OnInit {
 @Input() laboratoire:laboratoire;
-  constructor(private router:Router,private laboratoireService:LaboratoireService) { }
+currentUserRole: any;
+isAdminRole:boolean=true; 
+constructor(private authService: AuthenticationService,private router:Router,private laboratoireService:LaboratoireService) { }
    
   ngOnInit(): void {
+    /*
+       this.currentUserRole = this.authService.getCurrentUser.roles;
+    if(this.currentUserRole.includes("ADMIN_ROLE")){
+    this.isAdminRole=true;
+    }else{
+      this.isAdminRole=false;
+    }*/
   }
   previewLabo(){
     localStorage.setItem('laboratoireUpdateMode', "false");

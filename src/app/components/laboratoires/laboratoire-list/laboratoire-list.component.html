@@ -16,8 +16,8 @@
             <div class="result-count">
                 
               <span>{{laboratoiresList.length}} </span>resultats
-              <div *ngIf="!advancedOpened" (click)="openAdvanced()"><mat-icon>keyboard_arrow_down</mat-icon></div>
-              <div *ngIf="advancedOpened" (click)="closeAdvanced()"><mat-icon>keyboard_arrow_up</mat-icon></div>
+              <div  style="margin-left: 10px;"*ngIf="!advancedOpened" (click)="openAdvanced()"><i class="fas fa-angle-down fa-lg"></i></div>
+              <div style="margin-left: 10px;" *ngIf="advancedOpened" (click)="closeAdvanced()"><i class="fas fa-angle-up fa-lg"></i></div>
 
             </div>
 
@@ -71,7 +71,7 @@
 <!-- end searchBar-->
 <div class="container" style=" width: 106%;
 /* width: 171px; */
-padding-left: 96px;
+padding-left: 182px;
 flex-wrap: wrap;
 display: inline-flex;">
 

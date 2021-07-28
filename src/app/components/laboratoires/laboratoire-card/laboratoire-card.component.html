@@ -15,7 +15,7 @@
 						<div style="    width: 257px;    box-shadow: 0px 8px 20px 0px rgb(0 0 0 / 15%);">
 							<div class="job-item">
 								<div class="item-overlay">
-									<div class="job-info" style="margin-top: 330px;">
+									<div class="job-info" >
 										<!--a href="#" class="btn btn-primary">Full Time</a>
 										<span class="tr-title">
 											<a href="#">Project Manager</a>
@@ -26,10 +26,13 @@
 											<li><i class="fa fa-briefcase" aria-hidden="true"></i>Mid Level</li>
 											<li><i class="fa fa-money" aria-hidden="true"></i>$5,000 - $6,000</li>
 										</ul-->
+										<div class="company-logo">
+											<img src="../../assets/imgs/laboWallpaper.jpg" alt="images" class="img-fluid">
+										</div>
 										<ul class="job-social tr-list">
-											<li><a (click)="removeLabo()"><i class="fa fa-trash" aria-hidden="true"></i></a></li>
+											<li><a (click)="removeLabo()" disabled><i class="fa fa-trash" aria-hidden="true"></i></a></li>
 											<li><a (click)="previewLabo()"><i class="fa fa-expand" aria-hidden="true"></i></a></li>
-											<li><a (click)="updateLabo()"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></li>
+											<li><a (click)="updateLabo()"disabled="true"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></li>
 											<li><a (click)="openLocation()"><i class="fa fa-map-marker" aria-hidden="true"></i></a></li>
 
 											<li></li>
@@ -40,7 +43,7 @@
 							
 								<div class="job-info">
 									<div class="company-logo">
-										<img src="../../assets/imgs/labo7.jpg" alt="images" class="img-fluid">
+										<img src="../../assets/imgs/laboWallpaper.jpg" alt="images" class="img-fluid">
 									</div>
 									<div class="stars"style="margin-left: 49px;" >
 										<div *ngIf="laboratoire.rating==0">
