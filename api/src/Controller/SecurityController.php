@@ -12,6 +12,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Symfony\Component\Security\Core\Security;
 
 class SecurityController extends AbstractFOSRestController
 {
@@ -27,21 +28,35 @@ class SecurityController extends AbstractFOSRestController
    * @var EntityManagerInterface
    */
   private $entityManager;
+  /**
+   * @var Security
+   */
+  private $security;
 
-  public function __construct(UserRepository $userRepository, UserPasswordEncoderInterface $passwordEncoder, EntityManagerInterface $entityManager)
+  public function __construct(Security $security, UserRepository $userRepository, UserPasswordEncoderInterface $passwordEncoder, EntityManagerInterface $entityManager)
   {
     $this->userRepository = $userRepository;
     $this->passwordEncoder = $passwordEncoder;
     $this->entityManager = $entityManager;
+    $this->security = $security;
+
   }
 
   /**
    * @Route("/login", name="app_login", methods={"POST"})
    */
-  public function login(Request $request)
+  public function login(Request $request) {}
+
+  /**
+   * @Route("/user/me", name="current_user", methods={"GET"})
+   * * @return \FOS\RestBundle\View\View
+   */
+  public function current_user()
   {
+    $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
 
-
+    $user = $this->getUser();
+    return $this->view($user,Response::HTTP_OK);
   }
 
   /**

@@ -13,7 +13,6 @@ export class AuthenticationService {
   private userSubject: BehaviorSubject<User>;
   private currentUserSubject: BehaviorSubject<User>;
   public user: Observable<User>;
-  public currentUser: Observable<User>;
 
   constructor(private http: HttpClient, private userService: UserService, private cookieService: CookieService) {
     this.userSubject = new BehaviorSubject<User>(
@@ -23,8 +22,6 @@ export class AuthenticationService {
       JSON.parse(localStorage.getItem('loggedUser'))
     );
     this.user = this.userSubject.asObservable();
-    this.currentUser = this.currentUserSubject.asObservable();
-
   }
 
   public get userValue(): User {
@@ -42,10 +39,19 @@ export class AuthenticationService {
         map((user) => {
           localStorage.setItem('user', JSON.stringify(user));
           this.userSubject.next(user);
-          this.userService.getByEmail(email).subscribe(currentUser => {
-            localStorage.setItem('loggedUser', JSON.stringify(currentUser));
-            this.currentUserSubject.next(currentUser);
-          });
+          return user;
+        })
+      );
+  }
+
+  currentUser(): Observable<User> {
+    return this.http
+      .get<any>(`${environment.base_path}/user/me`)
+      .pipe(
+        map((user) => {
+          console.log(user)
+          localStorage.setItem('loggedUser', JSON.stringify(user));
+          this.currentUserSubject.next(user);
           return user;
         })
       );
@@ -56,7 +62,7 @@ export class AuthenticationService {
     lastName: string,
     email: string,
     password: string,
-    roles = ['USER_ROLE']
+    roles = ['ROLE_USER']
   ) {
     return this.http.post<any>(`${environment.base_path}/register`, {
       firstName,

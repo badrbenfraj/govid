@@ -16,6 +16,7 @@ export class AdminComponent implements OnInit {
   user;
 
   constructor(private zone: NgZone, private location: Location, private authenticationService: AuthenticationService) {
+
     this.dattaConfig = DattaConfig.config;
 
     let current_url = this.location.path();
@@ -31,6 +32,7 @@ export class AdminComponent implements OnInit {
     this.navCollapsed = (this.windowWidth >= 992) ? this.dattaConfig['collapse-menu'] : false;
     this.navCollapsedMob = false;
     if (!this.authenticationService.getCurrentUser) {
+      this.authenticationService.currentUser();
       window.location.reload();
     }
     this.user = this.authenticationService.getCurrentUser;
