@@ -49,7 +49,6 @@ export class AuthenticationService {
       .get<any>(`${environment.base_path}/user/me`)
       .pipe(
         map((user) => {
-          console.log(user)
           localStorage.setItem('loggedUser', JSON.stringify(user));
           this.currentUserSubject.next(user);
           return user;

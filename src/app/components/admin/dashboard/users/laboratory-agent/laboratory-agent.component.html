@@ -1,8 +1,8 @@
 <div class="row">
   <div class="col-xl-12">
-    <app-card cardTitle="Laboratory Agents" [button]="buttonAdd" [options]="false" blockClass="table-border-style">
+    <app-card cardTitle="{{capitalize(agent)}} Agents" [button]="buttonAdd" [options]="false" blockClass="table-border-style">
       <div class="table-responsive">
-        <table class="table" *ngIf="agentUser">
+        <table class="table" *ngIf="agentUser.length > 0">
           <thead>
           <tr>
             <th>Id</th>
@@ -26,6 +26,10 @@
           </tr>
           </tbody>
         </table>
+        <div *ngIf="agentUser.length === 0" class="text-center">
+          <i class="fas fa-exclamation-circle"></i>
+          No {{capitalize(agent)}} Agent were found.
+        </div>
       </div>
     </app-card>
   </div>
