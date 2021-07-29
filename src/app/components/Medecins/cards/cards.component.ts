@@ -3,6 +3,7 @@ import {MedecinService} from 'src/app/core/services/medecin.service';
 import {ModalDismissReasons, NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {MedecinInput} from '@app/core/models/medecinInput';
 import {Router} from '@angular/router';
+import { AuthenticationService } from '@app/core/auth/services';
 
 
 @Component({
@@ -16,14 +17,15 @@ export class CardsComponent implements OnInit {
   medecinToUpdate: MedecinInput;
   likes: 0;
   disLike:0
+  loggedUser;
 
-  constructor(private medecinService: MedecinService, private modalService: NgbModal, private router: Router) {
+  constructor(private medecinService: MedecinService, private modalService: NgbModal, private router: Router, private authService: AuthenticationService) {
   }
 
   id: string;
 
   ngOnInit(): void {
-
+    this.loggedUser = this.authService.getCurrentUser
   }
 
   deleteMedecin(id: number) {
