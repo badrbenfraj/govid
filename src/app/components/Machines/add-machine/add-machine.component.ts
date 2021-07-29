@@ -21,7 +21,7 @@ export class AddMachineComponent implements OnInit {
 
   ngOnInit(): void {
     this.cancelButton = {
-      path: '/ListMachines',
+      path: '/dashboard/machines',
       label: 'Annuler',
       icon: 'fas fa-undo'
     };
@@ -42,7 +42,7 @@ export class AddMachineComponent implements OnInit {
       this.machineService.createMachine(this.machineInput).subscribe(data=>{
         this.machineService.sendConfirmation().subscribe(res=>{
         })
-        this.router.navigate(["/ListMachines"]);
+        this.router.navigate(["/dashboard/machines"]);
 
         
 
@@ -64,7 +64,7 @@ export class AddMachineComponent implements OnInit {
     updateInput.saturation=data.saturation;
     updateInput.weight=data.weight;
     this.machineService.updateMachine(id, updateInput).subscribe(data=>{
-      this.router.navigate(["/ListMachines"]);
+      this.router.navigate(["/dashboard/machines"]);
     })
   }
 }

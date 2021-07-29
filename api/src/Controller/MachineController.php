@@ -262,6 +262,35 @@ class MachineController extends AbstractController
     ]);
        return new Response($jsonContent);
   }
+
+
+ /**
+    * @Route("/updateDateReservation/{id}", name="updateReservation")
+    */
+    public function updateDateReservation(Request $request, SerializerInterface $serializer)
+    {
+       $id = $request->get('id');
+
+       $data = json_decode($request->getContent(), true);
+       $dateTo = $data['dateTo'];
+
+       $reservation=$this->getDoctrine()->getRepository(Reservation::class)->find($id);
+
+       $reservation->setDateTo(new \DateTime($dateTo));
+
+       $entityManager = $this->getDoctrine()->getManager();
+       $entityManager->persist($reservation);
+
+    
+       $entityManager->flush();
+       $jsonContent = $serializer->serialize($reservation,"json", [
+        'circular_reference_handler' => function ($object) {
+            return $object->getId();
+        }
+    ]);
+       return new Response($jsonContent);
+  }
+
     /**
      * @Route("/email", name="sendEmail")
      */

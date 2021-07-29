@@ -17,11 +17,13 @@ export class MachineHistoryComponent implements OnInit {
   noData:boolean = false;
   currentUserRole: any;
   adminRoleOn: boolean = false;
+  editOn:boolean = false;
+  dateTo: any;
   constructor(private machineService: MachineService, private _activatedRoute: ActivatedRoute ,private datePipe: DatePipe, private authService: AuthenticationService) { }
 
   ngOnInit(): void {
     this.cancelButton = {
-      path: '/ListMachines',
+      path: '/dashboard/machines',
       label: 'Annuler',
       icon: 'fas fa-undo'
     };
@@ -46,12 +48,27 @@ export class MachineHistoryComponent implements OnInit {
               dateTo:  this.datePipe.transform(reservation.dateTo, "yyyy-MM-dd").toString(),
             });
             
-          })
+          });
+          this.dateTo=  this.datePipe.transform(this.listeReservations[0].dateTo, "yyyy-MM-dd").toString();
+
+
         }
       else{
         this.noData= true;
       }
       });
   }
+  editAction(){
+this.editOn = true;
+  }
+  saveChanges(id:any, dateTo: any){
+    console.log(dateTo)
+    let changes= {
+      dateTo: dateTo,
+    };
+    this.machineService.updateReservation(id, changes).subscribe(result=>{
+      this.editOn = false;
 
+    })
+  }
 }
