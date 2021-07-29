@@ -24,7 +24,9 @@
 
                         <ng-template #modalData let-modal>
                           <div class="modal-header">
-                            <h4 class="modal-title" id="modal-basic-title">Vous pouvez noter ce laboratoire selon votre experience
+                            <h4 class="modal-title" id="modal-basic-title"*ngIf="updatePopUp!=true"> Vous pouvez noter ce laboratoire selon votre experience
+                            </h4>
+                            <h4 class="modal-title" id="modal-basic-title"*ngIf="updatePopUp==true">Madification du laboratoire
                             </h4>
                             <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
                               <span aria-hidden="true">×</span>
@@ -213,7 +215,7 @@
                         <div class="card">
                             <div class="card-body"id="myDiv">
 
-                                <app-laboratoire-map [laboratoire]="currentLabo"></app-laboratoire-map>
+                                <!--app-laboratoire-map [laboratoire]="currentLabo"></app-laboratoire-map-->
                             </div>
                         </div>
                     </div>

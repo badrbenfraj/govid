@@ -16,6 +16,8 @@ export class LaboratoireHomeComponent implements OnInit {
   @ViewChild('modalData') modalData: ElementRef;
   listView: boolean = false;
   cardView: boolean = true;
+  commentView=false
+
   showAddLabo: boolean = false;
   addButton;
   sortField: any;
@@ -124,6 +126,8 @@ export class LaboratoireHomeComponent implements OnInit {
     this.listView = true;
     this.cardView = false;
     this.showAddLabo = false;
+    this.commentView=false
+
   }
 
   trier() {
@@ -138,6 +142,14 @@ export class LaboratoireHomeComponent implements OnInit {
     this.listView = false;
     this.cardView = true;
     this.showAddLabo = false;
+    this.commentView=false
+
+  }
+  showComments(){
+    this.listView=false;
+    this.cardView=false;
+    this.showAddLabo=false;
+    this.commentView=true
   }
 
   openAdvanced() {
