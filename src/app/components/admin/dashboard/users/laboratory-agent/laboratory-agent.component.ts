@@ -1,6 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {UserService} from '@auth/services';
 import {User} from '@auth/models';
+import {ActivatedRoute, Router} from '@angular/router';
+import {Observable} from 'rxjs';
+import {map} from 'rxjs/operators';
 
 @Component({
   selector: 'app-laboratory-agent',
@@ -10,28 +13,39 @@ import {User} from '@auth/models';
 export class LaboratoryAgentComponent implements OnInit {
   buttonAdd;
   agentUser: User[];
+  agent: string;
 
-  constructor(private userService: UserService) {
+  constructor(private route: ActivatedRoute,
+              private router: Router,
+              private userService: UserService) {
   }
 
   ngOnInit(): void {
-    this.buttonAdd = {
-      label: 'Add',
-      path: '/dashboard/users/new',
-      param: 'laboratoire',
-      icon: 'fas fa-user-plus'
-    };
-    this.getAgents();
+    this.route.params.subscribe(params => {
+      this.agent = params.name;
+      this.getAgents(params.name);
+      this.buttonAdd = {
+        label: 'Add',
+        path: '/dashboard/users/new',
+        param: params.name,
+        icon: 'fas fa-user-plus'
+      };
+    });
   }
 
-  getAgents(): void {
-    this.userService.getByRole('ROLE_LABORATOIRE_AGENT').subscribe(users => {
+  getAgents(agent): void {
+    this.userService.getByRole(`ROLE_${agent.toUpperCase()}_AGENT`).subscribe(users => {
       this.agentUser = users;
     });
   }
 
   delete(id): void {
     this.userService.delete(id).subscribe();
-    this.getAgents();
+    this.getAgents(this.agent);
+  }
+
+  capitalize(str): string {
+    const lower = str.toLowerCase();
+    return str.charAt(0).toUpperCase() + lower.slice(1);
   }
 }

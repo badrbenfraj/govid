@@ -24,12 +24,13 @@ export class NewAgentComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.buttonCancel = {
-      label: 'Cancel',
-      path: '/dashboard/users/laboratoire'
-    };
+
     this.route.params.subscribe(params => {
       this.agent = params.name;
+      this.buttonCancel = {
+        label: 'Cancel',
+        path: `/dashboard/users/${this.agent}`
+      };
     });
     this.registerForm = this.formBuilder.group({
       firstName: ['', Validators.required],
