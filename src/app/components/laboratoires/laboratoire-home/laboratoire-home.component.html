@@ -48,6 +48,14 @@
                                     id="drive-list-toggle"><i class="fa fa-list-ul"></i></button>
                             </div>
                         </div>
+                        <div class="page-nav" style="margin-top: 37px;">
+                            <span class="indicator">Commentaires:</span>
+                            <div class="btn-group" role="group">
+                                <button (click)="showComments()" class="active btn btn-default" data-toggle="tooltip"
+                                    data-placement="bottom" title="" data-original-title="Grid View"
+                                    id="drive-grid-toggle"><i class="fa fa-comments"></i></button>
+                            </div>
+                        </div>
                         <div class="actions">
 
                             <div class="btn-group">
@@ -148,10 +156,14 @@
                                 </tbody>
                             </table>
                             <div *ngIf="cardView">
-                                <!--app-comments></app-comments-->
+                              
                                 <app-laboratoire-list [sortField]="sortField"
                                     (currentIdPreview)="setCurrentIdPreview($event)"
                                     (currentIdUpdate)="currentIdUpdate($event)"></app-laboratoire-list>
+                            </div>
+                            <div *ngIf="commentView
+                            ">
+                            <app-comments></app-comments>
                             </div>
 
 
