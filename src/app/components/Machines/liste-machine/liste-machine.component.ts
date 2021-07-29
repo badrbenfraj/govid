@@ -40,7 +40,7 @@ export class ListeMachineComponent implements OnInit {
   ngOnInit(): void {
     this.addButton = {
       label: 'Ajouter machine',
-      path: '/addMachine',
+      path: '/dashboard/machines/add',
       icon: 'fas fa-user-plus',
     };
 

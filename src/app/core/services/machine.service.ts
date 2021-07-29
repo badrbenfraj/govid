@@ -60,7 +60,18 @@ export class MachineService{
         `/api/reservationByMachine/?machine_id=`+ identifier
       )
     }
+    getAllReservations(){
+      return this._http.get<any>(
+        `/api/listreservations`
+    )
+    }
 
+    updateReservation(id: any, body: any) {
+      return this._http.post<any>(
+        `/api/updateDateReservation/`+ id,
+        body
+      )
+    }
 
     sendEmail(body?:any){
       return this._http.post<any>(
