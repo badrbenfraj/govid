@@ -89,7 +89,7 @@
     </div>
     </div>
     
-      <p-dialog header="Voulez vous vraiment réserver cette machine ?" [(visible)]="showBookingDialog">
+      <p-dialog header="Voulez vous vraiment réserver cette machine ?" [(visible)]="showBookingDialog"   modal="true" baseZIndex="1050000" autoZIndex="true">
         <form #bookForm="ngForm"  *ngIf="!reservationOn">
             <!-- <div class="form-group">
               <label f>A partir de</label>
@@ -101,7 +101,7 @@
                     <input [(ngModel)]="dateTo" type="date" min="2021-07-31" id="inputdateTo" class="form-control" placeholder="yyyy-mm-dd" name="dateTo" >
                 </div>
 
-                <a  (click)="bookMachine()" class="btn btn-primary">Confirmer</a>
+                <button style="float: right !important;" (click)="bookMachine()" icon="pi pi-info-circle" class="btn btn-primary">Confirmer</button>
 
           </form>
           <span *ngIf="reservationOn && !successBooking"> Oops! désolé vous ne pouvez pas réserver plus qu'une machine à la fois :( </span>
@@ -109,8 +109,8 @@
 
     </p-dialog>
 
-    <p-dialog  [(visible)]="showStatDialog"  modal="true" baseZIndex="1050000" autoZIndex="true">
+    <p-dialog  [(visible)]="showStatDialog" header="Statistiques des machines"  modal="true" baseZIndex="1050000" autoZIndex="true">
         <app-pie-chart-machine></app-pie-chart-machine>
-              <a  style="float: right;" (click)="closeStat()" class="btn btn-primary">close</a>
+              <button  style="float: right !important;" icon="pi pi-info-circle" (click)="closeStat()" class="btn btn-primary">close</button>
 
   </p-dialog>
