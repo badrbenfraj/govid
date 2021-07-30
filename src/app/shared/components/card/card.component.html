@@ -2,7 +2,7 @@
   <!-- animates animatesInitMode="show" [animatesOnInit]="{useVisibility: false, disabled: true}" -->
   <div class="card-header" *ngIf="!hidHeader" [ngClass]="headerClass">
     <h5 *ngIf="!customHeader">{{ cardTitle }}</h5>
-    <div class="card-header-right" *ngIf="button">
+    <div class="card-header-right" *ngIf="button && findCommonRoles(button.roles)">
       <button type="button" class="btn dropdown-toggle btn-icon"
               [routerLink]="button.param ? [button.path, button.param] : button.path"
               style="border-radius: 10px;border: 1px solid lightgray;" (click)="onButtonClicked()" [disabled]="disableButton">

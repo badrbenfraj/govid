@@ -1,5 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {animate, AUTO_STYLE, state, style, transition, trigger} from '@angular/animations';
+import {AuthenticationService} from '@app/core/auth/services';
 
 @Component({
   selector: 'app-card',
@@ -44,7 +45,7 @@ export class CardComponent implements OnInit {
   @Input() options: boolean;
   @Input() hidHeader: boolean;
   @Input() customHeader: boolean;
-  @Input() disableButton:boolean=false;
+  @Input() disableButton: boolean = false;
   @Input() button;
   @Output() buttonClicked = new EventEmitter<any>();
   public animation: string;
@@ -60,7 +61,7 @@ export class CardComponent implements OnInit {
 
   public cardRemove: string;
 
-  constructor() {
+  constructor(private authenticationService: AuthenticationService) {
     this.customHeader = false;
     this.options = true;
     this.hidHeader = false;
@@ -82,9 +83,11 @@ export class CardComponent implements OnInit {
       this.collapsedCard = 'false';
     }
   }
-  onButtonClicked(){
-  this.buttonClicked.emit(true)
+
+  onButtonClicked() {
+    this.buttonClicked.emit(true);
   }
+
   public fullCardToggle(element: HTMLElement, animation: string, status: boolean) {
     animation = this.cardClass === 'full-card' ? 'zoomOut' : 'zoomIn';
     this.fullIcon = this.cardClass === 'full-card' ? 'icon-maximize' : 'icon-minimize';
@@ -113,7 +116,7 @@ export class CardComponent implements OnInit {
   cardRefresh() {
     this.loadCard = true;
     this.cardClass = 'card-load';
-    setTimeout( () => {
+    setTimeout(() => {
       this.loadCard = false;
       this.cardClass = 'expanded';
     }, 3000);
@@ -121,6 +124,18 @@ export class CardComponent implements OnInit {
 
   cardRemoveAction() {
     this.cardRemove = this.cardRemove === 'closed' ? 'open' : 'closed';
+  }
+
+  findCommonRoles(userRoles) {
+    if (userRoles) {
+      return this.authenticationService.findCommonRoles(userRoles,
+        this.authenticationService.getCurrentUser.roles
+      );
+    } else {
+      return this.authenticationService.findCommonRoles(['ROLE_ADMIN'],
+        this.authenticationService.getCurrentUser.roles
+      );
+    }
   }
 
 }
