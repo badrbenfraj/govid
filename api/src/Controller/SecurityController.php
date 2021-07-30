@@ -75,7 +75,7 @@ class SecurityController extends AbstractFOSRestController
     $password = $data['password'];
     $country = $data['country'];
     $city = $data['city'];
-    $postalCode = $data['postal_code'];
+    $postalCode = $data['postalCode'];
     $address = $data['address'];
 
     $user = $this->userRepository->findOneBy([
@@ -134,7 +134,7 @@ class SecurityController extends AbstractFOSRestController
     $password = $data['password'];
     $address = $data['address'];
     $country = $data['country'];
-    $postal_code = $data['postal_code'];
+    $postalCode = $data['postalCode'];
     $city = $data['city'];
 
     $user = $this->userRepository->findOneBy(['email' => $userEmail]);
@@ -153,7 +153,7 @@ class SecurityController extends AbstractFOSRestController
     );
     $user->setAddress($address);
     $user->setCountry($country);
-    $user->setPostalCode($postal_code);
+    $user->setPostalCode($postalCode);
     $user->setCity($city);
 
 
