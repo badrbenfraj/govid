@@ -8,7 +8,7 @@ export interface NavigationItem {
   icon?: string;
   hidden?: boolean;
   url?: string;
-  role?: 'ROLE_ADMIN' | 'ROLE_USER';
+  roles?: string[];
   classes?: string;
   exactMatch?: boolean;
   external?: boolean;
@@ -34,14 +34,14 @@ const NavigationItems = [
     url: '/dashboard',
     icon: 'feather icon-home',
     classes: 'nav-item',
-    role: 'ROLE_ADMIN',
+    roles: ['ROLE_ADMIN', 'ROLE_USER'],
   },
   {
     id: 'usersGroup',
     title: 'Users',
     type: 'group',
     icon: 'icon-ui',
-    role: 'ROLE_ADMIN',
+    roles: ['ROLE_ADMIN'],
     children: [
       {
         id: 'users',
@@ -49,14 +49,14 @@ const NavigationItems = [
         type: 'collapse',
         url: '/dashboard/users',
         icon: 'feather icon-users',
-        role: 'ROLE_ADMIN',
+        roles: ['ROLE_ADMIN'],
         children: [
           {
             id: 'usersLabo',
             title: 'Users Laboratory',
             type: 'item',
             url: '/dashboard/users/laboratoire',
-            role: 'ROLE_ADMIN',
+            roles: ['ROLE_ADMIN'],
 
           },
           {
@@ -64,14 +64,14 @@ const NavigationItems = [
             title: 'Users Pharmacy',
             type: 'item',
             url: '/dashboard/users/pharmacy',
-            role: 'ROLE_ADMIN'
+            roles: ['ROLE_ADMIN']
           },
           {
             id: 'usersMedecin',
             title: 'Users Medecin',
             type: 'item',
             url: '/dashboard/users/medecin',
-            role: 'ROLE_ADMIN'
+            roles: ['ROLE_ADMIN']
           },
         ]
       }
@@ -84,7 +84,7 @@ const NavigationItems = [
     url: '/dashboard/medecin/list-medecin',
     icon: 'feather icon-activity',
     classes: 'nav-item',
-    role: 'ROLE_ADMIN',
+    roles: ['ROLE_ADMIN'],
   },
   {
     id: 'machines',
@@ -93,7 +93,7 @@ const NavigationItems = [
     url: '/dashboard/machines',
     icon: 'feather icon-activity',
     classes: 'nav-item',
-    role: 'ROLE_ADMIN',
+    roles: ['ROLE_ADMIN'],
   },
   {
     id: 'Laboratoires',
@@ -102,7 +102,7 @@ const NavigationItems = [
     url: '/dashboard/laboratoire',
     icon: 'feather icon-activity',
     classes: 'nav-item',
-    role: 'ROLE_ADMIN',
+    roles: ['ROLE_ADMIN'],
   },
 ];
 

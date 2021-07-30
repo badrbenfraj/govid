@@ -51,4 +51,9 @@ export class NavGroupComponent implements OnInit {
     }
   }
 
+  findCommonRoles(userRoles, itemRoles) {
+    console.log(this.authenticationService.findCommonRoles(userRoles, itemRoles));
+    return this.authenticationService.findCommonRoles(userRoles, itemRoles);
+  }
+
 }
