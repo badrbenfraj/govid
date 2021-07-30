@@ -57,16 +57,17 @@ export class LaboratoireHomeComponent implements OnInit {
     this.addButton = {
       label: 'Ajouter laboratoire',
       icon: 'fas fa-flask',
+      roles:["ROLE_LABORATOIRE_AGENT","ROLE_ADMIN"]
     };
-   /*
+   
     this.currentUserRole = this.authService.getCurrentUser.roles;
-    if(this.currentUserRole.includes("ADMIN_ROLE")){
+    if(this.currentUserRole.includes("ROLE_ADMIN")||this.currentUserRole.includes("ROLE_LABORATOIRE_AGENT")){
     this.disableAddButton=false;
     this.adminRole=true;
     }else{
       this.adminRole=false;
       this.disableAddButton=true;
-    }*/
+    }
 
   }
   AdduttonClicked(){
@@ -192,7 +193,7 @@ export class LaboratoireHomeComponent implements OnInit {
 
   previewLabo(laboratoire) {
     localStorage.setItem('laboratoireUpdateMode', 'false');
-    this.router.navigate(['/laboratoireDashboard'], {
+    this.router.navigate(['/dashboard/laboratoire/laboratoireDashboard'], {
       queryParams: {
         id: laboratoire.id
       }
@@ -200,7 +201,7 @@ export class LaboratoireHomeComponent implements OnInit {
   }
 
   openLocation(laboratoire) {
-    this.router.navigate(['/laboratoireMap'], {
+    this.router.navigate(['/dashboard/laboratoire/laboratoireMap'], {
       queryParams: {
         idLocation: laboratoire.id
       }
@@ -209,7 +210,7 @@ export class LaboratoireHomeComponent implements OnInit {
 
   updateLabo(laboratoire) {
     localStorage.setItem('laboratoireUpdateMode', 'true');
-    this.router.navigate(['/laboratoireDashboard'], {
+    this.router.navigate(['/dashboard/laboratoire/laboratoireDashboard'], {
       queryParams: {
         id: laboratoire.id
       }
