@@ -15,7 +15,7 @@ import { NgbModal,ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
   providers: [ConfirmationService]
 })
 export class LaboratoireDashboardComponent implements OnInit {
- 
+ buttonCancel: any;
   @ViewChild('modalData') modalData: ElementRef; workingTimes = [
     {name: 'plein temps'},
     {name: 'temps partiel'},
@@ -55,6 +55,10 @@ export class LaboratoireDashboardComponent implements OnInit {
   constructor(private router:Router,private modalService: NgbModal,private primengConfig: PrimeNGConfig,private confirmationService: ConfirmationService,private route:ActivatedRoute,private laboratoireService:LaboratoireService) { }
 
   ngOnInit(): void {
+    this.buttonCancel = {
+      label: 'Cancel',
+      path: `/dashboard/laboratoire`
+    };
     this.primengConfig.ripple = true;
     this.route.queryParams.subscribe(params =>{
     this.currentId=params['id'];})
