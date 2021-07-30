@@ -4,7 +4,6 @@ import {animate, style, transition, trigger} from '@angular/animations';
 import {DattaConfig} from '@config';
 import {AuthenticationService, UserService} from '@app/core/auth/services';
 import {Router} from '@angular/router';
-import {CookieService} from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-nav-right',

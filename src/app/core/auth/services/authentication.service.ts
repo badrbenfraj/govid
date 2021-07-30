@@ -6,7 +6,6 @@ import {map} from 'rxjs/operators';
 import {environment} from '@environment/environment';
 import {User} from '@auth/models/';
 import {UserService} from '@auth/services/user.service';
-import {CookieService} from 'ngx-cookie-service';
 
 @Injectable({providedIn: 'root'})
 export class AuthenticationService {
@@ -14,7 +13,7 @@ export class AuthenticationService {
   private currentUserSubject: BehaviorSubject<User>;
   public user: Observable<User>;
 
-  constructor(private http: HttpClient, private userService: UserService, private cookieService: CookieService) {
+  constructor(private http: HttpClient, private userService: UserService) {
     this.userSubject = new BehaviorSubject<User>(
       JSON.parse(localStorage.getItem('user'))
     );
