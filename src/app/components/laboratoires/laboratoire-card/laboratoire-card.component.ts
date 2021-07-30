@@ -16,13 +16,13 @@ isAdminRole:boolean=true;
 constructor(private authService: AuthenticationService,private router:Router,private laboratoireService:LaboratoireService) { }
    
   ngOnInit(): void {
-    /*
+    
        this.currentUserRole = this.authService.getCurrentUser.roles;
-    if(this.currentUserRole.includes("ADMIN_ROLE")){
+    if(this.currentUserRole.includes("ROLE_ADMIN")||this.currentUserRole.includes("ROLE_LABORATOIRE_AGENT")){
     this.isAdminRole=true;
     }else{
       this.isAdminRole=false;
-    }*/
+    }
   }
   previewLabo(){
     
