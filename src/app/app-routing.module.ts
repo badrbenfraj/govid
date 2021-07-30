@@ -31,14 +31,6 @@ const routes: Routes = [
     component: ForgotPasswordComponent,
   },
   {
-    path: 'laboratoireHome',
-    component: LaboratoireHomeComponent,
-  },
-  {
-    path: 'laboratoireDashboard',
-    component: LaboratoireDashboardComponent,
-  },
-  {
     path: 'dashboard',
     component: AdminComponent,
     canActivate: [AuthGuard],
