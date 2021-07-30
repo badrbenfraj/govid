@@ -34,7 +34,6 @@ import {NavBarComponent} from './components/admin/nav-bar/nav-bar.component';
 import {NavLeftComponent} from './components/admin/nav-bar/nav-left/nav-left.component';
 import {NavSearchComponent} from './components/admin/nav-bar/nav-left/nav-search/nav-search.component';
 import {NavRightComponent} from './components/admin/nav-bar/nav-right/nav-right.component';
-import {CookieService} from 'ngx-cookie-service';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material/core';
 import {MatPaginatorModule} from '@angular/material/paginator';
@@ -92,7 +91,6 @@ import { PharmacieSearchComponent } from './components/pharmacie/pharmacie-searc
     {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
     {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
     NavigationItem,
-    CookieService,
     DatePipe
   ],
   exports: [
