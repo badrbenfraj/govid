@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { PharmacieService } from '@app/components/pharmacie/pharmacie.service';
-import { Pharmacie } from '../pharmacie';
+import {Component, OnInit} from '@angular/core';
+import {PharmacieService} from '@services/pharmacie.service';
+import {Pharmacie} from '@models/pharmacie';
 
 
 @Component({
@@ -10,10 +10,13 @@ import { Pharmacie } from '../pharmacie';
 })
 export class PharmacieSearchComponent implements OnInit {
   pharmacies: Pharmacie[];
-  constructor(private service: PharmacieService) { }
-  
+
+  constructor(private service: PharmacieService) {
+  }
+
   ngOnInit(): void {
   }
+
   getPharmacies(): void {
     this.service.getPharmacies()
       .subscribe(pharmacies => this.pharmacies = pharmacies);
