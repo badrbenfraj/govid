@@ -62,7 +62,7 @@ class User implements UserInterface
     /**
      * @ORM\Column(type="integer", nullable=true)
      */
-    private $postal_code;
+    private $postalCode;
 
     public function getId(): ?int
     {
@@ -208,12 +208,12 @@ class User implements UserInterface
 
     public function getPostalCode(): ?int
     {
-        return $this->postal_code;
+        return $this->postalCode;
     }
 
-    public function setPostalCode(?int $postal_code): self
+    public function setPostalCode(?int $postalCode): self
     {
-        $this->postal_code = $postal_code;
+        $this->postalCode = $postalCode;
 
         return $this;
     }
