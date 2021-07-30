@@ -77,6 +77,7 @@ export class CardsComponent implements OnInit {
       disLike: medecin.disLike,
     }
     this.medecinService.updateDislike(medecin.id, body).subscribe();
+    
   }
 
 }
