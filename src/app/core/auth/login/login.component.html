@@ -11,32 +11,32 @@
         <div class="mb-4">
           <i class="feather icon-unlock auth-icon"></i>
         </div>
-        <h3 class="mb-4">Login</h3>
+        <h3 class="mb-4">Connexion</h3>
         <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" novalidate>
           <div class="form-group">
             <input type="text" placeholder="Email" formControlName="email" class="form-control"
                    [ngClass]="{ 'is-invalid': submitted && f.email.errors }"/>
             <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
-              <div *ngIf="f.email.errors.required">Email is required</div>
-              <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+              <div *ngIf="f.email.errors.required">L'email est obligatoire</div>
+              <div *ngIf="f.email.errors.email">L'adresse e-mail doit être valide</div>
             </div>
           </div>
           <div class="form-group">
-            <input type="password" placeholder="Password" formControlName="password" class="form-control"
+            <input type="password" placeholder="Mot de passe" formControlName="password" class="form-control"
                    [ngClass]="{ 'is-invalid': submitted && f.password.errors }"/>
             <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
-              <div *ngIf="f.password.errors.required">Password is required</div>
-              <div *ngIf="f.password.errors.minlength">Password must be at least 3 characters</div>
+              <div *ngIf="f.password.errors.required">Le mot de passe est obligatoire</div>
+              <div *ngIf="f.password.errors.minlength">Le mot de passe doit contenir au moins 3 caractères</div>
             </div>
           </div>
           <button [disabled]="loading" class="btn btn-primary">
             <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
-            Login
+            Se connecter
           </button>
-          <button type="button" class="btn btn-outline-primary" routerLink="/">Cancel</button>
+          <button type="button" class="btn btn-outline-primary" routerLink="/">Annuler</button>
           <div *ngIf="error" class="alert alert-danger mt-3 mb-0">{{error}}</div>
         </form>
-        <p class="mb-0 mt-2 text-muted">Don’t have an account? <a [routerLink]="['/register']">Sign up</a></p>
+        <p class="mb-0 mt-2 text-muted">Vous n'avez pas un compte? <a [routerLink]="['/register']">S'inscrire</a></p>
       </div>
     </div>
   </div>
