@@ -42,4 +42,8 @@ export class CommentsComponent implements OnInit {
       this.getAllComments()
     });
   }
+  getRandomSrc(){
+    let ch="https://bootdey.com/img/Content/avatar/avatar"
+    return ch+Math.floor(Math.random() * 3) + 1+".png"
+  }
 }

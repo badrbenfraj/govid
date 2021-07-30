@@ -30,9 +30,9 @@
 											<img src="../../assets/imgs/laboWallpaper.jpg" alt="images" class="img-fluid">
 										</div>
 										<ul class="job-social tr-list">
-											<li><a (click)="removeLabo()" disabled><i class="fa fa-trash" aria-hidden="true"></i></a></li>
+											<li><button  style="border: none;    background-color: transparent;"></button></li>
 											<li><a (click)="previewLabo()"><i class="fa fa-expand" aria-hidden="true"></i></a></li>
-											<li><a (click)="updateLabo()"disabled="true"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></li>
+											<li><button style="border: none;    background-color: transparent;" (click)="updateLabo()" disabled="!isAdminRole"><a ><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></button></li>
 											<li><a (click)="openLocation()"><i class="fa fa-map-marker" aria-hidden="true"></i></a></li>
 
 											<li></li>

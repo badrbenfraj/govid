@@ -35,7 +35,7 @@
                 
 
                   <app-card cardTitle="Recherche Laboratoire" [button]="addButton" [options]="false" 
-                            blockClass="table-border-style" (buttonClicked)="AdduttonClicked()" [disableButton]="disableAddButton">
+                            blockClass="table-border-style" (buttonClicked)="AdduttonClicked()" [disableButton]="disableAddButton" >
                     <div class="content-utilities">
                         <div class="page-nav">
                             <span class="indicator">Affichage:</span>
@@ -141,13 +141,13 @@
                                         </td>
                                         <td>{{laboratoire?.phoneNumber}}</td>
                                         <td>
-                                            <button style="border: none;    background-color: transparent;" (click)="open(content,laboratoire);"><i style="color: dodgerblue" class="fa fa-trash"
+                                            <button style="border: none;    background-color: transparent;" disabled="!adminRole" (click)="open(content,laboratoire);"><i style="color: #1dc4e9" class="fa fa-trash"
                                                     aria-hidden="true"></i></button>&nbsp;
-                                            <button style="border: none;    background-color: transparent;"  (click)="previewLabo(laboratoire)"><i  style="color: dodgerblue"class="fa fa-expand"
+                                            <button style="border: none;    background-color: transparent;"  (click)="previewLabo(laboratoire)"><i  style="color: #1dc4e9"class="fa fa-expand"
                                                     aria-hidden="true"></i></button>&nbsp;
-                                            <button style="border: none;    background-color: transparent;"  disabled="false" (click)="updateLabo(laboratoire)"><i style="color: dodgerblue" class="fa fa-pencil-square-o"
+                                            <button style="border: none;    background-color: transparent;"  disabled="!adminRole" (click)="updateLabo(laboratoire)"><i style="color: #1dc4e9" class="fa fa-pencil-square-o"
                                                     aria-hidden="true"></i></button>&nbsp;
-                                            <button style="border: none;    background-color: transparent;"  (click)="openLocation(laboratoire)"><i style="color: dodgerblue" class="fa fa-map-marker"
+                                            <button style="border: none;    background-color: transparent;"  (click)="openLocation(laboratoire)"><i style="color: #1dc4e9" class="fa fa-map-marker"
                                                     aria-hidden="true"></i></button>
                                         </td>
                                     </tr>
