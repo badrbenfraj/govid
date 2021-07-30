@@ -20,7 +20,7 @@ export class PieChartMachineComponent implements OnInit {
      this.machineService.getAllReservations().subscribe(reser=>{
        nbrReservations=reser.length;
        this.data = {
-        labels: ['Total machines','Machines reservée'],
+        labels: ['Total machines','Machines reservées'],
         datasets: [
             {
                 data: [nbrMachine, nbrReservations],

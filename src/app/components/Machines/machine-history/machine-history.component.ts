@@ -28,7 +28,7 @@ export class MachineHistoryComponent implements OnInit {
       icon: 'fas fa-undo'
     };
     this.currentUserRole = this.authService.getCurrentUser.roles;
-    if(this.currentUserRole.includes("ADMIN_ROLE")){
+    if(this.currentUserRole.includes("ROLE_ADMIN")){
       this.adminRoleOn = true;
     }
 

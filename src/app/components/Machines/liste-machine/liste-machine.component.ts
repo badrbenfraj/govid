@@ -26,6 +26,8 @@ export class ListeMachineComponent implements OnInit {
   filteredList: any = [];
   showBookingDialog: boolean = false;
   currentUserId: any;
+  currentUserRole: any;
+  currentUser: any;
   dateTo: any;
   dateFrom: any;
   idbookedMachine: any;
@@ -33,6 +35,9 @@ export class ListeMachineComponent implements OnInit {
   addButton;
   reservationOn: boolean = false;
   noData: boolean = false;
+  showStatDialog: boolean= false;
+  adminRoleOn: boolean = false;
+  successBooking: boolean = false;
   @ViewChild('paginator', { static: false }) paginator: MatPaginator;
 
   constructor(private machineService: MachineService, private datePipe: DatePipe, private modalService: NgbModal, private authService: AuthenticationService) { }
@@ -53,6 +58,12 @@ export class ListeMachineComponent implements OnInit {
     }
     this.getMachines();
     this.currentUserId = this.authService.getCurrentUser.id;
+
+    this.currentUser = this.authService.getCurrentUser;
+    this.currentUserRole = this.authService.getCurrentUser.roles;
+    if(this.currentUserRole.includes("ROLE_ADMIN")){
+      this.adminRoleOn = true;
+    }
   }
 
   open(content) {
@@ -85,6 +96,8 @@ export class ListeMachineComponent implements OnInit {
       this.displayedList = this.filteredList.slice(0, this.pageSize);
       if(this.displayedList.length==0){
         this.noData = true;
+      }else{
+        this.noData = false;
       }
       let pageIndex = 0;
 
@@ -145,22 +158,33 @@ export class ListeMachineComponent implements OnInit {
      this.idbookedMachine = id;
   }
   bookMachine() {
-    this.showBookingDialog = false;
-    this.machineService.bookMachine(this.currentUserId, this.idbookedMachine, this.dateTo).subscribe(data=>{
+    this.successBooking= false;
+    this.showBookingDialog = true;
+    this.machineService.bookMachine(this.currentUserId, this.idbookedMachine, this.dateTo).subscribe(data => {
+      this.showBookingDialog = false;
       this.reservationOn = true;
+      this.successBooking= true;
+      console.log(this.reservationOn);
+      console.log(this.successBooking);
+      this.getMachines();
+  
       let emailBody = {
-        message: "Vous avez reserver une machine d'oxygéne sur Govid.tn. vous pouvez prendre contact avec le propriétaire sur son adresse email : " + this.authService.getCurrentUser.email + ". On vous souhaite prompt rétablissement."
+        message: "Vous avez reserver une machine d'oxygéne sur Govid.tn. vous pouvez prendre contact avec le proprietaire sur son adresse email : " + this.authService.getCurrentUser.email + ". On vous souhaite prompt rétablissement."
             }
       this.machineService.sendEmail(emailBody).subscribe(res=>{
+        
       })
-    }),err=>{
-      this.reservationOn = true;
-      this.showBookingDialog = true;
+      
 
     }
-    this.reservationOn = true;
-    this.getMachines();
+    ,err => {
+      this.reservationOn = true;
+      this.getMachines();
+  
+      // this.showBookingDialog = true;
 
+    })
+   
   }
 
   showMyMachines(){
@@ -188,6 +212,8 @@ export class ListeMachineComponent implements OnInit {
         this.displayedList = this.filteredList.slice(0, this.pageSize);
         if(this.displayedList.length==0){
           this.noData = true;
+        }else{
+          this.noData = false;
         }
         let pageIndex = 0;
   
@@ -205,5 +231,10 @@ export class ListeMachineComponent implements OnInit {
       }
     })
   }
-
+  showStat(){
+  this.showStatDialog = true;
+  }
+  closeStat(){
+    this.showStatDialog = false;
+  }
 }
