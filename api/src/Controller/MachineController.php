@@ -144,10 +144,7 @@ class MachineController extends AbstractController
     
      $entityManager->flush();
 
-     return new Response(
-        'book machine with id: '.$machine->getId()
-        .' and  tenant with id: '.$user->getId()
-     );
+     return new Response();
     }
 
      /**
