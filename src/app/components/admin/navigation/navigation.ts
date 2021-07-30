@@ -45,7 +45,7 @@ const NavigationItems = [
     children: [
       {
         id: 'users',
-        title: 'Users',
+        title: 'Utilisateurs',
         type: 'collapse',
         url: '/dashboard/users',
         icon: 'feather icon-users',
@@ -53,7 +53,7 @@ const NavigationItems = [
         children: [
           {
             id: 'usersLabo',
-            title: 'Users Laboratory',
+            title: 'Utilisateurs Laboratoire',
             type: 'item',
             url: '/dashboard/users/laboratoire',
             roles: ['ROLE_ADMIN', 'ROLE_LABORATOIRE_AGENT'],
@@ -61,14 +61,14 @@ const NavigationItems = [
           },
           {
             id: 'usersPharmacie',
-            title: 'Users Pharmacy',
+            title: 'Utilisateurs Pharmacie',
             type: 'item',
             url: '/dashboard/users/pharmacy',
             roles: ['ROLE_ADMIN', 'ROLE_PHARMACY_AGENT']
           },
           {
             id: 'usersMedecin',
-            title: 'Users Medecin',
+            title: 'Utilisateurs Medecin',
             type: 'item',
             url: '/dashboard/users/medecin',
             roles: ['ROLE_ADMIN', 'ROLE_MEDECIN_AGENT']
@@ -78,8 +78,8 @@ const NavigationItems = [
     ]
   },
   {
-    id: 'medecin',
-    title: 'Medecin',
+    id: 'medecins',
+    title: 'Medecins',
     type: 'item',
     url: '/dashboard/medecin/list-medecin',
     icon: 'feather icon-activity',

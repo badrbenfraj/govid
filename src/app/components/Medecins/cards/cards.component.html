@@ -32,8 +32,8 @@
                         <button type="submit" class="btn btn-primary btn-sm, fa fa-edit" 
                             *ngIf="loggedUser && loggedUser.roles && loggedUser.roles.indexOf('ROLE_ADMIN') > -1"
                             style="padding: 11px" (click)="triggerModal(modalData); edit(medecin)"></button>
-                        <button type="submit" class="btn btn-primary btn-sm, fas fa-thumbs-up" style="padding: 11px; color:#147763;" (click)="LikesCounter(medecin)"> {{medecin.likes}}</button>
-                        <button type="submit" class="btn btn-primary btn-sm, fas fa-thumbs-down" style="padding: 11px; color:#e74c3c;" (click)="DisLikesCounter(medecin)"> {{medecin.disLike}}</button>
+                        <button type="submit" class="btn btn-primary btn-sm, fas fa-thumbs-up" style="padding: 11px; color:#147763;" [disabled]="!isEnabled" (click)="LikesCounter(medecin);isEnabled=false"> {{medecin.likes}}</button>
+                        <button type="submit" class="btn btn-primary btn-sm, fas fa-thumbs-down" style="padding: 11px; color:#e74c3c;" [disabled]="!isEnabled" (click)="DisLikesCounter(medecin);isEnabled=false"> {{medecin.disLike}}</button>
                     </div>
                 </div>
             </div>

@@ -28,7 +28,7 @@ export class NewAgentComponent implements OnInit {
     this.route.params.subscribe(params => {
       this.agent = params.name;
       this.buttonCancel = {
-        label: 'Cancel',
+        label: 'Annuler',
         path: `/dashboard/users/${this.agent}`
       };
     });

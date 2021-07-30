@@ -7,7 +7,7 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        loadChildren: () => import('./default/default.module').then(m => m.DefaultModule)
+        loadChildren: () => import('./core-chart/core-chart.module').then(m => m.CoreChartModule)
       }
     ]
   },

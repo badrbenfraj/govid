@@ -179,7 +179,6 @@ class MedecinController extends AbstractFOSRestController
    /**
    * @Route("/medecin/updateLikes/{id}", name="update_medecin_likes", methods={"POST"})
    * @param Request $request
-   * @return \FOS\RestBundle\View\View
    */
   public function update_medecin_likes(Request $request)
   {
@@ -208,7 +207,6 @@ class MedecinController extends AbstractFOSRestController
   /**
    * @Route("/medecin/updateDislike/{id}", name="update_medecin_dislikes", methods={"POST"})
    * @param Request $request
-   * @return \FOS\RestBundle\View\View
    */
   public function update_medecin_dislike(Request $request)
   {
