@@ -1,13 +1,13 @@
 <div class="row">
   <div class="col-xl-12">
-    <app-card cardTitle="{{capitalize(agent)}} Agents" [button]="buttonAdd" [options]="false" blockClass="table-border-style">
+    <app-card cardTitle="Agents {{capitalize(agent)}}" [button]="buttonAdd" [options]="false" blockClass="table-border-style">
       <div class="table-responsive">
         <table class="table" *ngIf="agentUser.length > 0">
           <thead>
           <tr>
             <th>Id</th>
-            <th>First Name</th>
-            <th>Last Name</th>
+            <th>Prénom</th>
+            <th>Nom</th>
             <th>Email</th>
             <th>Actions</th>
           </tr>
@@ -28,7 +28,7 @@
         </table>
         <div *ngIf="agentUser.length === 0" class="text-center">
           <i class="fas fa-exclamation-circle"></i>
-          No {{capitalize(agent)}} Agent were found.
+          Aucun agent {{capitalize(agent)}} n'est trouvé.
         </div>
       </div>
     </app-card>
