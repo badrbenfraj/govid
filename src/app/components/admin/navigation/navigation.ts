@@ -49,14 +49,14 @@ const NavigationItems = [
         type: 'collapse',
         url: '/dashboard/users',
         icon: 'feather icon-users',
-        roles: ['ROLE_ADMIN'],
+        roles: ['ROLE_ADMIN', 'ROLE_MEDECIN_AGENT', 'ROLE_LABORATOIRE_AGENT', 'ROLE_PHARMACY_AGENT'],
         children: [
           {
             id: 'usersLabo',
             title: 'Users Laboratory',
             type: 'item',
             url: '/dashboard/users/laboratoire',
-            roles: ['ROLE_ADMIN'],
+            roles: ['ROLE_ADMIN', 'ROLE_LABORATOIRE_AGENT'],
 
           },
           {
@@ -64,14 +64,14 @@ const NavigationItems = [
             title: 'Users Pharmacy',
             type: 'item',
             url: '/dashboard/users/pharmacy',
-            roles: ['ROLE_ADMIN']
+            roles: ['ROLE_ADMIN', 'ROLE_PHARMACY_AGENT']
           },
           {
             id: 'usersMedecin',
             title: 'Users Medecin',
             type: 'item',
             url: '/dashboard/users/medecin',
-            roles: ['ROLE_ADMIN']
+            roles: ['ROLE_ADMIN', 'ROLE_MEDECIN_AGENT']
           },
         ]
       }
@@ -84,7 +84,7 @@ const NavigationItems = [
     url: '/dashboard/medecin/list-medecin',
     icon: 'feather icon-activity',
     classes: 'nav-item',
-    roles: ['ROLE_ADMIN'],
+    roles: ['ROLE_ADMIN', 'ROLE_USER'],
   },
   {
     id: 'machines',
@@ -93,7 +93,7 @@ const NavigationItems = [
     url: '/dashboard/machines',
     icon: 'feather icon-activity',
     classes: 'nav-item',
-    roles: ['ROLE_ADMIN'],
+    roles: ['ROLE_ADMIN', 'ROLE_USER'],
   },
   {
     id: 'Laboratoires',
@@ -102,7 +102,7 @@ const NavigationItems = [
     url: '/dashboard/laboratoire',
     icon: 'feather icon-activity',
     classes: 'nav-item',
-    roles: ['ROLE_ADMIN'],
+    roles: ['ROLE_ADMIN', 'ROLE_USER'],
   },
 ];
 
