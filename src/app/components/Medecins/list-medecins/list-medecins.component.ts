@@ -1,5 +1,6 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {MedecinService} from 'src/app/core/services/medecin.service';
+import { AuthenticationService } from '@app/core/auth/services';
 
 @Component({
   selector: 'app-list-medecins',
@@ -8,8 +9,9 @@ import {MedecinService} from 'src/app/core/services/medecin.service';
 })
 export class ListMedecinsComponent implements OnInit {
   addButton;
+  loggedUser;
 
-  constructor(private medecinService: MedecinService) { }
+  constructor(private medecinService: MedecinService, private authService: AuthenticationService) { }
 
   listMedecin: any[] = [];
   listMedecinFiltred: any[] = [];
@@ -23,6 +25,7 @@ export class ListMedecinsComponent implements OnInit {
     this.medecinService.getAllMedecins().subscribe((res) => {
       this.listMedecin = res;
     });
+    this.loggedUser = this.authService.getCurrentUser
   }
 
   filtrer(fullName, email, phoneNumber, speciality, gender, cnamConvention) {
