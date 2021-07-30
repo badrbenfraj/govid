@@ -59,6 +59,10 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
     NavRightComponent,
   ],
   imports: [
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyA8izfeQvQZt3XnZlrO6XB9U9WQgQX1OXQ',
+      libraries: ['places']
+    }),
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
