@@ -60,16 +60,18 @@ const NavigationItems = [
 
           },
           {
-            id: 'usersLabo',
-            title: 'Users Laboratory',
+            id: 'usersPharmacie',
+            title: 'Users Pharmacy',
             type: 'item',
-            url: '/dashboard/users/laboratoire'
+            url: '/dashboard/users/pharmacy',
+            role: 'ROLE_ADMIN'
           },
           {
-            id: 'usersLabo',
-            title: 'Users Laboratory',
+            id: 'usersMedecin',
+            title: 'Users Medecin',
             type: 'item',
-            url: '/dashboard/users/laboratoire'
+            url: '/dashboard/users/medecin',
+            role: 'ROLE_ADMIN'
           },
         ]
       }

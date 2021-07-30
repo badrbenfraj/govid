@@ -73,6 +73,10 @@ class SecurityController extends AbstractFOSRestController
     $firstName = $data['firstName'];
     $lastName = $data['lastName'];
     $password = $data['password'];
+    $country = $data['country'];
+    $city = $data['city'];
+    $postalCode = $data['postal_code'];
+    $address = $data['address'];
 
     $user = $this->userRepository->findOneBy([
       'id' => $id,
@@ -81,6 +85,11 @@ class SecurityController extends AbstractFOSRestController
     $user->setEmail($email);
     $user->setFirstName($firstName);
     $user->setLastName($lastName);
+    $user->setCity($city);
+    $user->setCountry($country);
+    $user->setPostalCode($postalCode);
+    $user->setLastName($lastName);
+    $user->setAddress($address);
     $user->setPassword(
       $this->passwordEncoder->encodePassword($user, $password)
     );
@@ -88,10 +97,7 @@ class SecurityController extends AbstractFOSRestController
     $this->entityManager->persist($user);
     $this->entityManager->flush();
 
-    return $this->view([
-      'message' => 'User Updated Successfully',
-      'code' => Response::HTTP_OK
-    ], Response::HTTP_OK)->setContext((new Context())->setGroups(['public']));
+    return $this->view($user, Response::HTTP_OK);
   }
 
   /**

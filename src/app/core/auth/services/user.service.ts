@@ -4,6 +4,7 @@ import {HttpClient} from '@angular/common/http';
 import {environment} from '@environment/environment';
 import {User} from '@auth/models';
 import {Observable} from 'rxjs';
+import {map} from 'rxjs/operators';
 
 @Injectable({providedIn: 'root'})
 export class UserService {
@@ -28,7 +29,12 @@ export class UserService {
   }
 
   update(id: number, user: User): Observable<User> {
-    return this.http.post<User>(`${environment.base_path}/user/update/${id}`, {...user});
+    return this.http.post<User>(`${environment.base_path}/user/update/${id}`, {...user}).pipe(
+      map((loggedUser) => {
+        localStorage.setItem('loggedUser', JSON.stringify(loggedUser));
+        return user;
+      })
+    );
   }
 
   delete(id: number): Observable<User>{

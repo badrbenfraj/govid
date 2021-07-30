@@ -33,18 +33,6 @@ const routes: Routes = [
     component: ForgotPasswordComponent,
   },
   {
-    path: 'pharmacie',
-    component: PharmacieComponent,
-  },
-  {
-    path: 'laboratoireHome',
-    component: LaboratoireHomeComponent,
-  },
-  {
-    path: 'laboratoireDashboard',
-    component: LaboratoireDashboardComponent,
-  },
-  {
     path: 'dashboard',
     component: AdminComponent,
     canActivate: [AuthGuard],

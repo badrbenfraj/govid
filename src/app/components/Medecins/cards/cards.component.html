@@ -27,6 +27,7 @@
                         </ng-template>
                         <p class="card-text">Adresse: {{medecin.address}}</p>
                         <button type="submit" class="btn btn-primary btn-sm, fa fa-trash"
+                            *ngIf="loggedUser && loggedUser.roles && loggedUser.roles.indexOf('ROLE_ADMIN') > -1"
                             style="margin-right: 10px; padding: 11px" (click)="deleteMedecin(medecin.id)"></button>
                         <button type="submit" class="btn btn-primary btn-sm, fa fa-edit" style="padding: 11px"
                             (click)="triggerModal(modalData); edit(medecin)"></button>

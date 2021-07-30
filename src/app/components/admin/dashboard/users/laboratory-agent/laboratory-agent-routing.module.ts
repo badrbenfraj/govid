@@ -4,7 +4,7 @@ import {LaboratoryAgentComponent} from '@components/admin/dashboard/users/labora
 
 const routes: Routes = [
   {
-    path: '',
+    path: ':name',
     component: LaboratoryAgentComponent
   }
 ];

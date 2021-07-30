@@ -22,9 +22,11 @@
               <td>{{reservation.user}}</td>
               <td>{{reservation.userEmail}}</td>
               <td>{{reservation.dateFrom}}</td>
-              <td>{{reservation.dateTo}}</td>
-              <th *ngIf="adminRoleOn==true"><button style="cursor: pointer; border: none; background: white;"><i class="fas fa-edit"></i></button></th>
-              <th *ngIf="adminRoleOn==true"><button style="cursor: pointer; border: none; background: white;"><i class="fas fa-trash-alt"></i></button></th>
+              <td *ngIf="!editOn">{{reservation.dateTo}}</td>
+              <td *ngIf="adminRoleOn==true && editOn==true"><input #ngModel type="date"  [(ngModel)]="reservation.dateTo" min="2021-07-31"></td>
+
+              <th *ngIf="adminRoleOn==true"><button (click)="editAction()" style="cursor: pointer; border: none; background: white;"><i class="fas fa-edit"></i></button></th>
+              <th *ngIf="adminRoleOn==true"><button (click)="saveChanges(reservation.id_machine, reservation.dateTo)" style="cursor: pointer; border: none; background: white;"><i class="fas fa-save"></i></button></th>
 
 
               <!-- <td> 
