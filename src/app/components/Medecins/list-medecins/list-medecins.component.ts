@@ -21,6 +21,7 @@ export class ListMedecinsComponent implements OnInit {
       label: 'Ajouter médecin',
       path: '/dashboard/medecin/new',
       icon: 'fas fa-user-plus',
+      roles: ['ROLE_ADMIN'],
     };
     this.medecinService.getAllMedecins().subscribe((res) => {
       this.listMedecin = res;

@@ -11,43 +11,43 @@
         <div class="mb-4">
           <i class="feather icon-user-plus auth-icon"></i>
         </div>
-        <h3 class="mb-4">Sign up</h3>
+        <h3 class="mb-4">S'inscrire</h3>
         <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
           <div class="form-group">
-            <input type="text" placeholder="First Name" formControlName="firstName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }" />
+            <input type="text" placeholder="Prénom" formControlName="firstName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }" />
             <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
-              <div *ngIf="f.firstName.errors.required">First Name is required</div>
+              <div *ngIf="f.firstName.errors.required">Le prénom est obligatoire</div>
             </div>
           </div>
           <div class="form-group">
-            <input type="text" placeholder="Last Name" formControlName="lastName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }" />
+            <input type="text" placeholder="Nom" formControlName="lastName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }" />
             <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
-              <div *ngIf="f.lastName.errors.required">Last Name is required</div>
+              <div *ngIf="f.lastName.errors.required">Le nom est obligatoire</div>
             </div>
           </div>
           <div class="form-group">
             <input type="text" placeholder="Email" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
             <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
-              <div *ngIf="f.email.errors.required">Email is required</div>
+              <div *ngIf="f.email.errors.required">L'email est obligatoire</div>
             </div>
           </div>
           <div class="form-group">
-            <input type="password" placeholder="Password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+            <input type="password" placeholder="Mot de passe" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
             <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
-              <div *ngIf="f.password.errors.required">Password is required</div>
-              <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
+              <div *ngIf="f.password.errors.required">Le mot de passe est obligatoire</div>
+              <div *ngIf="f.password.errors.minlength">Le mot de passe doit contenir au moins 6 caractères</div>
             </div>
           </div>
           <div class="form-group">
             <button [disabled]="loading" class="btn btn-primary">
               <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
-              Register
+              S'inscrire
             </button>
-            <button type="button" class="btn btn-outline-primary" routerLink="/">Cancel</button>
+            <button type="button" class="btn btn-outline-primary" routerLink="/">Annuler</button>
 
           </div>
         </form>
-        <p class="mb-0 mt-2 text-muted">Already have an account? <a [routerLink]="['/login']"> Log in</a></p>
+        <p class="mb-0 mt-2 text-muted">Vous avez déja un compte? <a [routerLink]="['/login']"> Se connecter</a></p>
       </div>
     </div>
   </div>
