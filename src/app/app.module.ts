@@ -39,6 +39,9 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material/core';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { PharmacieComponent } from './components/pharmacie/pharmacie.component';
+import { PharmacieSearchComponent } from './components/pharmacie/pharmacie-search/pharmacie-search.component';
+
 
 @NgModule({
   declarations: [
@@ -57,6 +60,8 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
     NavLeftComponent,
     NavSearchComponent,
     NavRightComponent,
+    PharmacieComponent,
+    PharmacieSearchComponent,
   ],
   imports: [
     BrowserModule,
