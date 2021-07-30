@@ -33,7 +33,7 @@ export class ProfileComponent implements OnInit {
       address: ['', [Validators.required]],
       city: ['', [Validators.required]],
       country: ['', [Validators.required]],
-      postal_code: ['', [Validators.required]],
+      postalCode: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(3)]],
     });
@@ -65,7 +65,7 @@ export class ProfileComponent implements OnInit {
       address: this.f.address.value,
       city: this.f.city.value,
       country: this.f.country.value,
-      postal_code: this.f.postal_code.value
+      postalCode: this.f.postalCode.value
     }).pipe(first())
       .subscribe(
         (data) => {

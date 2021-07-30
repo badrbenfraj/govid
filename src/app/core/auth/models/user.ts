@@ -7,7 +7,7 @@ export class User {
     firstName: string;
     lastName: string;
     address?: string;
-    postal_code?: string;
+    postalCode?: string;
     country?: string;
     city?: string;
     roles?: Role[];

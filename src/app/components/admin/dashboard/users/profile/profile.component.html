@@ -135,11 +135,11 @@
                   <div class="col-lg-4">
                     <div class="form-group">
                       <label class="form-control-label" for="input-country">Postal code</label>
-                      <input type="number" id="input-postal-code" placeholder="Postal code" formControlName="postal_code"
+                      <input type="number" id="input-postal-code" placeholder="Postal code" formControlName="postalCode"
                              class="form-control form-control-alternative"
-                             [ngClass]="{ 'is-invalid': submitted && f.postal_code.errors, 'is-valid' : submitted && !f.postal_code.errors }"/>
-                      <div *ngIf="submitted && f.postal_code.errors" class="invalid-feedback">
-                        <div *ngIf="f.postal_code.errors.required">Postal code is required</div>
+                             [ngClass]="{ 'is-invalid': submitted && f.postalCode.errors, 'is-valid' : submitted && !f.postalCode.errors }"/>
+                      <div *ngIf="submitted && f.postalCode.errors" class="invalid-feedback">
+                        <div *ngIf="f.postalCode.errors.required">Postal code is required</div>
                       </div>
                     </div>
                   </div>
