@@ -89,7 +89,7 @@ public function __construct(PharmacieRepository $pharmacieRepository, EntityMana
    * @param Request $request
    * @return \FOS\RestBundle\View\View
    */
-  public function updatePharmacie(Request $request)
+  public function updatePharmacie(Request $request,SerializerInterface $serializer)
   {
     $id = $request->get('id');
 
@@ -97,8 +97,9 @@ public function __construct(PharmacieRepository $pharmacieRepository, EntityMana
     $name = $data['name'];
     $description = $data['description'];
     $location = $data['location'];
-    $gouvernement = $data['phoneNumber'];
+    $gouvernement = $data['gouvernement'];
     $testCovid = $data['testCovid'];
+    $horaire = $data['horaire'];
     
     $pharmacie = $this->pharmacieRepository->findOneBy([
       'id' => $id,
@@ -107,14 +108,13 @@ public function __construct(PharmacieRepository $pharmacieRepository, EntityMana
     $pharmacie->setName($name);
     $pharmacie->setDescription($email);
     $pharmacie->setGouvernement($adresse);
-    $pharmacie->setTestCovid($phoneNumber);
+    $pharmacie->setTestCovid($testCovid);
+    $pharmacie->setHoraire($horaire):
     
     $this->entityManager->persist($pharmacie);
     $this->entityManager->flush();
 
-    return $this->view([
-      'message' => 'Pharmacie Updated Successfully',
-      'code' => Response::HTTP_OK
-    ], Response::HTTP_OK)->setContext((new Context())->setGroups(['public']));
+    $jsonContent = $serializer->serialize($pharmacie,"json");
+    return new Response($jsonContent);
   }
 }

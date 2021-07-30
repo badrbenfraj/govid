@@ -37,7 +37,10 @@ class Pharmacie
      * @ORM\Column(type="string", length=255)
      */
     private $location;
-
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $horaire;
     /**
      * @ORM\Column(type="string", length=50)
      */
@@ -107,4 +110,16 @@ class Pharmacie
 
         return $this;
     }
+    public function getHoraire(): ?string
+    {
+        return $this->gouvernement;
+    }
+
+    public function setHoraire(string $horaire): self
+    {
+        $this->horaire = $horaire;
+
+        return $this;
+    }
+
 }
