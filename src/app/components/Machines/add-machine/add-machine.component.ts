@@ -40,8 +40,8 @@ export class AddMachineComponent implements OnInit {
       this.machineInput.booked=false;
       this.machineInput.owner_id=this.authService.getCurrentUser.id;
       this.machineService.createMachine(this.machineInput).subscribe(data=>{
-        this.machineService.sendConfirmation().subscribe(res=>{
-        })
+        // this.machineService.sendConfirmation().subscribe(res=>{
+        // })
         this.router.navigate(["/dashboard/machines"]);
 
         

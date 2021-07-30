@@ -6,6 +6,19 @@
   background-size: cover;
 }
 
+.btn-primary:hover,
+.btn-primary:focus {
+  background-color: #0386c3;
+  border-color: #037eb6;
+  box-shadow: none;
+  outline: none;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #04a9f5;
+    border-color: #04a9f5;
+}
 
 section {
   padding: 60px 0;
@@ -13,6 +26,7 @@ section {
 
 section .section-title {
   text-align: center;
+  color: #04a9f5;
 
   margin-bottom: 50px;
   text-transform: uppercase;
@@ -34,9 +48,13 @@ section .section-title {
 background-color: #fff;
 width: 750px;
 border-radius: 2%;
+border: solid #04a9f5;
+position: relative;
+z-index: 1005500;
 }
-::ng-deep .p-dialog-title{
+::ng-deep .p-dialog-titlebar{
   font-weight: bold;
+  color:#04a9f5  ;
  // height: 60px;
   margin: 15px
 

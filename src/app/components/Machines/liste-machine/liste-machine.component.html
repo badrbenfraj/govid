@@ -34,6 +34,7 @@
                        pattern="[0-9]{8}" >
             </div>
             <div class="form-group col-md-6">
+              <button *ngIf="adminRoleOn==true" (click)="showStat()"  class="btn btn-primary"  style="margin-left: 16px; margin-top: 27px; float: left; width: 250px;"><i class="fas fa-chart-pie"></i>Afficher les statistiques</button>
                 <!-- <button routerLink="" class="btn btn-primary" routerLink="/addMachine"
                 style="margin-left: 16px; margin-top: 27px; float: right; width: 250px;"> <i class="fas fa-user-plus"></i>Ajouter Machine
         </button> -->
@@ -66,11 +67,12 @@
                             <span>Fréquence: {{machine.frequency}}</span><br>
                             <span>Saturation: {{machine.saturation}}</span><br>
                             <span>Date d'achat: {{machine.purchaseDate | date: 'dd/MM/yyyy'}}  </span><br>
+                            <span>Adresse: {{currentUser.address}} {{currentUser.city}} {{currentUser.country}} </span><br>
                             <span>Poids: {{machine.weight}}</span><br>
                         </p>
                           <button *ngIf="machine.ownerId != currentUserId" [disabled]="machine.booked" (click)="showModalBook(machine.id)" class="btn btn-primary"><i class="fas fa-calendar-alt"></i>Réserver</button>
                           <button *ngIf="machine.ownerId == currentUserId"  class="btn btn-primary" routerLink="/dashboard/machines/add"  [queryParams]="{editView: true, data: machine | json }"><i class="fas fa-edit"></i>Modifier details</button>
-                          <button *ngIf="machine.ownerId == currentUserId"  class="btn btn-primary" style="width: 15px;" (click)="removeMachine(machine.id)"><i class="fas fa-trash-alt"></i></button>
+                          <button *ngIf="machine.ownerId == currentUserId" [disabled]="machine.booked"  class="btn btn-primary" style="width: 15px;" (click)="removeMachine(machine.id)"><i class="fas fa-trash-alt"></i></button>
 
                           <button   class="btn btn-primary" routerLink= "/dashboard/machines/history" [queryParams]="{idMachine: machine.id | json }"><i class="fas fa-history"></i>Voir historique</button>
                         </div>
@@ -102,5 +104,13 @@
                 <a  (click)="bookMachine()" class="btn btn-primary">Confirmer</a>
 
           </form>
-          <span *ngIf="reservationOn"> Oops! désolé vous ne pouvez pas réserver plus qu'une machine à la fois :( </span>
+          <span *ngIf="reservationOn && !successBooking"> Oops! désolé vous ne pouvez pas réserver plus qu'une machine à la fois :( </span>
+          <span *ngIf="reservationOn && successBooking"> Félicitations! vous allez recever un email contenat les coordonnées de contact du proprietaire</span>
+
     </p-dialog>
+
+    <p-dialog  [(visible)]="showStatDialog"  modal="true" baseZIndex="1050000" autoZIndex="true">
+        <app-pie-chart-machine></app-pie-chart-machine>
+              <a  style="float: right;" (click)="closeStat()" class="btn btn-primary">close</a>
+
+  </p-dialog>

@@ -9,6 +9,8 @@ import {SharedModule} from '@shared/shared.module';
 import {DialogModule} from 'primeng/dialog';
 import { PieChartMachineComponent } from './pie-chart-machine/pie-chart-machine.component';
 import {ChartModule} from 'primeng/chart';
+import {CardModule} from 'primeng/card';
+
 
 
 
@@ -19,7 +21,8 @@ import {ChartModule} from 'primeng/chart';
     FormsModule,
     SharedModule,
     DialogModule,
-    ChartModule
+    ChartModule,
+    CardModule
 
   ],
   declarations: [ListeMachineComponent, AddMachineComponent, MachineHistoryComponent, PieChartMachineComponent]

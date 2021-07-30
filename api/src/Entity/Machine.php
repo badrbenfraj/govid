@@ -63,7 +63,7 @@ class Machine
     private $tenant;
 
     /**
-     * @ORM\OneToOne(targetEntity=Reservation::class, cascade={"remove"})
+     * @ORM\OneToOne(targetEntity=Reservation::class, cascade={"remove", "persist"})
      * @ORM\JoinColumn(nullable=true)
      */
     private $reservation;
