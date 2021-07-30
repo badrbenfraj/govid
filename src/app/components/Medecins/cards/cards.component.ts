@@ -17,6 +17,7 @@ export class CardsComponent implements OnInit {
   medecinToUpdate: MedecinInput;
   likes: 0;
   disLike:0
+  isEnabled: boolean = true;
   loggedUser;
 
   constructor(private medecinService: MedecinService, private modalService: NgbModal, private router: Router, private authService: AuthenticationService) {
@@ -63,11 +64,20 @@ export class CardsComponent implements OnInit {
   public LikesCounter(medecin)
   {
     medecin.likes++;
+    let body = {
+      likes: medecin.likes,
+    }
+    this.medecinService.updateLikes(medecin.id, body).subscribe();
   }
 
   public DisLikesCounter(medecin)
   {
     medecin.disLike++;
+    let body = {
+      disLike: medecin.disLike,
+    }
+    this.medecinService.updateDislike(medecin.id, body).subscribe();
+    
   }
 
 }

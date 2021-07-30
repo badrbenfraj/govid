@@ -49,4 +49,17 @@ export class MedecinService {
       `/api/medecin/update/${identifier}`, body
       );
   }
+
+  updateLikes(identifier: number, body: any): Observable<any> {
+    const token = localStorage.getItem('user');
+    return this._http.post<any>(
+      `/api/medecin/updateLikes/${identifier}`, body
+      );
+  }
+  updateDislike(identifier: number, body: any): Observable<any> {
+    const token = localStorage.getItem('user');
+    return this._http.post<any>(
+      `/api/medecin/updateDislike/${identifier}`, body
+      );
+  }
 }
