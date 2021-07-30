@@ -75,7 +75,7 @@ export class MachineService{
 
     sendEmail(body?:any){
       return this._http.post<any>(
-        `/api/email/`,body
+        `/api/email`,body
       )
     }
     sendConfirmation(){

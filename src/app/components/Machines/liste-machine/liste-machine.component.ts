@@ -1,3 +1,4 @@
+import { first } from 'rxjs/operators';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MachineService } from 'src/app/core/services/machine.service';
 import { MatDatepickerModule } from '@angular/material/datepicker';
@@ -154,37 +155,33 @@ export class ListeMachineComponent implements OnInit {
       $event.pageIndex * $event.pageSize + $event.pageSize);
   }
   showModalBook(id) {
+    this.successBooking= false;
     this.showBookingDialog = true;
      this.idbookedMachine = id;
   }
   bookMachine() {
     this.successBooking= false;
-    this.showBookingDialog = true;
     this.machineService.bookMachine(this.currentUserId, this.idbookedMachine, this.dateTo).subscribe(data => {
-      this.showBookingDialog = false;
+     // this.showBookingDialog = false;
       this.reservationOn = true;
       this.successBooking= true;
       console.log(this.reservationOn);
       console.log(this.successBooking);
       this.getMachines();
-  
       let emailBody = {
         message: "Vous avez reserver une machine d'oxygéne sur Govid.tn. vous pouvez prendre contact avec le proprietaire sur son adresse email : " + this.authService.getCurrentUser.email + ". On vous souhaite prompt rétablissement."
             }
       this.machineService.sendEmail(emailBody).subscribe(res=>{
-        
       })
-      
 
     }
     ,err => {
       this.reservationOn = true;
       this.getMachines();
-  
       // this.showBookingDialog = true;
+    }
 
-    })
-   
+    )
   }
 
   showMyMachines(){
