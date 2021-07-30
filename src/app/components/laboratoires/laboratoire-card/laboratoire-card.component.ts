@@ -25,19 +25,20 @@ constructor(private authService: AuthenticationService,private router:Router,pri
     }*/
   }
   previewLabo(){
+    
     localStorage.setItem('laboratoireUpdateMode', "false");
-    this.router.navigate(['/laboratoireDashboard'],{queryParams:{
+    this.router.navigate(['/dashboard/laboratoire/laboratoireDashboard'],{queryParams:{
       id:this.laboratoire.id
     }})
   }
   openLocation(){
-    this.router.navigate(['/laboratoireMap'],{queryParams:{
+    this.router.navigate(['/dashboard/laboratoire/laboratoireMap'],{queryParams:{
       idLocation:this.laboratoire.id
     }})
   }
   updateLabo(){
     localStorage.setItem('laboratoireUpdateMode', "true");
-    this.router.navigate(['/laboratoireDashboard'],{queryParams:{
+    this.router.navigate(['/dashboard/laboratoire/laboratoireDashboard'],{queryParams:{
       id:this.laboratoire.id
     }})
   }

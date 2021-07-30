@@ -9,6 +9,8 @@ import {Role} from './core/auth/models';
 import {AdminComponent} from './components/admin/admin.component';
 import {LaboratoireHomeComponent} from './components/laboratoires/laboratoire-home/laboratoire-home.component';
 import {LaboratoireMapComponent} from './components/laboratoires/laboratoire-map/laboratoire-map.component';
+import { PharmacieComponent } from './components/pharmacie/pharmacie.component';
+
 
 const routes: Routes = [
   {
@@ -29,14 +31,6 @@ const routes: Routes = [
   {
     path: 'reset',
     component: ForgotPasswordComponent,
-  },
-  {
-    path: 'laboratoireHome',
-    component: LaboratoireHomeComponent,
-  },
-  {
-    path: 'laboratoireDashboard',
-    component: LaboratoireDashboardComponent,
   },
   {
     path: 'dashboard',
