@@ -6,6 +6,10 @@ export class User {
     password: string;
     firstName: string;
     lastName: string;
+    address?: string;
+    postal_code?: string;
+    country?: string;
+    city?: string;
     roles?: Role[];
     token?: string;
 }

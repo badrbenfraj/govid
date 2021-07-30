@@ -1,12 +1,12 @@
 <div class="row">
     <div class="col-xl-12">
-      <app-card cardTitle="Ajouter une machine" [button]="cancelButton" >
+      <app-card cardTitle="Ajouter une machine" [button]="cancelButton" [options]="false"  blockClass="table-border-style">
   <form #machineForm="ngForm" (ngSubmit)="save()" >
     <div style="position: absolute; top:200px; left:20%; width:60%;">
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="inputDate">Date d'achat</label>
-              <input #date="ngModel" [(ngModel)]="creationDate" [ngClass]="{ 'is-invalid': date.invalid && date.touched }"  name="date"  type="date" class="form-control" id="inputDate" required placeholder="Date d'achat" placeholder="Date d'achat">
+              <input #date="ngModel" [(ngModel)]="creationDate" [ngClass]="{ 'is-invalid': date.invalid && date.touched }"  name="date"  type="date" max="2021-07-31" class="form-control" id="inputDate" required placeholder="Date d'achat" placeholder="Date d'achat">
                 <div  class="invalid-feedback" *ngIf="date.invalid && date.touched">
                     <div *ngIf="date.errors.required"> Ce champ est obligatoire !</div>
                 </div>

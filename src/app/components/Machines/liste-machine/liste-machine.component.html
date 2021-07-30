@@ -69,10 +69,10 @@
                             <span>Poids: {{machine.weight}}</span><br>
                         </p>
                           <button *ngIf="machine.ownerId != currentUserId" [disabled]="machine.booked" (click)="showModalBook(machine.id)" class="btn btn-primary"><i class="fas fa-calendar-alt"></i>Réserver</button>
-                          <button *ngIf="machine.ownerId == currentUserId"  class="btn btn-primary" routerLink="/addMachine"  [queryParams]="{editView: true, data: machine | json }"><i class="fas fa-edit"></i>Modifier details</button>
+                          <button *ngIf="machine.ownerId == currentUserId"  class="btn btn-primary" routerLink="/dashboard/machines/add"  [queryParams]="{editView: true, data: machine | json }"><i class="fas fa-edit"></i>Modifier details</button>
                           <button *ngIf="machine.ownerId == currentUserId"  class="btn btn-primary" style="width: 15px;" (click)="removeMachine(machine.id)"><i class="fas fa-trash-alt"></i></button>
 
-                          <button   class="btn btn-primary" routerLink= "/reservationHistory" [queryParams]="{idMachine: machine.id | json }"><i class="fas fa-history"></i>Voir historique</button>
+                          <button   class="btn btn-primary" routerLink= "/dashboard/machines/history" [queryParams]="{idMachine: machine.id | json }"><i class="fas fa-history"></i>Voir historique</button>
                         </div>
                       </div>
                 </div>
@@ -96,7 +96,7 @@
             </div> -->
             <div class="form-group">
                 <label for="dateTo">jusqu'aù</label>
-                    <input [(ngModel)]="dateTo" type="date" id="inputdateTo" class="form-control" placeholder="yyyy-mm-dd" name="dateTo" >
+                    <input [(ngModel)]="dateTo" type="date" min="2021-07-31" id="inputdateTo" class="form-control" placeholder="yyyy-mm-dd" name="dateTo" >
                 </div>
 
                 <a  (click)="bookMachine()" class="btn btn-primary">Confirmer</a>

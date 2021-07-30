@@ -45,6 +45,7 @@ export class NavRightComponent implements OnInit, DoCheck {
     private route: Router
   ) {
     if (!this.authenticationService.getCurrentUser) {
+      this.authenticationService.currentUser().subscribe();
       window.location.reload();
     }
     this.loggedUser = this.authenticationService.getCurrentUser;

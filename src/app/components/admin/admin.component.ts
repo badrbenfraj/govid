@@ -32,10 +32,10 @@ export class AdminComponent implements OnInit {
     this.navCollapsed = (this.windowWidth >= 992) ? this.dattaConfig['collapse-menu'] : false;
     this.navCollapsedMob = false;
     if (!this.authenticationService.getCurrentUser) {
-      this.authenticationService.currentUser();
+      this.authenticationService.currentUser().subscribe();
       window.location.reload();
     }
-    this.user = this.authenticationService.getCurrentUser;
+    this.user = this.authenticationService.userValue;
   }
 
   ngOnInit() {

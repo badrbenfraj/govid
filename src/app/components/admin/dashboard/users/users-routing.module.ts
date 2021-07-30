@@ -31,7 +31,7 @@ const routes: Routes = [
     path: '',
     children: [
       {
-        path: 'laboratoire',
+        path: '',
         loadChildren: () => import('./laboratory-agent/laboratory-agent.module').then(m => m.LaboratoryAgentModule)
       }
     ]
