@@ -15,7 +15,10 @@ export class AuthGuard implements CanActivate {
           const user = this.authenticationService.getCurrentUser;
           const userRoles = this.authenticationService.getCurrentUser;
           const roles = route.data.roles ? route.data.roles : [];
-          const currentUserRole = this.authenticationService.findCommonRoles(roles, userRoles.roles);
+          let currentUserRole = true;
+          if(userRoles) {
+            currentUserRole = this.authenticationService.findCommonRoles(roles, userRoles.roles);
+          }
         if (user) {
             // check if route is restricted by role
             if (!currentUserRole) {

@@ -68,7 +68,7 @@ public function __construct(PharmacieRepository $pharmacieRepository, EntityMana
            $data=$request->getContent();
            $pharmacie = $serializer->deserialize($data, Pharmacie::class, 'json');
            $em=$this->getDoctrine()->getManager();
-           $em->persist($Pharmacie);
+           $em->persist($pharmacie);
            $em->flush();
            $jsonContent = $serializer->serialize($pharmacie,"json");
            return new Response($jsonContent);
@@ -100,17 +100,18 @@ public function __construct(PharmacieRepository $pharmacieRepository, EntityMana
     $gouvernement = $data['gouvernement'];
     $testCovid = $data['testCovid'];
     $horaire = $data['horaire'];
-    
+
     $pharmacie = $this->pharmacieRepository->findOneBy([
       'id' => $id,
     ]);
 
     $pharmacie->setName($name);
-    $pharmacie->setDescription($email);
-    $pharmacie->setGouvernement($adresse);
+    $pharmacie->setDescription($description);
+    $pharmacie->setGouvernement($gouvernement);
     $pharmacie->setTestCovid($testCovid);
-    $pharmacie->setHoraire($horaire):
-    
+    $pharmacie->setLocation($location);
+    $pharmacie->setHoraire($horaire);
+
     $this->entityManager->persist($pharmacie);
     $this->entityManager->flush();
 

@@ -104,6 +104,15 @@ const NavigationItems = [
     classes: 'nav-item',
     roles: ['ROLE_ADMIN', 'ROLE_USER'],
   },
+  {
+    id: 'Pharmacie',
+    title: 'Pharmacie',
+    type: 'item',
+    url: '/dashboard/pharmacie',
+    icon: 'feather icon-activity',
+    classes: 'nav-item',
+    roles: ['ROLE_ADMIN', 'ROLE_USER'],
+  },
 ];
 
 @Injectable()

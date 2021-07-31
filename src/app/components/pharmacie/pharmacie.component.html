@@ -1,48 +1,36 @@
-
-phar comp
-
-  <!--  <form #pharmacieForm="ngForm" (ngSubmit)="search(pharmacieForm.Horaire.value , pharmacieForm.gouv.value)">
-        <div class="container">
-        <div class="d-flex justify-content-center">
-          <div class="form-group col-md-2">
-            <label for="inputState">Horaire de travail</label>
-            <input #horaire="ngModel" required id="inputState" class="form-control">
-                    <option>Jour<option>
-                    <option>Nuit<option>
-            </input>
-          </div>
-          <div class="form-group col-md-2">
-            <label for="inputState">Gouvernement</label>
-            <input id="inputState" #gouv="ngModel" required class="form-control">
-                    <option>Béja<option>
-                    <option>Ben Arous<option>
-                    <option>Bizerte<option>
-                    <option>Gabès<option>
-                    <option>Gafsa<option>
-                    <option>Jendouba<option>
-                    <option>Kairouan<option>
-                    <option>Kasserine<option>
-                    <option>Kébili<option>
-                    <option>Le Kef<option>
-                    <option>Mahdia<option>
-                    <option>La Manouba<option>
-                    <option>Médenine<option>
-                    <option>Monastir<option>
-                    <option>Nabeul<option>
-                    <option>Sfax<option>
-                    <option>Sidi Bouzid<option>
-                    <option>Siliana<option>
-                    <option>Sousse<option>
-                    <option>Tataouine<option>
-                    <option>Tozeur<option>
-                    <option>Tunis<option>
-                    <option>Zaghouan<option>
-            </input>
-          </div>
+<div class="row">
+  <div class="col-xl-12">
+    <app-card cardTitle="Pharmacie" [button]="buttonAdd" [options]="false" blockClass="table-border-style">
+      <div class="table-responsive">
+        <table class="table" *ngIf="pharmacies.length > 0">
+          <thead>
+          <tr>
+            <th>Id</th>
+            <th>Prénom</th>
+            <th>Nom</th>
+            <th>Email</th>
+            <th>Actions</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let pharmacie of pharmacies">
+            <th scope="row">{{pharmacie.id}}</th>
+            <td>{{pharmacie.description}}</td>
+            <td>{{pharmacie.gouvernement}}</td>
+            <td>{{pharmacie.horaire}}</td>
+            <td>
+              <span class="action edit-action" routerLink="/dashboard/users/{{pharmacie.id}}/edit/laboratoire"><i
+                class="fas fa-edit"></i></span>
+              <span class="action delete-action" (click)="delete(pharmacie.id)"><i class="far fa-trash-alt"></i></span>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+        <div *ngIf="pharmacies.length === 0" class="text-center">
+          <i class="fas fa-exclamation-circle"></i>
+          Aucun pharmacie n'est trouvé.
         </div>
-        <div class ="d-flex justify-content-center">
-        <button type="submit" class="btn btn-primary">Recherche</button>
-        </div>
-        </div>
-      </form>
-      -->
+      </div>
+    </app-card>
+  </div>
+</div>
