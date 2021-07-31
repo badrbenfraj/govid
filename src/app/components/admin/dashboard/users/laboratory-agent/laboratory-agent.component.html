@@ -19,7 +19,7 @@
             <td>{{agent.lastName}}</td>
             <td>{{agent.email}}</td>
             <td>
-              <span class="action edit-action" routerLink="/dashboard/users/{{agent.id}}/edit/laboratoire"><i
+              <span class="action edit-action" routerLink="/dashboard/users/{{agent.id}}/edit/{{agentName}}"><i
                 class="fas fa-edit"></i></span>
               <span class="action delete-action" (click)="delete(agent.id)"><i class="far fa-trash-alt"></i></span>
             </td>

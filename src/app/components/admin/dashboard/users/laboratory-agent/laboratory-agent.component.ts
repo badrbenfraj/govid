@@ -14,6 +14,7 @@ export class LaboratoryAgentComponent implements OnInit {
   buttonAdd;
   agentUser: User[];
   agent: string;
+  agentName: string;
 
   constructor(private route: ActivatedRoute,
               private router: Router,
@@ -23,6 +24,7 @@ export class LaboratoryAgentComponent implements OnInit {
   ngOnInit(): void {
     this.route.params.subscribe(params => {
       this.agent = params.name;
+      this.agentName = params.name;
       this.getAgents(params.name);
       this.buttonAdd = {
         label: 'Ajouter',
