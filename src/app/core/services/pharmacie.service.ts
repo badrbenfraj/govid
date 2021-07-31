@@ -20,4 +20,10 @@ export class PharmacieService {
   addPharmacie(pharmacie: Pharmacie): Observable<Pharmacie> {
     return this.http.post<Pharmacie>('/api/addPharmacie', pharmacie);
   }
+  editPharmacie(pharmacie: Pharmacie,identifier: number): Observable<Pharmacie> {
+    return this.http.post<Pharmacie>('/api/pharmacie/update/' + identifier, pharmacie);
+  }
+  getById(identifier: number): Observable<Pharmacie> {
+    return this.http.get<Pharmacie>('api/pharmacie/'+ identifier);
+  }
 }

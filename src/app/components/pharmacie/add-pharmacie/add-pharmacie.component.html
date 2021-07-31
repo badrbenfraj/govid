@@ -5,7 +5,7 @@
       <form [formGroup]="createForm" (ngSubmit)="onSubmit()">
         <div class="row">
           <div class="form-group col-md-6">
-            <label htmlFor="firstName">Nom de pharmacie</label>
+            <label htmlFor="name">Nom de pharmacie</label>
             <input type="text" placeholder="Phamacie Oussema" formControlName="name" name="name" class="form-control"
                    [ngClass]="{ 'is-invalid': submitted && f.name.errors }"/>
             <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
@@ -21,44 +21,43 @@
             </div>
           </div>
         </div>
-        <!-- <div class="row">
+        <div class="row">
           <div class="form-group col-md-6">
-            <label htmlFor="firstName">Email</label>
-            <input type="text" placeholder="example@mail.com" formControlName="email" class="form-control"
-                   [ngClass]="{ 'is-invalid': submitted && f.email.errors }"/>
-            <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
-              <div *ngIf="f.email.errors.required">L'email est obligatoire</div>
+            <label htmlFor="gouvernement">Gouvernement</label>
+            <input type="text" placeholder="Sfax" formControlName="gouvernement" class="form-control"
+                   [ngClass]="{ 'is-invalid': submitted && f.gouvernement.errors }"/>
+            <div *ngIf="submitted && f.gouvernement.errors" class="invalid-feedback">
+              <div *ngIf="f.gouvernement.errors.required">Le gouvernement est obligatoire</div>
             </div>
           </div>
           <div class="form-group col-md-6">
-            <label htmlFor="firstName">Mot de passe</label>
-            <input type="password" placeholder="*******" formControlName="password" class="form-control"
-                   [ngClass]="{ 'is-invalid': submitted && f.password.errors }"/>
-            <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
-              <div *ngIf="f.password.errors.required">Le mot de passe est obligatoire</div>
-              <div *ngIf="f.password.errors.minlength">Le mot de passe doit contenir au moins 6 caractères</div>
+            <label htmlFor="location">Localisation</label>
+            <input type="location" placeholder="Route El Ain" formControlName="location" class="form-control"
+                   [ngClass]="{ 'is-invalid': submitted && f.location.errors }"/>
+            <div *ngIf="submitted && f.location.errors" class="invalid-feedback">
+              <div *ngIf="f.location.errors.required">La localisation est obligatoire</div>
+              <div *ngIf="f.location.errors.minlength">La localisation doit contenir au moins 6 caractères</div>
             </div>
           </div>
         </div>
         <div class="row">
           <div class="form-group col-md-6">
-            <label htmlFor="firstName">Email</label>
-            <input type="text" placeholder="example@mail.com" formControlName="email" class="form-control"
-                   [ngClass]="{ 'is-invalid': submitted && f.email.errors }"/>
-            <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
-              <div *ngIf="f.email.errors.required">L'email est obligatoire</div>
+            <label htmlFor="testCovid">Test disponible</label>
+            <input type="text" placeholder="Rapide/PCR" formControlName="testCovid" class="form-control"
+                   [ngClass]="{ 'is-invalid': submitted && f.testCovid.errors }"/>
+            <div *ngIf="submitted && f.testCovid.errors" class="invalid-feedback">
+              <div *ngIf="f.testCovid.errors.required">Le test est obligatoire</div>
             </div>
           </div>
           <div class="form-group col-md-6">
-            <label htmlFor="firstName">Mot de passe</label>
-            <input type="password" placeholder="*******" formControlName="password" class="form-control"
-                   [ngClass]="{ 'is-invalid': submitted && f.password.errors }"/>
-            <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
-              <div *ngIf="f.password.errors.required">Le mot de passe est obligatoire</div>
-              <div *ngIf="f.password.errors.minlength">Le mot de passe doit contenir au moins 6 caractères</div>
+            <label htmlFor="horaire">Horaire de travail</label>
+            <input type="text" placeholder="Jour/Nuit" formControlName="horaire" class="form-control"
+                   [ngClass]="{ 'is-invalid': submitted && f.horaire.errors }"/>
+            <div *ngIf="submitted && f.horaire.errors" class="invalid-feedback">
+              <div *ngIf="f.horaire.errors.required">Le Horaire est obligatoire</div>
             </div>
           </div>
-        </div> -->
+        </div>
         <div class="form-group">
           <button [disabled]="loading" class="btn btn-primary">
             <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>

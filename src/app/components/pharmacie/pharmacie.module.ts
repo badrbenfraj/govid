@@ -6,10 +6,11 @@ import {PharmacieSearchComponent} from '@components/pharmacie/pharmacie-search/p
 import {PharmacieComponent} from '@components/pharmacie/pharmacie.component';
 import {SharedModule} from '@shared/shared.module';
 import { AddPharmacieComponent } from './add-pharmacie/add-pharmacie.component';
+import { EditPharmacieComponent } from './edit-pharmacie/edit-pharmacie.component';
 
 
 @NgModule({
-  declarations: [PharmacieSearchComponent, PharmacieComponent, AddPharmacieComponent],
+  declarations: [PharmacieSearchComponent, PharmacieComponent, AddPharmacieComponent, EditPharmacieComponent],
   imports: [
     CommonModule,
     PharmacieRoutingModule,
