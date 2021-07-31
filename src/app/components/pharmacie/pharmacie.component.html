@@ -8,17 +8,19 @@
             <th>Id</th>
             <th>Nom du pharmacie</th>
             <th>Test disponible</th>
-            <th>Gouvernement</th>
             <th>Localisation</th>
+            <th>Gouvernement</th>
             <th>Horaire</th>
+            <th>Actions</th>
           </tr>
           </thead>
           <tbody>
           <tr *ngFor="let pharmacie of pharmacies">
             <th scope="row">{{pharmacie.id}}</th>
+            <td>{{pharmacie.name}}</td>
             <td>{{pharmacie.testCovid}}</td>
             <td>{{pharmacie.gouvernement}}</td>
-            <td>{{pharmacie.localisation}}</td>
+            <td>{{pharmacie.location}}</td>
             <td>{{pharmacie.horaire}}</td>
             <td>
               <span class="action edit-action" routerLink="/dashboard/pharmacie/{{pharmacie.id}}/edit"><i

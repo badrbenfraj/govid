@@ -21,11 +21,16 @@ export class PharmacieComponent implements OnInit {
       icon: 'fas fa-user-plus',
       roles: ['ROLE_USER']
     };
+    this.getPharmacies();
+  }
+
+  getPharmacies(): void {
     this.pharmacieService.getPharmacies().subscribe(data => this.pharmacies = data);
   }
 
   delete(id: number): void {
-    this.pharmacieService.delete(id);
+    this.pharmacieService.delete(id).subscribe();
+    this.getPharmacies();
   }
 
 }
