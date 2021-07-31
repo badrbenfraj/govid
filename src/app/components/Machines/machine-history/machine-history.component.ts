@@ -25,7 +25,8 @@ export class MachineHistoryComponent implements OnInit {
     this.cancelButton = {
       path: '/dashboard/machines',
       label: 'Annuler',
-      icon: 'fas fa-undo'
+      icon: 'fas fa-undo',
+      roles: ['ROLE_ADMIN', 'ROLE_USER'],
     };
     this.currentUserRole = this.authService.getCurrentUser.roles;
     if(this.currentUserRole.includes("ROLE_ADMIN")){

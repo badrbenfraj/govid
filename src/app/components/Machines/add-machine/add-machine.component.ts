@@ -23,7 +23,8 @@ export class AddMachineComponent implements OnInit {
     this.cancelButton = {
       path: '/dashboard/machines',
       label: 'Annuler',
-      icon: 'fas fa-undo'
+      icon: 'fas fa-undo',
+      roles: ['ROLE_ADMIN', 'ROLE_USER'],
     };
 
     this._activatedRoute.queryParams.subscribe(params => {
