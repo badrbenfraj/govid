@@ -3,6 +3,7 @@ import { Component, ElementRef, Input, NgZone, OnInit, ViewChild } from '@angula
 import { MapsAPILoader, MouseEvent } from '@agm/core';
 import { ActivatedRoute } from '@angular/router';
 import { laboratoire } from '@app/core/models/laboratoire';
+import {Role} from '@auth/models';
 @Component({
   selector: 'app-laboratoire-map',
   templateUrl: './laboratoire-map.component.html',
@@ -22,7 +23,7 @@ export class LaboratoireMapComponent implements OnInit {
   @ViewChild('search')
   public searchElementRef: ElementRef;
   currentId: any;
-
+  cancelButton: any;
 
   constructor(
     private mapsAPILoader: MapsAPILoader,
@@ -32,6 +33,12 @@ export class LaboratoireMapComponent implements OnInit {
 
 
   ngOnInit() {
+    this.cancelButton = {
+      label: 'Cancel',
+      path: `/dashboard/laboratoire`,
+      icon: 'fas fa-undo',
+      roles: [Role.Admin, Role.agentLabo, Role.agentMedecin, Role.agentPhamacy, Role.User]
+    }
     this.route.queryParams.subscribe(params =>{
       this.currentId=params['idLocation'];})
     //load Places Autocomplete
@@ -85,10 +92,10 @@ export class LaboratoireMapComponent implements OnInit {
           this.zoom = 12;
           this.address = results[0].formatted_address;
         } else {
-          window.alert('No results found');
+          console.log('No results found');
         }
       } else {
-        window.alert('Geocoder failed due to: ' + status);
+        console.log('Geocoder failed due to: ' + status);
       }
 
     });

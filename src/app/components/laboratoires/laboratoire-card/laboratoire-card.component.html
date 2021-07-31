@@ -32,15 +32,15 @@
 										<ul class="job-social tr-list">
 											<li><button  style="border: none;    background-color: transparent;"></button></li>
 											<li><a (click)="previewLabo()"><i class="fa fa-expand" aria-hidden="true"></i></a></li>
-											<li><button style="border: none;    background-color: transparent;" (click)="updateLabo()" disabled="!isAdminRole"><a ><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></button></li>
+											<li><button style="border: none;    background-color: transparent;" (click)="updateLabo()" *ngIf="isAdminRole"><a ><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></button></li>
 											<li><a (click)="openLocation()"><i class="fa fa-map-marker" aria-hidden="true"></i></a></li>
 
 											<li></li>
 										</ul>
-									</div>	
+									</div>
 
 								</div>
-							
+
 								<div class="job-info">
 									<div class="company-logo">
 										<img src="../../assets/imgs/laboWallpaper.jpg" alt="images" class="img-fluid">
@@ -64,9 +64,9 @@
 										<div *ngIf="laboratoire.rating==5">
 											<i class="fa fa-star"></i>  <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i>
 										</div>
-									   
-									   
-										
+
+
+
 										</div>
 									<span class="tr-title">
 										<a href="#" style="font-weight: 500;color:#284b63">{{laboratoire.name}}</a>
@@ -80,22 +80,22 @@
 									<div class="time">
 										<a href="#" style="margin-left: -9px"><span>{{laboratoire.workingTime}}</span></a>
 										<span class="pull-right">{{laboratoire.updateDate |date:'fullDate'}}</span>
-									</div>																				
+									</div>
 								</div>
 							</div>
 						</div>
-					
-						
-					
-						
-					
-					
-					
+
+
+
+
+
+
+
 					</div><!-- /.row -->
 				</div><!-- /.tab-pane -->
-				
-			
-			</div>				
-		</div><!-- /.job-tab -->			
+
+
+			</div>
+		</div><!-- /.job-tab -->
 	</div><!-- /.container -->
 </div>

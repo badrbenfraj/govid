@@ -71,7 +71,7 @@
           <div class="container" style="width: 85.5%;margin: 0 auto;">
             <h5 class="section-title h4">Liste des médecins</h5>
             <div class="row">
-              <div *ngIf="listMedecinFiltred && listMedecinFiltred.length>0 else elseBlock">
+              <div *ngIf="listMedecinFiltred && listMedecinFiltred.length>0 else elseBlock" style="display: flex">
                 <div *ngFor="let medecin of listMedecinFiltred">
                   <app-cards [medecin]="medecin"></app-cards>
                 </div>
