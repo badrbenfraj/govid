@@ -1,0 +1,85 @@
+<div class="row">
+  <div class="col-xl-12">
+
+    <app-card cardTitle="Ajout Médecin" [button]="cancelButton" [options]="false"
+              blockClass="table-border-style">
+      <form #medForm="ngForm" (ngSubmit)="save(medForm.value)">
+        <div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="inputName">Nom et Prénom </label>
+              <input type="text"  class="form-control" [ngClass]="{ 'is-invalid': fullName.invalid && fullName.touched }" name="fullName" id="inputName" placeholder="Nom et Prénom"
+                     ngModel required #fullName="ngModel">
+              <div *ngIf="fullName.invalid && fullName.touched" class="invalid-feedback" >
+                <div *ngIf="fullName.errors.required"> Ce champ est obligatoire !</div>
+              </div>
+            </div>
+
+            <div class="form-group col-md-6">
+              <label for="inputEmail4">Email</label>
+              <input type="email" class="form-control"  [ngClass]="{ 'is-invalid': email.invalid && email.touched }" name="email" id="inputEmail4" placeholder="contact@example.com"
+                     ngModel required #email="ngModel">
+              <div class="invalid-feedback" *ngIf="email.invalid && email.touched">
+                <div *ngIf="email.errors.required"> Ce champ est obligatoire !</div>
+              </div>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-12">
+              <label for="inputName">Adresse </label>
+              <input type="text" class="form-control" [ngClass]="{ 'is-invalid': address.invalid && address.touched }" name="address" id="inputAddress"
+                     placeholder="Tapez votre adresse" ngModel required #address="ngModel">
+              <div class="invalid-feedback" *ngIf="address.invalid && address.touched">
+                <div *ngIf="address.errors.required"> Ce champ est obligatoire !</div>
+              </div>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="inputAddress">Numéro de téléphone</label>
+              <input type="number" class="form-control" [ngClass]="{ 'is-invalid': phoneNumber.invalid && phoneNumber.touched }" name="phoneNumber" id="inputNumTel" placeholder="11 11 11 11"
+                     pattern="[0-9]{8}" maxlength="8" ngModel required #phoneNumber="ngModel">
+              <div class="invalid-feedback" *ngIf="phoneNumber.invalid && phoneNumber.touched">
+                <div *ngIf="phoneNumber.errors.required"> Ce champ est obligatoire !</div>
+                <div *ngIf="phoneNumber.errors.pattern"> Ce champ doit contenir 8 chiffres !</div>
+              </div>
+            </div>
+            <div class="form-group col-md-6">
+              <label for="inputState">Spécialité</label>
+              <select id="inputState" class="form-control"  style="background-position: right calc(1.375em + .1875rem) center;"  [ngClass]="{ 'is-invalid': speciality.invalid && speciality.touched }" name="speciality" ngModel required #speciality="ngModel">
+                <option>Generaliste</option>
+                <option>Pneumologue</option>
+                <option>Infectiologue</option>
+                <option>Interniste</option>
+              </select>
+              <div class="invalid-feedback" *ngIf="speciality.invalid && speciality.touched">
+                <div *ngIf="speciality.errors.required"> Ce champ est obligatoire !</div>
+              </div>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-check form-check-inline col-md-2">
+              <input class="form-check-input" type="radio" name="gender" id="inlineRadio1" value="Homme" ngModel>
+              <label class="form-check-label" for="inlineRadio1">Homme</label>
+            </div>
+            <div class="form-check form-check-inline col-md-2">
+              <input class="form-check-input" type="radio" name="gender" id="inlineRadio2" value="Femme" ngModel>
+              <label class="form-check-label" for="inlineRadio2">Femme</label>
+            </div>
+            <div class="form-check form-check-inline col-md-2">
+              <input class="form-check-input" type="radio" name="gender" id="inlineRadio3" value="NONE" ngModel>
+              <label class="form-check-label" for="inlineRadio3">NONE</label>
+            </div>
+            <div class="form-check col-md-4">
+              <input class="form-check-input" type="checkbox" name="cnamConvention" id="gridCheck" ngModel value="false">
+              <label class="form-check-label" for="gridCheck"> Conventionné avec la CNAM </label>
+            </div>
+          </div>
+          <br>
+          <button type="submit" class="btn btn-primary" style="margin-bottom: 32px; margin-top: 16px;"
+                  [disabled]="medForm.invalid"><i class="fas fa-save"></i>Enregistrer</button>
+        </div>
+      </form>
+    </app-card>
+  </div>
+</div>

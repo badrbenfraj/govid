@@ -1,0 +1,20 @@
+<ul class="navbar-nav">
+  <li>
+    <div class="dropdown drp-user" ngbDropdown placement='auto'>
+      <a href="javascript:" ngbDropdownToggle data-toggle="dropdown">
+        <i class="icon feather icon-settings"></i>
+      </a>
+      <div class="dropdown-menu dropdown-menu-right profile-notification" ngbDropdownMenu>
+        <div class="pro-head" *ngIf="loggedUser" routerLink="/dashboard/users/profile" style="cursor: pointer">
+          <img src="assets/images/user/avatar-1.jpg" class="img-radius" alt="User-Profile-Image">
+          <span>{{loggedUser.firstName }} {{loggedUser.lastName }}</span>
+        </div>
+        <ul class="pro-body">
+          <li><a href="javascript:" class="dropdown-item"><i class="feather icon-settings"></i> Paramètres</a></li>
+          <li><a [routerLink]="['/dashboard/users/profile']" routerLinkActive="router-link-active"  class="dropdown-item"><i class="feather icon-user"></i> Profile</a></li>
+          <li><a href="/login" (click)="logout()" class="dropdown-item"><i class="feather icon-log-out"></i> Déconnexion</a></li>
+        </ul>
+      </div>
+    </div>
+  </li>
+</ul>

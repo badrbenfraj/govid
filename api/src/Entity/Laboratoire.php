@@ -32,19 +32,64 @@ class Laboratoire
      */
     private $email;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $gouvernorat;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $fax;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $updateDate;
+
+    /**
+     * @ORM\Column(type="string", length=100)
+     */
+    private $adresse;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $rating;
+
+    /**
+     * @ORM\Column(type="string", length=20, nullable=true)
+     */
+    private $workingTime;
+
+    /**
+     * @ORM\Column(type="float", nullable=true)
+     */
+    private $longitude;
+
+    /**
+     * @ORM\Column(type="float", nullable=true)
+     */
+    private $latitude;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $totalReviews;
+
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getNom(): ?string
+    public function getName(): ?string
     {
-        return $this->nom;
+        return $this->name;
     }
 
-    public function setNom(string $nom): self
+    public function setName(string $name): self
     {
-        $this->nom = $nom;
+        $this->name= $name;
 
         return $this;
     }
@@ -69,6 +114,114 @@ class Laboratoire
     public function setEmail(?string $email): self
     {
         $this->email = $email;
+
+        return $this;
+    }
+
+    public function getGouvernorat(): ?string
+    {
+        return $this->gouvernorat;
+    }
+
+    public function setGouvernorat(string $gouvernorat): self
+    {
+        $this->gouvernorat = $gouvernorat;
+
+        return $this;
+    }
+
+    public function getFax(): ?string
+    {
+        return $this->fax;
+    }
+
+    public function setFax(?string $fax): self
+    {
+        $this->fax = $fax;
+
+        return $this;
+    }
+
+    public function getUpdateDate(): ?\DateTimeInterface
+    {
+        return $this->updateDate;
+    }
+
+    public function setUpdateDate(\DateTimeInterface $updateDate): self
+    {
+        $this->updateDate = $updateDate;
+
+        return $this;
+    }
+
+    public function getAdresse(): ?string
+    {
+        return $this->adresse;
+    }
+
+    public function setAdresse(string $adresse): self
+    {
+        $this->adresse = $adresse;
+
+        return $this;
+    }
+
+    public function getRating(): ?int
+    {
+        return $this->rating;
+    }
+
+    public function setRating(?int $rating): self
+    {
+        $this->rating = $rating;
+
+        return $this;
+    }
+
+    public function getWorkingTime(): ?string
+    {
+        return $this->workingTime;
+    }
+
+    public function setWorkingTime(?string $workingTime): self
+    {
+        $this->workingTime = $workingTime;
+
+        return $this;
+    }
+
+    public function getLongitude(): ?float
+    {
+        return $this->longitude;
+    }
+
+    public function setLongitude(?float $longitude): self
+    {
+        $this->longitude = $longitude;
+
+        return $this;
+    }
+
+    public function getLatitude(): ?float
+    {
+        return $this->latitude;
+    }
+
+    public function setLatitude(?float $latitude): self
+    {
+        $this->latitude = $latitude;
+
+        return $this;
+    }
+
+    public function getTotalReviews(): ?int
+    {
+        return $this->totalReviews;
+    }
+
+    public function setTotalReviews(int $totalReviews): self
+    {
+        $this->totalReviews = $totalReviews;
 
         return $this;
     }

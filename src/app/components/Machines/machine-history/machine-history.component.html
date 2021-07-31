@@ -1,0 +1,45 @@
+<div class="row">
+    <div class="col-xl-12">
+      <app-card cardTitle="Historique des réservations" [button]="cancelButton" [options]="false" blockClass="table-border-style">
+        <div class="table-responsive">
+          <table class="table" *ngIf="!noData">
+            <thead>
+            <tr>
+              <th></th>
+              <th>Machine ID</th>
+              <th>User name</th>
+              <th>User email</th>
+              <th>Date début</th>
+              <th>Date fin</th>
+              <th *ngIf="adminRoleOn==true"></th>
+              <th *ngIf="adminRoleOn==true"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let reservation of listeReservations">
+              <td><i class="fas fa-id-card-alt fa-2x"></i></td>
+              <td>{{reservation.id_machine}}</td>
+              <td>{{reservation.user}}</td>
+              <td>{{reservation.userEmail}}</td>
+              <td>{{reservation.dateFrom}}</td>
+              <td *ngIf="!editOn">{{reservation.dateTo}}</td>
+              <td *ngIf="adminRoleOn==true && editOn==true"><input #ngModel type="date"  [(ngModel)]="reservation.dateTo" min="2021-07-31"></td>
+
+              <th *ngIf="adminRoleOn==true"><button (click)="editAction()" style="cursor: pointer; border: none; background: white;"><i class="fas fa-edit"></i></button></th>
+              <th *ngIf="adminRoleOn==true"><button (click)="saveChanges(reservation.id_machine, reservation.dateTo)" style="cursor: pointer; border: none; background: white;"><i class="fas fa-save"></i></button></th>
+
+
+              <!-- <td> 
+                 <span class="action edit-action" routerLink="/dashboard/users/{{agent.id}}/edit/laboratoire"><i
+                  class="fas fa-edit"></i></span>
+                <span class="action delete-action" (click)="delete(agent.id)"><i class="far fa-trash-alt"></i></span> 
+              </td> -->
+            </tr>
+            </tbody>
+          </table>
+          <span *ngIf="noData">Cette machine n'a pas été réservée</span>
+        </div>
+      </app-card>
+    </div>
+  </div>
+  

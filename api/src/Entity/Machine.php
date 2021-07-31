@@ -47,6 +47,27 @@ class Machine
      */
     private $weight;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $booked;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $ownerId;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class)
+     */
+    private $tenant;
+
+    /**
+     * @ORM\OneToOne(targetEntity=Reservation::class, cascade={"remove", "persist"})
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $reservation;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -120,6 +141,54 @@ class Machine
     public function setWeight(?int $weight): self
     {
         $this->weight = $weight;
+
+        return $this;
+    }
+
+    public function getBooked(): ?bool
+    {
+        return $this->booked;
+    }
+
+    public function setBooked(bool $booked): self
+    {
+        $this->booked = $booked;
+
+        return $this;
+    }
+
+    public function getOwnerId(): ?int
+    {
+        return $this->ownerId;
+    }
+
+    public function setOwnerId(int $ownerId): self
+    {
+        $this->ownerId = $ownerId;
+
+        return $this;
+    }
+
+    public function getTenant(): ?User
+    {
+        return $this->tenant;
+    }
+
+    public function setTenant(?User $tenant): self
+    {
+        $this->tenant = $tenant;
+
+        return $this;
+    }
+
+    public function getReservation(): ?Reservation
+    {
+        return $this->reservation;
+    }
+
+    public function setReservation(?Reservation $reservation): self
+    {
+        $this->reservation = $reservation;
 
         return $this;
     }

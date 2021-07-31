@@ -2,16 +2,39 @@
 
 namespace App\Controller;
 
+use FOS\RestBundle\Context\Context;
+use FOS\RestBundle\Controller\AbstractFOSRestController;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use App\Entity\Medecin;
+use App\Repository\MedecinRepository;
+use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 
-class MedecinController extends AbstractController
+class MedecinController extends AbstractFOSRestController
 {
+
+   /**
+   * @var MedecinRepository
+   */
+  private $medecinRepository;
+
+   /**
+   * @var EntityManagerInterface
+   */
+  private $entityManager;
+
+  public function __construct(MedecinRepository $medecinRepository, EntityManagerInterface $entityManager)
+  {
+    $this->medecinRepository = $medecinRepository;
+    $this->entityManager = $entityManager;
+  }
+
+
     /**
      * @Route("/medecin", name="medecin")
      */
@@ -23,7 +46,7 @@ class MedecinController extends AbstractController
     }
 
   /**
-    * @Route("/api/listmedecins", name="listmedecins")
+    * @Route("listmedecins", name="listmedecins")
     */
     public function getAllMedecins(SerializerInterface $serializer): Response
     {
@@ -33,7 +56,7 @@ class MedecinController extends AbstractController
     }
 
     /**
-    * @Route("/api/medecin/{id}", name="medecin")
+    * @Route("/medecin/{id}", name="medecin")
     */
     public function getMedecin($id,SerializerInterface $serializer): Response
     {
@@ -44,7 +67,7 @@ class MedecinController extends AbstractController
 
     //http://localhost:8000/api/medecinWithFilters?id=2
     /**
-    * @Route("/api/medecinWithFilters", name="medecinWithFilters")
+    * @Route("/medecinWithFilters", name="medecinWithFilters")
     */
     public function getMedecinWithFilters(Request $request,SerializerInterface $serializer): Response
     {
@@ -54,7 +77,7 @@ class MedecinController extends AbstractController
     }
 
     /**
-    * @Route("/api/addMedecin", name="addMedecin")
+    * @Route("/addMedecin", name="addMedecin")
     */
     public function addMedecin(Request $request,SerializerInterface $serializer) :Response {
         //récupérer le contenu de la requête envoyé
@@ -66,9 +89,9 @@ class MedecinController extends AbstractController
            $jsonContent = $serializer->serialize($medecin,"json");
            return new Response($jsonContent);
         }
-    
+
     /**
-    * @Route("/api/removeMedecin/{id}", name="removeMedecin")
+    * @Route("/removeMedecin/{id}", name="removeMedecin")
     */
     public function deleteMedecin(int $id,SerializerInterface $serializer): Response
     {
@@ -78,4 +101,134 @@ class MedecinController extends AbstractController
        $entityManager->flush();
        return new Response();
     }
+
+ /**
+   * @Route("/updateMedecin/{id}", name="updateMedecin", methods={"POST"})
+   * @param Request $request
+   */
+  public function updateMedecin(Request $request, SerializerInterface $serializer)
+  {
+    $id = $request->get('id');
+
+    $data = json_decode($request->getContent(), true);
+    $fullName = $data['fullName'];
+    $email = $data['email'];
+    $address = $data['address'];
+    $phoneNumber = $data['phoneNumber'];
+    $speciality = $data['speciality'];
+    $gender = $data['gender'];
+    $cnamConvention = $data['cnamConvention'];
+
+    $medecin = $this->medecinRepository->findOneBy([
+      'id' => $id,
+    ]);
+
+    $medecin->setFullName($fullName);
+    $medecin->setEmail($email);
+    $medecin->setAddress($address);
+    $medecin->setPhoneNumber($phoneNumber);
+    $medecin->setSpeciality($speciality);
+    $medecin->setGender($gender);
+    $medecin->setCnamConvention($cnamConvention);
+
+    $this->entityManager->persist($medecin);
+    $this->entityManager->flush();
+    $jsonContent = $serializer->serialize($medecin,"json");
+    return new Response($jsonContent);
+  }
+
+  /**
+   * @Route("/medecin/update/{id}", name="update_medecin", methods={"POST"})
+   * @param Request $request
+   * @return \FOS\RestBundle\View\View
+   */
+  public function update_medecin(Request $request)
+  {
+    $id = $request->get('id');
+
+    $data = json_decode($request->getContent(), true);
+    $fullName = $data['fullName'];
+    $email = $data['email'];
+    $address = $data['address'];
+    $phoneNumber = $data['phoneNumber'];
+    $speciality = $data['speciality'];
+    $gender = $data['gender'];
+    $cnamConvention = $data['cnamConvention'];
+
+    $medecin = $this->medecinRepository->findOneBy([
+      'id' => $id,
+    ]);
+
+    $medecin->setFullName($fullName);
+    $medecin->setEmail($email);
+    $medecin->setAddress($address);
+    $medecin->setPhoneNumber($phoneNumber);
+    $medecin->setSpeciality($speciality);
+    $medecin->setGender($gender);
+    $medecin->setCnamConvention($cnamConvention);
+
+    $this->entityManager->persist($medecin);
+    $this->entityManager->flush();
+
+    return $this->view([
+      'message' => 'Medecin Updated Successfully',
+      'code' => Response::HTTP_OK
+    ], Response::HTTP_OK)->setContext((new Context())->setGroups(['public']));
+  }
+
+   /**
+   * @Route("/medecin/updateLikes/{id}", name="update_medecin_likes", methods={"POST"})
+   * @param Request $request
+   */
+  public function update_medecin_likes(Request $request)
+  {
+    $id = $request->get('id');
+
+    $data = json_decode($request->getContent(), true);
+    $likes = $data['likes'];
+  
+    $medecin = $this->medecinRepository->findOneBy([
+      'id' => $id,
+    ]);
+
+    $medecin->setLikes($likes);
+  
+
+    $this->entityManager->persist($medecin);
+    $this->entityManager->flush();
+
+    return $this->view([
+      'message' => 'Likes value Updated Successfully',
+      'code' => Response::HTTP_OK
+    ], Response::HTTP_OK)->setContext((new Context())->setGroups(['public']));
+  }
+  
+
+  /**
+   * @Route("/medecin/updateDislike/{id}", name="update_medecin_dislikes", methods={"POST"})
+   * @param Request $request
+   */
+  public function update_medecin_dislike(Request $request)
+  {
+    $id = $request->get('id');
+
+    $data = json_decode($request->getContent(), true);
+    $disLike = $data['disLike'];
+  
+    $medecin = $this->medecinRepository->findOneBy([
+      'id' => $id,
+    ]);
+
+    $medecin->setDisLike($disLike);
+  
+
+    $this->entityManager->persist($medecin);
+    $this->entityManager->flush();
+
+    return $this->view([
+      'message' => 'DisLike value Updated Successfully',
+      'code' => Response::HTTP_OK
+    ], Response::HTTP_OK)->setContext((new Context())->setGroups(['public']));
+  }
+  
 }

@@ -1,4 +1,5 @@
 export class MedecinInput {
+    id: number;
     fullName: string;
     email: string;
     address: string;
@@ -6,4 +7,6 @@ export class MedecinInput {
     speciality: string;
     gender: string;
     cnamConvention: boolean;
+    likes: number;
+    disLike: number;
 }

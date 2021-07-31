@@ -4,11 +4,13 @@ namespace App\Entity;
 
 use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
+use phpDocumentor\Reflection\Types\Integer;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
  */
-class User
+class User implements UserInterface
 {
     /**
      * @ORM\Id
@@ -18,14 +20,24 @@ class User
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=180, unique=true)
      */
-    private $username;
+    private $email;
+
+    /**
+     * @ORM\Column(type="json")
+     */
+    private $roles = [];
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $email;
+    private $firstName;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $lastName;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -33,35 +45,28 @@ class User
     private $password;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $role;
+    private $address;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $firstname;
+    private $city;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $lastname;
+    private $country;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $postalCode;
 
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getUsername(): ?string
-    {
-        return $this->username;
-    }
-
-    public function setUsername(string $username): self
-    {
-        $this->username = $username;
-
-        return $this;
     }
 
     public function getEmail(): ?string
@@ -76,50 +81,139 @@ class User
         return $this;
     }
 
+    /**
+     * A visual identifier that represents this user.
+     *
+     * @see UserInterface
+     */
+    public function getUsername(): string
+    {
+        return (string) $this->email;
+    }
+
+    /**
+     * @see UserInterface
+     */
+    public function getRoles(): array
+    {
+        $roles = $this->roles;
+        // guarantee every user at least has ROLE_USER
+        $roles[] = 'ROLE_USER';
+
+        return array_unique($roles);
+    }
+
+    public function setRoles(array $roles): self
+    {
+        $this->roles = $roles;
+
+        return $this;
+    }
+
+    /**
+     * This method can be removed in Symfony 6.0 - is not needed for apps that do not check user passwords.
+     *
+     * @see UserInterface
+     */
     public function getPassword(): ?string
     {
         return $this->password;
     }
 
+    /**
+     * This method can be removed in Symfony 6.0 - is not needed for apps that do not check user passwords.
+     *
+     * @see UserInterface
+     */
+    public function getSalt(): ?string
+    {
+        return null;
+    }
+
+    /**
+     * @see UserInterface
+     */
+    public function eraseCredentials()
+    {
+        // If you store any temporary, sensitive data on the user, clear it here
+        // $this->plainPassword = null;
+    }
+
+    public function getFirstName(): ?string
+    {
+        return $this->firstName;
+    }
+
+    public function setFirstName(string $firstName): self
+    {
+        $this->firstName = $firstName;
+
+        return $this;
+    }
+
+    public function getLastName(): ?string
+    {
+        return $this->lastName;
+    }
+
+    public function setLastName(string $lastName): self
+    {
+        $this->lastName = $lastName;
+
+        return $this;
+    }
+
     public function setPassword(string $password): self
     {
-        $this->password = $password;
+      $this->password = $password;
+
+      return $this;
+    }
+
+    public function getAddress(): ?string
+    {
+        return $this->address;
+    }
+
+    public function setAddress(?string $address): self
+    {
+        $this->address = $address;
 
         return $this;
     }
 
-    public function getRole(): ?string
+    public function getCity(): ?string
     {
-        return $this->role;
+        return $this->city;
     }
 
-    public function setRole(string $role): self
+    public function setCity(?string $city): self
     {
-        $this->role = $role;
+        $this->city = $city;
 
         return $this;
     }
 
-    public function getFirstname(): ?string
+    public function getCountry(): ?string
     {
-        return $this->firstname;
+        return $this->country;
     }
 
-    public function setFirstname(string $firstname): self
+    public function setCountry(?string $country): self
     {
-        $this->firstname = $firstname;
+        $this->country = $country;
 
         return $this;
     }
 
-    public function getLastname(): ?string
+    public function getPostalCode(): ?int
     {
-        return $this->lastname;
+        return $this->postalCode;
     }
 
-    public function setLastname(string $lastname): self
+    public function setPostalCode(?int $postalCode): self
     {
-        $this->lastname = $lastname;
+        $this->postalCode = $postalCode;
 
         return $this;
     }

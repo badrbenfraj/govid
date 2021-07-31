@@ -1,0 +1,36 @@
+<div class="row">
+  <div class="col-xl-12">
+    <app-card cardTitle="Agents {{capitalize(agent)}}" [button]="buttonAdd" [options]="false" blockClass="table-border-style">
+      <div class="table-responsive">
+        <table class="table" *ngIf="agentUser && agentUser.length > 0">
+          <thead>
+          <tr>
+            <th>Id</th>
+            <th>Prénom</th>
+            <th>Nom</th>
+            <th>Email</th>
+            <th>Actions</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let agent of agentUser">
+            <th scope="row">{{agent.id}}</th>
+            <td>{{agent.firstName}}</td>
+            <td>{{agent.lastName}}</td>
+            <td>{{agent.email}}</td>
+            <td>
+              <span class="action edit-action" routerLink="/dashboard/users/{{agent.id}}/edit/laboratoire"><i
+                class="fas fa-edit"></i></span>
+              <span class="action delete-action" (click)="delete(agent.id)"><i class="far fa-trash-alt"></i></span>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+        <div *ngIf="agentUser && agentUser.length === 0" class="text-center">
+          <i class="fas fa-exclamation-circle"></i>
+          Aucun agent {{capitalize(agent)}} n'est trouvé.
+        </div>
+      </div>
+    </app-card>
+  </div>
+</div>

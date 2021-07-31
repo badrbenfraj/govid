@@ -1,0 +1,226 @@
+<app-card cardTitle="Laboratoire " [button]="buttonCancel" [options]="false" blockClass="table-border-style">
+    <div class="container">
+        <div class="main-body">
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="d-flex flex-column align-items-center text-center">
+                                <img src="../../assets/imgs/iconLabo.jpg" alt="Admin" class="rounded-circle p-1 bg-primary" width="110">
+                                <div class="mt-3">
+                                    
+                                    <h4>{{currentLabo?.name}}</h4>
+                                    <p class="text-secondary mb-1">{{currentLabo?.gouvernorat}}</p>
+                                    <!--p class="text-muted font-size-sm">Bay Area, San Francisco, CA</p-->
+                                    <button style="    margin-right: 14px;" (click)="open(content)"
+                                        class="btn btn-primary">Supprimer</button>
+                                    <button style="width: 98px;" class="btn btn-outline-primary"
+                                    (click)="triggerModal(modalData)">Evaluer</button>
+                                
+                                </div>
+                    
+                            </div>
+
+                            <ng-template #modalData let-modal>
+                            <div class="modal-header">
+                                <h4 class="modal-title" id="modal-basic-title"*ngIf="updatePopUp!=true"> Vous pouvez noter ce laboratoire selon votre experience
+                                </h4>
+                                <h4 class="modal-title" id="modal-basic-title"*ngIf="updatePopUp==true">Madification du laboratoire
+                                </h4>
+                                <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                                <span aria-hidden="true">×</span>
+                                </button>
+                            </div>
+                            <div class="modal-body" *ngIf="updatePopUp==false">
+                                <app-rating-laboratoire style="margin-left: 37%;" [currentLabo]="currentLabo"></app-rating-laboratoire>
+                            </div>
+                            <div class="modal-body"*ngIf="updatePopUp==true">
+                            <div *ngIf="updateOK==true">
+                                le Laboratoire a été modifier avec succees
+
+                            </div>
+                            <div *ngIf="updateOk==false">
+                                une erreur est apparue , le laboratoire ne peut pas etres modifier
+                            </div>
+                            </div>
+                            </ng-template>
+
+                            <hr class="my-4">
+                            <div>
+                                <div class="d-flex justify-content-center">
+                                    <div class="contentRating text-center">
+                                        <div class="ratings"> <span class="product-rating">{{currentLabo?.rating}}</span><span>/5</span>
+                                            <div class="stars" >
+                                                <div *ngIf="currentLabo?.rating==0">
+                                                    <i class="fa fa-star-o" aria-hidden="true"> </i>   <i class="fa fa-star-o" aria-hidden="true"></i><i class="fa fa-star-o" aria-hidden="true"></i><i class="fa fa-star-o" aria-hidden="true"></i><i class="fa fa-star-o" aria-hidden="true"></i>
+                                                </div>
+                                                <div *ngIf="currentLabo?.rating==1">
+                                                    <i class="fa fa-star"></i> <i class="fa fa-star-o" aria-hidden="true"></i><i class="fa fa-star-o" aria-hidden="true"></i><i class="fa fa-star-o" aria-hidden="true"></i><i class="fa fa-star-o" aria-hidden="true"></i>
+                                                </div>
+                                                <div *ngIf="currentLabo?.rating==2">
+                                            <i class="fa fa-star"></i> <i class="fa fa-star"></i><i class="fa fa-star-o" aria-hidden="true"></i><i class="fa fa-star-o" aria-hidden="true"></i><i class="fa fa-star-o" aria-hidden="true"></i>
+                                                </div>
+                                                <div *ngIf="currentLabo?.rating==3">
+                                                    <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i><i class="fa fa-star-o" aria-hidden="true"></i><i class="fa fa-star-o" aria-hidden="true"></i>
+                                                </div>
+                                                <div *ngIf="currentLabo?.rating==4">
+                                                    <i class="fa fa-star"></i>  <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i><i class="fa fa-star-o" aria-hidden="true"></i>
+                                                </div>
+                                                <div *ngIf="currentLabo?.rating==5">
+                                                    <i class="fa fa-star"></i>  <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i>
+                                                </div>
+                                            
+                                            
+                                                
+                                                </div>
+                                            <div class="rating-text"> <span>{{currentLabo?.rating}} notes et {{currentLabo?.totalReviews}} avis</span> </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <ng-template #content let-modal>
+                    <div class="modal-header">
+                    <h4 class="modal-title" id="modal-basic-title">Suppression d'un laboratoire</h4>
+                    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    </div>
+                    <div class="modal-body">
+                        {{bodyText}}
+                    </div>
+                    <div class="modal-footer">
+                    <button *ngIf="showPopupButton" type="button" class="btn btn-outline-dark" (click)="modal.close('Supprimer')">Supprimer</button>
+                    </div>
+                </ng-template>
+                <div class="col-lg-8">
+                    <div class="card">
+                        <div class="card-body">
+                            <form #form="ngForm"  autocomplete="off">
+                                <div class="form-group">
+                                
+                                    <label for="name" class="form-label">Nom du laboratoire <span class="text-danger"> *</span></label>
+            
+                                    <input [disabled]="disabled" name="name" #name="ngModel" minlength="4" [(ngModel)]="formData.name" class="form-control"
+                                    required>
+                                    <div *ngIf="name.invalid && (name.dirty || name.touched)"
+                                    class="alert">
+                                
+                                    <div *ngIf="name.errors?.required">
+                                        <small class="text-danger">Le nom est requis
+                                        </small>
+                                    </div>
+                                    <div *ngIf="name.errors?.minlength">
+                                        <small class="text-danger" >  Le nom doit comporter au moins 4 caractères.</small>
+            
+                                    
+                                    </div>
+                            
+                                
+                                </div>
+                                
+                                </div>
+                                <div class="form-group">
+                                
+                                    <label for="gouvernorat" class="form-label">Gouvernorat<span class="text-danger"> *</span></label>
+            
+                                    <input [disabled]="disabled" name="gouvernorat" #gouvernorat="ngModel" [(ngModel)]="formData.gouvernorat" class="form-control"
+                                    required>
+                                    <div *ngIf="gouvernorat.invalid && (gouvernorat.dirty || gouvernorat.touched)"
+                                    class="alert">
+                                    <small class="text-danger" *ngIf="gouvernorat.errors?.required">Le gouvernorat est requis</small>
+            </div>
+                                
+                                </div>
+                                <div class="form-group">
+                                
+                                    <label for="email" class="form-label">Email <span class="text-danger"> *</span></label>
+                                    <input [disabled]="disabled" email="true"  type="email" name="email" #email="ngModel"  aria-describedby="emailHelp"[(ngModel)]="formData.email" class="form-control"
+                        required  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" >
+                                    <div *ngIf="email.invalid && (email.dirty || email.touched)"
+                                    class="alert">
+                                    <small class="text-danger" *ngIf="email.errors?.required">Adresse e-mail est nécessaire</small>
+                        <small class="text-danger" *ngIf="email.errors?.pattern">Adresse email invalide</small>
+                                    </div>
+                                
+                                </div>
+                            
+                                <div class="form-group">
+                            
+                                    <label for="phoneNumber" class="form-label">Téléphone <span class="text-danger"> *</span></label>
+            
+                                    <input [disabled]="disabled" name="phoneNumber" type="text" #phoneNumber="ngModel" [(ngModel)]="formData.phoneNumber"
+                    class="form-control"  pattern="[0-9]{8}" required maxlength="8" minlength="8">
+                    <div *ngIf="phoneNumber.invalid && (phoneNumber.dirty || phoneNumber.touched)"
+                    class="alert">
+    <small class="text-danger" *ngIf="phoneNumber.errors?.required">Le numéro de téléphone est requis
+    </small>
+    <small class="text-danger" *ngIf="phoneNumber.errors?.pattern">Veuillez composer un numéro de téléphone avec 8 chiffres </small>
+
+    </div>
+                </div>
+                <div class="form-group">
+                                
+                    <label for="adresse" class="form-label">Adresse<span class="text-danger"> *</span></label>
+            
+                    <input [disabled]="disabled" name="adresse" #adresse="ngModel" [(ngModel)]="formData.adresse" class="form-control"
+                    required>
+                    <div *ngIf="adresse.invalid && (adresse.dirty || adresse.touched)"
+                    class="alert">
+                    <small class="text-danger" *ngIf="adresse.errors?.required">L'adresse est requise</small>
+            </div>
+                
+                </div>
+                <div class="form-group">
+                                
+                    <label for="workingTime" class="form-label">Horaire du travail<span class="text-danger"> *</span></label>
+            
+                    <select [disabled]="disabled"  #workingTime="ngModel" class="form-control" [(ngModel)]="formData.workingTime"
+            required name="workingTime">
+                    <option *ngFor="let option of workingTimes" [ngValue]="option.name">
+                        {{ option.name }}
+                    </option>
+                </select>
+                <div *ngIf="workingTime.invalid && (workingTime.dirty || workingTime.touched)"
+                class="alert">
+                <small class="text-danger" *ngIf="workingTime.errors?.required">L'horaire est requis</small>
+    </div>        </div>
+            <div class="form-group">
+                            
+                <label for="fax" class="form-label">Fax </label>
+            
+                <input  pattern="[0-9]{8}"  [disabled]="disabled"name="fax" type="text" #fax="ngModel" [(ngModel)]="formData.fax"
+            class="form-control"   maxlength="8" minlength="8">
+            <div *ngIf="fax.invalid && (fax.dirty || fax.touched)"
+            class="alert">
+    <small class="text-danger" *ngIf="fax.errors?.required">Le numéro de fax est requis
+    </small>
+                <small class="text-danger" *ngIf="fax.errors?.pattern">Veuillez composer un numéro de fax avec 8 chiffres </small>
+    
+    </div>
+            </div>
+            
+                
+                <div class="form-group">
+                <button (click)="modifierLabo()" class="btn btn-primary" type="submit" [disabled]="form.invalid" *ngIf="showModifyButton"> Modifier</button>
+                </div>
+            </form>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="card">
+                                <div class="card-body"id="myDiv">
+
+                                    <app-laboratoire-map [laboratoire]="currentLabo"></app-laboratoire-map>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</app-card>

@@ -1,0 +1,196 @@
+<div class="container-xxl">
+    <div class="view-account">
+        <section class="module">
+            <div class="module-inner">
+                <div class="content-panel">
+                    <!--div class="content-header-wrapper">
+                        <h1 style="
+                        color: #3c6e71;
+                        font-weight: 600;
+                        font-family: fangsong;"> Espace Laboratoires</h1>
+                        <div class="actions">
+                            <button class="btn btn-success" (click)="afterAddCalled=false;triggerModal(modalData)"><i
+                                    class="fa fa-plus"></i> Ajouter un
+                                laboratoire</button>
+                        </div>
+                    </div-->
+                    <ng-template #content let-modal>
+                        <div class="modal-header">
+                            <h4 class="modal-title" id="modal-basic-title">Suppression d'un laboratoire</h4>
+                            <button type="button" class="close" aria-label="Close"
+                                (click)="modal.dismiss('Cross click')">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            {{bodyText}}
+                        </div>
+                        <div class="modal-footer">
+                            <button *ngIf="showPopupButton" type="button" class="btn btn-outline-dark"
+                                (click)="modal.close('Supprimer')">Supprimer</button>
+                        </div>
+                    </ng-template>
+
+
+                
+
+                  <app-card cardTitle="Recherche Laboratoire" [button]="addButton" [options]="false" 
+                            blockClass="table-border-style" (buttonClicked)="AdduttonClicked()" [disableButton]="disableAddButton" >
+                    <div class="content-utilities">
+                        <div class="page-nav">
+                            <span class="indicator">Affichage:</span>
+                            <div class="btn-group" role="group">
+                                <button (click)="showCard()" class="active btn btn-default" data-toggle="tooltip"
+                                    data-placement="bottom" title="" data-original-title="Grid View"
+                                    id="drive-grid-toggle"><i style="color: #1dc4e9"class="fa fa-th-large"></i></button>
+                                <button (click)="showList()" class="btn btn-default" data-toggle="tooltip"
+                                    data-placement="bottom" title="" data-original-title="List View"
+                                    id="drive-list-toggle"><i style="color: #1dc4e9" class="fa fa-list-ul"></i></button>
+                            </div>
+                        </div>
+                        <div class="page-nav" style="margin-top: 37px;">
+                            <span class="indicator">Commentaires:</span>
+                            <div class="btn-group" role="group">
+                                <button (click)="showComments()" class="active btn btn-default" data-toggle="tooltip"
+                                    data-placement="bottom" title="" data-original-title="Grid View"
+                                    id="drive-grid-toggle"><i style="color: #1dc4e9" class="fa fa-comments"></i></button>
+                            </div>
+                        </div>
+                        <div class="actions">
+
+                            <div class="btn-group">
+                                <div class="form-group">
+                                    Trier par :
+                                    <select class="form-control" name="trier " id="exampleFormControlSelect1"
+                                        [(ngModel)]="sortField" (click)="trier()">
+                                        <option>Nom</option>
+                                        <option>Date de modification</option>
+                                        <option>Nombre de stars</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <div class="drive-wrapper drive-grid-view">
+                        <div>
+
+                            <table class="table table-striped" *ngIf="listView">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Nom du laboratoire</th>
+                                        <th scope="col">Gouvernorat</th>
+                                        <th scope="col">Rating</th>
+                                        <th scope="col">Numéro du téléphone</th>
+                                        <th scope="col">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let laboratoire of laboratoiresList ">
+                                        <th scope="row">{{laboratoire?.name}}</th>
+                                        <td>{{laboratoire?.gouvernorat}}</td>
+                                        <td>
+                                            <div class="stars">
+                                                <div *ngIf="laboratoire.rating==0">
+                                                    <i style="color:'#ffdf00'"class="far fa-star"></i>
+                                                     <i style="color:'#ffdf00'"class="far fa-star"></i>
+                                                     <i style="color:'#ffdf00'" class="far fa-star"></i>
+                                                     <i style="color:'#ffdf00'" class="far fa-star"></i>
+                                                     <i style="color:'#ffdf00'" class="far fa-star"></i>
+                                                </div>
+                                                <div *ngIf="laboratoire.rating==1">
+                                                    <i style="color:'#ffdf00'" class="fas fa-star"></i>
+                                                    <i style="color:'#ffdf00'" class="far fa-star"></i>
+                                                    <i style="color:'#ffdf00'" class="far fa-star"></i>
+                                                    <i style="color:'#ffdf00'" class="far fa-star"></i>
+                                                    <i style="color:'#ffdf00'" class="far fa-star"></i>
+                                                </div>
+                                                <div *ngIf="laboratoire.rating==2">
+                                                    <i  style="color:'#ffdf00'"class="fas fa-star"></i>
+                                                    <i style="color:'#ffdf00'"class="fas fa-star"></i>
+                                                    <i style="color:'#ffdf00'" class="far fa-star"></i>
+                                                    <i style="color:'#ffdf00'"class="far fa-star"></i>
+                                                    <i style="color:'#ffdf00'"class="far fa-star"></i>
+                                                </div>
+                                                <div *ngIf="laboratoire.rating==3">
+                                                    <i style="color:'#ffdf00'" class="fas fa-star"></i>
+                                                    <i style="color:'#ffdf00'" class="fas fa-star"></i>
+                                                    <i style="color:'#ffdf00'"class="fas fa-star"></i>
+                                                    <i style="color:'#ffdf00'" class="far fa-star"></i>
+                                                    <i style="color:'#ffdf00'"class="far fa-star"></i>
+                                                </div>
+                                                <div *ngIf="laboratoire.rating==4">
+                                                    <i style="color:'#ffdf00'"class="fas fa-star"></i>
+                                                    <i style="color:'#ffdf00'"class="fas fa-star"></i>
+                                                    <i style="color:'#ffdf00'"class="fas fa-star"></i>
+                                                    <i style="color:'#ffdf00'"class="fas fa-star"></i>
+                                                    <i style="color:'#ffdf00'" class="far fa-star"></i>
+                                                </div>
+                                                <div *ngIf="laboratoire.rating==5">
+                                                    <i style="color:'#ffdf00'"class="fas fa-star"></i>
+                                                    <i style="color:'#ffdf00'" class="fas fa-star"></i>
+                                                    <i style="color:'#ffdf00'" class="fas fa-star"></i>
+                                                    <i style="color:'#ffdf00'" class="fas fa-star"></i>
+                                                    <i style="color:'#ffdf00'" class="fas fa-star"></i>
+                                                </div>
+
+
+
+                                            </div>
+                                        </td>
+                                        <td>{{laboratoire?.phoneNumber}}</td>
+                                        <td>
+                                            <button style="border: none;    background-color: transparent;" disabled="!adminRole" (click)="open(content,laboratoire);"><i style="color: #1dc4e9" class="fa fa-trash"
+                                                    aria-hidden="true"></i></button>&nbsp;
+                                            <button style="border: none;    background-color: transparent;"  (click)="previewLabo(laboratoire)"><i  style="color: #1dc4e9"class="fa fa-expand"
+                                                    aria-hidden="true"></i></button>&nbsp;
+                                            <button style="border: none;    background-color: transparent;"  disabled="!adminRole" (click)="updateLabo(laboratoire)"><i style="color: #1dc4e9" class="fa fa-pencil-square-o"
+                                                    aria-hidden="true"></i></button>&nbsp;
+                                            <button style="border: none;    background-color: transparent;"  (click)="openLocation(laboratoire)"><i style="color: #1dc4e9" class="fa fa-map-marker"
+                                                    aria-hidden="true"></i></button>
+                                        </td>
+                                    </tr>
+
+
+                                </tbody>
+                            </table>
+                            <div *ngIf="cardView">
+                              
+                                <app-laboratoire-list [sortField]="sortField"
+                                    (currentIdPreview)="setCurrentIdPreview($event)"
+                                    (currentIdUpdate)="currentIdUpdate($event)"></app-laboratoire-list>
+                            </div>
+                            <div *ngIf="commentView
+                            ">
+                            <app-comments></app-comments>
+                            </div>
+
+
+                            <ng-template #modalData let-modal>
+                                <div class="modal-header">
+                                    <h4 class="modal-title" id="modal-basic-title">Ajout d'un laboratoire
+                                    </h4>
+                                    <button type="button" class="close" aria-label="Close"
+                                        (click)="modal.dismiss('Cross click')">
+                                        <span aria-hidden="true">×</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body" *ngIf="afterAddCalled==false">
+                                    <app-add-labo (closeDialog)="closeDialog()"></app-add-labo>
+                                </div>
+
+                                <div class="modal-body" *ngIf="afterAddCalled==true">
+                                    {{addMessage}}
+                                </div>
+                            </ng-template>
+                        </div>
+                    </div>
+                  </app-card>
+
+                </div>
+            </div>
+        </section>
+
+    </div>
+</div>

@@ -1,0 +1,101 @@
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<div class="tr-job-posted section-padding">
+    <div class="container">
+		<div class="job-tab text-center">
+			<!--ul class="nav nav-tabs justify-content-center" role="tablist">
+				<li role="presentation" class="active">
+					<a class="active show" href="#hot-jobs" aria-controls="hot-jobs" role="tab" data-toggle="tab" aria-selected="true">Hot Jobs</a>
+				</li>
+				<li role="presentation"><a href="#recent-jobs" aria-controls="recent-jobs" role="tab" data-toggle="tab" class="" aria-selected="false">Recent Jobs</a></li>
+				<li role="presentation"><a href="#popular-jobs" aria-controls="popular-jobs" role="tab" data-toggle="tab" class="" aria-selected="false">Popular Jobs</a></li>
+			</ul-->
+			<div class="tab-content text-left">
+				<div role="tabpanel" class="tab-pane fade active show" id="hot-jobs">
+					<div >
+						<div style="    width: 257px;    box-shadow: 0px 8px 20px 0px rgb(0 0 0 / 15%);">
+							<div class="job-item">
+								<div class="item-overlay">
+									<div class="job-info" >
+										<!--a href="#" class="btn btn-primary">Full Time</a>
+										<span class="tr-title">
+											<a href="#">Project Manager</a>
+											<span><a href="#">Dig File</a></span>
+										</span-->
+										<!--ul class="tr-list job-meta">
+											<li><i class="fa fa-map-signs" aria-hidden="true"></i>San Francisco, CA, US</li>
+											<li><i class="fa fa-briefcase" aria-hidden="true"></i>Mid Level</li>
+											<li><i class="fa fa-money" aria-hidden="true"></i>$5,000 - $6,000</li>
+										</ul-->
+										<div class="company-logo">
+											<img src="../../assets/imgs/laboWallpaper.jpg" alt="images" class="img-fluid">
+										</div>
+										<ul class="job-social tr-list">
+											<li><button  style="border: none;    background-color: transparent;"></button></li>
+											<li><a (click)="previewLabo()"><i class="fa fa-expand" aria-hidden="true"></i></a></li>
+											<li><button style="border: none;    background-color: transparent;" (click)="updateLabo()" disabled="!isAdminRole"><a ><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></button></li>
+											<li><a (click)="openLocation()"><i class="fa fa-map-marker" aria-hidden="true"></i></a></li>
+
+											<li></li>
+										</ul>
+									</div>	
+
+								</div>
+							
+								<div class="job-info">
+									<div class="company-logo">
+										<img src="../../assets/imgs/laboWallpaper.jpg" alt="images" class="img-fluid">
+									</div>
+									<div class="stars"style="margin-left: 49px;" >
+										<div *ngIf="laboratoire.rating==0">
+											<i class="fa fa-star-o" aria-hidden="true"> </i>   <i class="fa fa-star-o" aria-hidden="true"></i><i class="fa fa-star-o" aria-hidden="true"></i><i class="fa fa-star-o" aria-hidden="true"></i><i class="fa fa-star-o" aria-hidden="true"></i>
+										</div>
+										<div *ngIf="laboratoire.rating==1">
+											<i class="fa fa-star"></i> <i class="fa fa-star-o" aria-hidden="true"></i><i class="fa fa-star-o" aria-hidden="true"></i><i class="fa fa-star-o" aria-hidden="true"></i><i class="fa fa-star-o" aria-hidden="true"></i>
+										</div>
+										<div *ngIf="laboratoire.rating==2">
+									  <i class="fa fa-star"></i> <i class="fa fa-star"></i><i class="fa fa-star-o" aria-hidden="true"></i><i class="fa fa-star-o" aria-hidden="true"></i><i class="fa fa-star-o" aria-hidden="true"></i>
+										</div>
+										<div *ngIf="laboratoire.rating==3">
+											 <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i><i class="fa fa-star-o" aria-hidden="true"></i><i class="fa fa-star-o" aria-hidden="true"></i>
+										</div>
+										<div *ngIf="laboratoire.rating==4">
+											<i class="fa fa-star"></i>  <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i><i class="fa fa-star-o" aria-hidden="true"></i>
+										</div>
+										<div *ngIf="laboratoire.rating==5">
+											<i class="fa fa-star"></i>  <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i>
+										</div>
+									   
+									   
+										
+										</div>
+									<span class="tr-title">
+										<a href="#" style="font-weight: 500;color:#284b63">{{laboratoire.name}}</a>
+										<span><a href="#">{{laboratoire.gouvernorat}}</a></span>
+									</span>
+									<ul class="tr-list job-meta">
+										<li><span><i class="fa fa-fax" style="color: dodgerblue" aria-hidden="true"></i></span>{{laboratoire.fax}}</li>
+										<li><span><i class="fa fa-phone"style="color: dodgerblue" aria-hidden="true"></i></span>{{laboratoire.phoneNumber}}</li>
+										<li><span><i class="fa fa-map-marker"style="color: dodgerblue"aria-hidden="true"></i></span>{{laboratoire.adresse}}</li>
+									</ul>
+									<div class="time">
+										<a href="#" style="margin-left: -9px"><span>{{laboratoire.workingTime}}</span></a>
+										<span class="pull-right">{{laboratoire.updateDate |date:'fullDate'}}</span>
+									</div>																				
+								</div>
+							</div>
+						</div>
+					
+						
+					
+						
+					
+					
+					
+					</div><!-- /.row -->
+				</div><!-- /.tab-pane -->
+				
+			
+			</div>				
+		</div><!-- /.job-tab -->			
+	</div><!-- /.container -->
+</div>

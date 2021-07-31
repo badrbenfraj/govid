@@ -1,40 +1,54 @@
-<div class="container login-container">
-  <div class="row login">
-    <div class="col-md-6 login-form-1">
-      <h3>Register</h3>
-      <form>
-        <div class="form-group">
-        <div class="row">
-            <div class="col">
-              <input type="text" class="form-control" placeholder="First name">
-            </div>
-            <div class="col">
-              <input type="text" class="form-control" placeholder="Last name">
-            </div>
-          </div>
-        </div>
-
-        <div class="form-group">
-        <div class="row">
-          <div class="col">
-            <input type="text" class="form-control" placeholder="Your Username *" value="" />
-          </div>
-          <div class="col">
-            <input type="text" class="form-control" placeholder="Your Email *" value="" />
-          </div>
-        </div>
-        </div>
-
-        <div class="form-group">
-          <input type="password" class="form-control" placeholder="Your Password *" value="" />
-        </div>
-        <div class="form-group">
-          <input type="submit" class="btnSubmit" value="Register" />
-        </div>
-      </form>
+<div class="auth-wrapper">
+  <div class="auth-content">
+    <div class="auth-bg">
+      <span class="r"></span>
+      <span class="r s"></span>
+      <span class="r s"></span>
+      <span class="r"></span>
     </div>
-    <div class="col-md-6 login-form-2">
+    <div class="card">
+      <div class="card-body text-center">
+        <div class="mb-4">
+          <i class="feather icon-user-plus auth-icon"></i>
+        </div>
+        <h3 class="mb-4">S'inscrire</h3>
+        <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+          <div class="form-group">
+            <input type="text" placeholder="Prénom" formControlName="firstName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }" />
+            <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
+              <div *ngIf="f.firstName.errors.required">Le prénom est obligatoire</div>
+            </div>
+          </div>
+          <div class="form-group">
+            <input type="text" placeholder="Nom" formControlName="lastName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }" />
+            <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
+              <div *ngIf="f.lastName.errors.required">Le nom est obligatoire</div>
+            </div>
+          </div>
+          <div class="form-group">
+            <input type="text" placeholder="Email" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+            <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+              <div *ngIf="f.email.errors.required">L'email est obligatoire</div>
+            </div>
+          </div>
+          <div class="form-group">
+            <input type="password" placeholder="Mot de passe" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+            <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+              <div *ngIf="f.password.errors.required">Le mot de passe est obligatoire</div>
+              <div *ngIf="f.password.errors.minlength">Le mot de passe doit contenir au moins 6 caractères</div>
+            </div>
+          </div>
+          <div class="form-group">
+            <button [disabled]="loading" class="btn btn-primary">
+              <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+              S'inscrire
+            </button>
+            <button type="button" class="btn btn-outline-primary" routerLink="/">Annuler</button>
 
+          </div>
+        </form>
+        <p class="mb-0 mt-2 text-muted">Vous avez déja un compte? <a [routerLink]="['/login']"> Se connecter</a></p>
+      </div>
     </div>
   </div>
 </div>
