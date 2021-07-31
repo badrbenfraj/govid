@@ -33,7 +33,7 @@ export class AdminComponent implements OnInit {
     this.navCollapsedMob = false;
     if (!this.authenticationService.getCurrentUser) {
       this.authenticationService.currentUser().subscribe();
-    //  window.location.reload();
+      // window.location.reload();
     }
     this.user = this.authenticationService.userValue;
   }

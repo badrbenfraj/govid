@@ -1,5 +1,5 @@
 export interface Pharmacie {
-  id: number;
+  id?: number;
   name: string;
   gouvernement: string;
   location: string;

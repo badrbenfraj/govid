@@ -60,7 +60,7 @@ const routes: Routes = [
     path: '',
     children: [
       {
-        path: 'machines',
+        path: 'pharmacie',
         loadChildren: () => import('../../pharmacie/pharmacie.module').then(m => m.PharmacieModule)
       }
     ]

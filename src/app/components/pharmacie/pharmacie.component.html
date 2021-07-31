@@ -1,48 +1,67 @@
-
-phar comp
-
-  <!--  <form #pharmacieForm="ngForm" (ngSubmit)="search(pharmacieForm.Horaire.value , pharmacieForm.gouv.value)">
-        <div class="container">
-        <div class="d-flex justify-content-center">
-          <div class="form-group col-md-2">
-            <label for="inputState">Horaire de travail</label>
-            <input #horaire="ngModel" required id="inputState" class="form-control">
-                    <option>Jour<option>
-                    <option>Nuit<option>
-            </input>
+<div class="row">
+  <div class="col-xl-12">
+    <app-card cardTitle="Pharmacie" [button]="buttonAdd" [options]="false" blockClass="table-border-style">
+      <form [formGroup]="searchForm" (ngSubmit)="getPharmacies()">
+        <div class="row">
+          <div class="form-group col-md-6">
+            <label htmlFor="testCovid">Test disponible</label>
+            <input type="text" placeholder="Rapide/PCR" formControlName="testCovid" class="form-control"
+                   [ngClass]="{ 'is-invalid': submitted && f.testCovid.errors }"/>
+            <div *ngIf="submitted && f.testCovid.errors" class="invalid-feedback">
+              <div *ngIf="f.testCovid.errors.required">Le test est obligatoire</div>
+            </div>
           </div>
-          <div class="form-group col-md-2">
-            <label for="inputState">Gouvernement</label>
-            <input id="inputState" #gouv="ngModel" required class="form-control">
-                    <option>Béja<option>
-                    <option>Ben Arous<option>
-                    <option>Bizerte<option>
-                    <option>Gabès<option>
-                    <option>Gafsa<option>
-                    <option>Jendouba<option>
-                    <option>Kairouan<option>
-                    <option>Kasserine<option>
-                    <option>Kébili<option>
-                    <option>Le Kef<option>
-                    <option>Mahdia<option>
-                    <option>La Manouba<option>
-                    <option>Médenine<option>
-                    <option>Monastir<option>
-                    <option>Nabeul<option>
-                    <option>Sfax<option>
-                    <option>Sidi Bouzid<option>
-                    <option>Siliana<option>
-                    <option>Sousse<option>
-                    <option>Tataouine<option>
-                    <option>Tozeur<option>
-                    <option>Tunis<option>
-                    <option>Zaghouan<option>
-            </input>
+          <div class="form-group col-md-6">
+            <label htmlFor="horaire">Horaire de travail</label>
+            <input type="text" placeholder="Jour/Nuit" formControlName="horaire" class="form-control"
+                   [ngClass]="{ 'is-invalid': submitted && f.horaire.errors }"/>
+            <div *ngIf="submitted && f.horaire.errors" class="invalid-feedback">
+              <div *ngIf="f.horaire.errors.required">Le Horaire est obligatoire</div>
+            </div>
           </div>
         </div>
-        <div class ="d-flex justify-content-center">
-        <button type="submit" class="btn btn-primary">Recherche</button>
-        </div>
+        <div class="form-group text-right">
+          <button [disabled]="loading" class="btn btn-primary">
+            <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+            <i style="margin-right: 5px;" class="fas fa-user-plus"></i>
+            Rechercher Pharmacie
+          </button>
         </div>
       </form>
-      -->
+      <div class="table-responsive">
+        <table class="table" *ngIf="pharmacies.length > 0">
+          <thead>
+          <tr>
+            <th>Id</th>
+            <th>Nom du pharmacie</th>
+            <th>Test disponible</th>
+            <th>Localisation</th>
+            <th>Gouvernement</th>
+            <th>Horaire</th>
+            <th>Actions</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let pharmacie of pharmacies">
+            <th scope="row">{{pharmacie.id}}</th>
+            <td>{{pharmacie.name}}</td>
+            <td>{{pharmacie.testCovid}}</td>
+            <td>{{pharmacie.gouvernement}}</td>
+            <td>{{pharmacie.location}}</td>
+            <td>{{pharmacie.horaire}}</td>
+            <td>
+              <span class="action edit-action" routerLink="/dashboard/pharmacie/{{pharmacie.id}}/edit"><i
+                class="fas fa-edit"></i></span>
+              <span class="action delete-action" (click)="delete(pharmacie.id)"><i class="far fa-trash-alt"></i></span>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+        <div *ngIf="pharmacies.length === 0" class="text-center">
+          <i class="fas fa-exclamation-circle"></i>
+          Aucun pharmacie n'est trouvé.
+        </div>
+      </div>
+    </app-card>
+  </div>
+</div>
