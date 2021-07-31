@@ -48,6 +48,7 @@ export class ListeMachineComponent implements OnInit {
       label: 'Ajouter machine',
       path: '/dashboard/machines/add',
       icon: 'fas fa-user-plus',
+      roles: ['ROLE_ADMIN', 'ROLE_USER'],
     };
 
     this.filter = {
