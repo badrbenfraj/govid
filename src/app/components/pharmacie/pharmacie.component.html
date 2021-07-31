@@ -1,6 +1,33 @@
 <div class="row">
   <div class="col-xl-12">
     <app-card cardTitle="Pharmacie" [button]="buttonAdd" [options]="false" blockClass="table-border-style">
+      <form [formGroup]="searchForm" (ngSubmit)="getPharmacies()">
+        <div class="row">
+          <div class="form-group col-md-6">
+            <label htmlFor="testCovid">Test disponible</label>
+            <input type="text" placeholder="Rapide/PCR" formControlName="testCovid" class="form-control"
+                   [ngClass]="{ 'is-invalid': submitted && f.testCovid.errors }"/>
+            <div *ngIf="submitted && f.testCovid.errors" class="invalid-feedback">
+              <div *ngIf="f.testCovid.errors.required">Le test est obligatoire</div>
+            </div>
+          </div>
+          <div class="form-group col-md-6">
+            <label htmlFor="horaire">Horaire de travail</label>
+            <input type="text" placeholder="Jour/Nuit" formControlName="horaire" class="form-control"
+                   [ngClass]="{ 'is-invalid': submitted && f.horaire.errors }"/>
+            <div *ngIf="submitted && f.horaire.errors" class="invalid-feedback">
+              <div *ngIf="f.horaire.errors.required">Le Horaire est obligatoire</div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group text-right">
+          <button [disabled]="loading" class="btn btn-primary">
+            <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+            <i style="margin-right: 5px;" class="fas fa-user-plus"></i>
+            Rechercher Pharmacie
+          </button>
+        </div>
+      </form>
       <div class="table-responsive">
         <table class="table" *ngIf="pharmacies.length > 0">
           <thead>

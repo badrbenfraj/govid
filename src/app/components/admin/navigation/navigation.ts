@@ -49,14 +49,14 @@ const NavigationItems = [
         type: 'collapse',
         url: '/dashboard/users',
         icon: 'feather icon-users',
-        roles: ['ROLE_ADMIN', 'ROLE_MEDECIN_AGENT', 'ROLE_LABORATOIRE_AGENT', 'ROLE_PHARMACY_AGENT'],
+        roles: ['ROLE_ADMIN'],
         children: [
           {
             id: 'usersLabo',
             title: 'Utilisateurs Laboratoire',
             type: 'item',
             url: '/dashboard/users/laboratoire',
-            roles: ['ROLE_ADMIN', 'ROLE_LABORATOIRE_AGENT'],
+            roles: ['ROLE_ADMIN'],
 
           },
           {
@@ -64,14 +64,14 @@ const NavigationItems = [
             title: 'Utilisateurs Pharmacie',
             type: 'item',
             url: '/dashboard/users/pharmacy',
-            roles: ['ROLE_ADMIN', 'ROLE_PHARMACY_AGENT']
+            roles: ['ROLE_ADMIN']
           },
           {
             id: 'usersMedecin',
             title: 'Utilisateurs Medecin',
             type: 'item',
             url: '/dashboard/users/medecin',
-            roles: ['ROLE_ADMIN', 'ROLE_MEDECIN_AGENT']
+            roles: ['ROLE_ADMIN']
           },
         ]
       }
@@ -111,7 +111,7 @@ const NavigationItems = [
     url: '/dashboard/pharmacie',
     icon: 'feather icon-activity',
     classes: 'nav-item',
-    roles: ['ROLE_ADMIN', 'ROLE_USER'],
+    roles: ['ROLE_ADMIN', 'ROLE_USER', 'ROLE_MEDECIN_AGENT', 'ROLE_PHARMACY_AGENT', 'ROLE_LABORATOIRE_AGENT'],
   },
 ];
 
