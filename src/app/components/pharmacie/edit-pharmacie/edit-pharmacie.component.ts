@@ -27,10 +27,6 @@ export class EditPharmacieComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.buttonCancel = {
-      label: 'Annuler',
-      path: `/dashboard/pharmacie`
-    };
     this.createForm = this.formBuilder.group({
       name: ['', Validators.required],
       description: ['', Validators.required],
@@ -44,7 +40,7 @@ export class EditPharmacieComponent implements OnInit {
       this.agent = params.name;
       this.buttonCancel = {
         label: 'Cancel',
-        path: `/dashboard/users/${this.agent}`,
+        path: `/dashboard/pharmacie`,
         icon: 'fas fa-undo'
       };
       this.pharmacieService.getById(params.id).subscribe(pharmacie => {
@@ -76,10 +72,10 @@ export class EditPharmacieComponent implements OnInit {
       gouvernement: this.f.gouvernement.value,
       testCovid: this.f.testCovid.value,
       location: this.f.location.value
-    },1).pipe(first())
+    }, this.pharmacie.id)
       .subscribe(
         (data) => {
-          this.router.navigate([`/dashboard/pharmacie`], {});
+          this.router.navigate([`/dashboard/pharmacie`]);
         },
         (error) => {
           this.error = error;
