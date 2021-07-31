@@ -25,7 +25,7 @@ export class PharmacieComponent implements OnInit {
   }
 
   delete(id: number): void {
-
+    this.pharmacieService.delete(id);
   }
 
 }

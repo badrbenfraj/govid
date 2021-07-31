@@ -28,4 +28,7 @@ export class PharmacieService {
   getById(identifier: number): Observable<Pharmacie> {
     return this.http.get<Pharmacie>('/api/pharmacie/' + identifier);
   }
+  delete(identifier: number): Observable<Pharmacie> {
+    return this.http.delete<Pharmacie>('/api/removePharmacie/' + identifier);
+  }
 }
