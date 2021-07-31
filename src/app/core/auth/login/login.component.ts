@@ -58,8 +58,9 @@ export class LoginComponent implements OnInit {
       .pipe(first())
       .subscribe(
         (data) => {
-          this.authenticationService.currentUser().subscribe();
-          this.router.navigate([this.returnUrl]);
+          this.authenticationService.currentUser().subscribe((data)=>{
+            this.router.navigate([this.returnUrl]);
+          });
         },
         (error) => {
           this.error = error;
