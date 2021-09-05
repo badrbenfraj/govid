@@ -16,6 +16,7 @@ export class PharmacieComponent implements OnInit {
   loading = false;
   submitted = false;
   error: string;
+  filtredList;
 
   constructor(private pharmacieService: PharmacieService, private formBuilder: FormBuilder
   ) {
@@ -63,15 +64,19 @@ export class PharmacieComponent implements OnInit {
 
   getPharmacies(): void {
     this.pharmacieService.getPharmacies().subscribe(data => {
-      this.pharmacies = data.filter((item) => {
-        for (const key in this.criteria()) {
-          if (item[key] === undefined || item[key] !== this.criteria(key)) {
-            return false;
-          }
-        }
-        return true;
-      });
+      this.pharmacies = data;
     });
+  }
+
+  search() {
+    if (this.f['horaire'].value === '' && this.f['testCovid'].value === '') {
+      this.getPharmacies();
+    }
+    else {
+      this.pharmacies = this.pharmacies.filter((labo) => {
+        return labo['horaire'] === this.f['horaire'].value || labo['testCovid'] === this.f['testCovid'].value;
+      });
+    }
   }
 
   delete(id: number): void {

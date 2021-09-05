@@ -56,7 +56,7 @@ export class LaboratoireListComponent implements OnInit {
 
   search() {
     this.listLaboFiltred = this.laboratoiresList.filter((labo) => {
-      return (labo['name'].toLowerCase() == this.laboratoireForm.controls['name'].value.toLowerCase() || labo['gouvernorat'] == this.laboratoireForm.controls['gouvernorat'].value || labo['email'] == this.laboratoireForm.controls['email'].value || labo['phoneNumber'] == this.laboratoireForm.controls['phoneNumber'].value
+      return (labo['name'] == this.laboratoireForm.controls['name'].value || labo['gouvernorat'] == this.laboratoireForm.controls['gouvernorat'].value || labo['email'] == this.laboratoireForm.controls['email'].value || labo['phoneNumber'] == this.laboratoireForm.controls['phoneNumber'].value
 
         || labo['workingTime'] == this.laboratoireForm.controls['workingTime'].value);
     });
