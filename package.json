@@ -11,7 +11,8 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "sonar": "sonar-scanner -X"
   },
   "husky": {
     "hooks": {
@@ -60,20 +61,22 @@
     "husky": "^6.0.0",
     "jasmine-core": "~3.6.0",
     "jasmine-spec-reporter": "~5.0.0",
+    "jquery": "^3.2.1",
     "karma": "~6.1.0",
     "karma-chrome-launcher": "~3.1.0",
     "karma-coverage": "~2.0.3",
     "karma-jasmine": "~4.0.0",
     "karma-jasmine-html-reporter": "~1.5.0",
+    "karma-sonarqube-unit-reporter": "^0.0.23",
+    "lodash": "^4.17.10",
     "npm-run-all": "^4.1.5",
     "prettier": "^2.3.1",
     "pretty-quick": "^3.1.1",
     "protractor": "~7.0.0",
+    "sonar-scanner": "^3.1.0",
     "ts-node": "~8.3.0",
     "tslint": "~6.1.0",
     "tslint-config-prettier": "^1.18.0",
-    "typescript": "~4.1.5",
-    "jquery": "^3.2.1",
-    "lodash": "^4.17.10"
+    "typescript": "~4.1.5"
   }
 }

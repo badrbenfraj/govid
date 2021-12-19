@@ -33,6 +33,8 @@ speed-measure-plugin*.json
 
 # misc
 /.sass-cache
+/.scannerwork
+/reports
 /connect.lock
 package-lock.json
 /coverage
