@@ -5,6 +5,7 @@ import {LaboratoireService} from '@app/core/services/laboratoire.service';
 import {of} from 'rxjs';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import { AuthenticationService } from '@app/core/auth/services';
+import {Role} from '@auth/models';
 
 
 @Component({
@@ -57,17 +58,11 @@ export class LaboratoireHomeComponent implements OnInit {
     this.addButton = {
       label: 'Ajouter laboratoire',
       icon: 'fas fa-flask',
-      roles:["ROLE_LABORATOIRE_AGENT","ROLE_ADMIN"]
+      roles: [Role.Admin, Role.agentLabo]
     };
-   
-    this.currentUserRole = this.authService.getCurrentUser.roles;
-    if(this.currentUserRole.includes("ROLE_ADMIN")||this.currentUserRole.includes("ROLE_LABORATOIRE_AGENT")){
-    this.disableAddButton=false;
-    this.adminRole=true;
-    }else{
-      this.adminRole=false;
-      this.disableAddButton=true;
-    }
+
+    const roles = this.authService.getCurrentUser && this.authService.getCurrentUser.roles;
+    this.adminRole = this.authService.findCommonRoles(roles, [Role.Admin, Role.agentLabo]);
 
   }
   AdduttonClicked(){

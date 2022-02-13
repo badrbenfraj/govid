@@ -38,6 +38,12 @@
             Ajouter Agent
           </button>
         </div>
+        <div class="alert alert-danger mt-3 mb-3" *ngIf="error">
+          <div class="icon hidden-xs">
+            <i class="fa fa-info-circle"></i>
+          </div>
+          <strong>L'utilisateur existe déjà, veuillez entrer un nouvel e-mail.</strong>
+        </div>
       </form>
 
     </app-card>

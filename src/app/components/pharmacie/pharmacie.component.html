@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-xl-12">
     <app-card cardTitle="Pharmacie" [button]="buttonAdd" [options]="false" blockClass="table-border-style">
-      <form [formGroup]="searchForm" (ngSubmit)="getPharmacies()">
+      <form [formGroup]="searchForm" (ngSubmit)="search()">
         <div class="row">
           <div class="form-group col-md-6">
             <label htmlFor="testCovid">Test disponible</label>
@@ -37,7 +37,6 @@
             <th>Test disponible</th>
             <th>Localisation</th>
             <th>Gouvernement</th>
-            <th>Horaire</th>
             <th>Actions</th>
           </tr>
           </thead>
@@ -46,9 +45,8 @@
             <th scope="row">{{pharmacie.id}}</th>
             <td>{{pharmacie.name}}</td>
             <td>{{pharmacie.testCovid}}</td>
-            <td>{{pharmacie.gouvernement}}</td>
             <td>{{pharmacie.location}}</td>
-            <td>{{pharmacie.horaire}}</td>
+            <td>{{pharmacie.gouvernement}}</td>
             <td>
               <span class="action edit-action" routerLink="/dashboard/pharmacie/{{pharmacie.id}}/edit"><i
                 class="fas fa-edit"></i></span>

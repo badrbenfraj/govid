@@ -32,9 +32,9 @@
                     </ng-template>
 
 
-                
 
-                  <app-card cardTitle="Recherche Laboratoire" [button]="addButton" [options]="false" 
+
+                  <app-card cardTitle="Recherche Laboratoire" [button]="addButton" [options]="false"
                             blockClass="table-border-style" (buttonClicked)="AdduttonClicked()" [disableButton]="disableAddButton" >
                     <div class="content-utilities">
                         <div class="page-nav">
@@ -141,11 +141,11 @@
                                         </td>
                                         <td>{{laboratoire?.phoneNumber}}</td>
                                         <td>
-                                            <button style="border: none;    background-color: transparent;" disabled="!adminRole" (click)="open(content,laboratoire);"><i style="color: #1dc4e9" class="fa fa-trash"
+                                            <button style="border: none;    background-color: transparent;" *ngIf="adminRole" (click)="open(content,laboratoire);"><i style="color: #1dc4e9" class="fa fa-trash"
                                                     aria-hidden="true"></i></button>&nbsp;
                                             <button style="border: none;    background-color: transparent;"  (click)="previewLabo(laboratoire)"><i  style="color: #1dc4e9"class="fa fa-expand"
                                                     aria-hidden="true"></i></button>&nbsp;
-                                            <button style="border: none;    background-color: transparent;"  disabled="!adminRole" (click)="updateLabo(laboratoire)"><i style="color: #1dc4e9" class="fa fa-pencil-square-o"
+                                            <button style="border: none;    background-color: transparent;"  *ngIf="adminRole" (click)="updateLabo(laboratoire)"><i style="color: #1dc4e9" class="fa fa-pencil-square-o"
                                                     aria-hidden="true"></i></button>&nbsp;
                                             <button style="border: none;    background-color: transparent;"  (click)="openLocation(laboratoire)"><i style="color: #1dc4e9" class="fa fa-map-marker"
                                                     aria-hidden="true"></i></button>
@@ -156,7 +156,7 @@
                                 </tbody>
                             </table>
                             <div *ngIf="cardView">
-                              
+
                                 <app-laboratoire-list [sortField]="sortField"
                                     (currentIdPreview)="setCurrentIdPreview($event)"
                                     (currentIdUpdate)="currentIdUpdate($event)"></app-laboratoire-list>

@@ -1,4 +1,5 @@
 import {Injectable} from '@angular/core';
+import {Role} from '@auth/models';
 
 export interface NavigationItem {
   id: string;
@@ -84,7 +85,7 @@ const NavigationItems = [
     url: '/dashboard/medecin/list-medecin',
     icon: 'feather icon-activity',
     classes: 'nav-item',
-    roles: ['ROLE_ADMIN', 'ROLE_USER'],
+    roles: ['ROLE_ADMIN', 'ROLE_USER', Role.agentMedecin],
   },
   {
     id: 'machines',
@@ -105,8 +106,8 @@ const NavigationItems = [
     roles: ['ROLE_ADMIN', 'ROLE_USER'],
   },
   {
-    id: 'Pharmacie',
-    title: 'Pharmacie',
+    id: 'Pharmacies',
+    title: 'Pharmacies',
     type: 'item',
     url: '/dashboard/pharmacie',
     icon: 'feather icon-activity',
